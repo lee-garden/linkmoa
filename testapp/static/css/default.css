@@ -1,0 +1,49 @@
+body{
+    margin : 0 0 0 0;
+}
+
+.container{
+    margin: 0 20px 0 20px;
+    border: 2px solid black;
+    height: 715px;
+}
+
+.main-header{
+    margin: 20px 20px 0 20px;
+    border: 1.5px solid purple;
+    width: 1fr;
+}
+
+.side-bar{
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 20px ;
+    border: 1.5px solid red;
+    width: 300px;
+    height: 600px;
+    float: left;
+}
+
+.search-bar{
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 20px ;
+    border: 1.5px solid blue;
+    width: 400px;
+    height: 600px;
+    float: left;
+}
+
+.items{
+    margin: 20px 0 0 20px ;
+    border: 1.5px solid green;
+    width: 500px;
+    height: 600px;
+    float: left;
+}
+
+#keyword-search{
+    margin: 10px 0 0 0;
+}
+
+#urlList{
+    margin: 10px 0 0 0;
+}

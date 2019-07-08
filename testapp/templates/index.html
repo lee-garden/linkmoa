@@ -15,15 +15,15 @@
         <div class="side-bar">
             <h2>Side-bar</h2>
         </div>
-        <div class="search-bar">
+        <div id = "app" class="search-bar">
             <form method="POST" action ="{% url 'make_memo' %}">
                 {% csrf_token%}
                 <br>
                 검색 : 
                 <input id="keyword-search"type="text" placeholder="키워드 입력" name='key'>
-                <button>버튼</button>
+                <button v-on:click="renew()">버튼</button>
                 <br>
-                <textarea id="urlList" wrap="off" cols="50" rows="30" name='url' ></textarea>
+                <textarea class = "message" id="urlList" wrap="off" cols="50" rows="30" name='url' v-model="newMessage"></textarea>
             </form>
         </div>    
         <div class="items">
@@ -35,5 +35,33 @@
             {% endfor %}
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            delimiters: ['{', '}'],
+            data: {
+                message: 'test app',
+                newMessage: '',
+            },
+            created: function () {
+                console.log("created");
+            },
+            mounted: function() {
+                console.log("mounted");
+                document.getElementById("urlList").defaultValue = localStorage.getItem('temp');
+            },
+            updated: function() {
+                console.log("upadated");
+            },
+            methods: {
+                renew: function(){
+                    if(this.newMessage == '') this.newMessage = localStorage.getItem('temp');
+                    localStorage.setItem('temp', this.newMessage);
+                }
+            },
+        })
+    </script>
 </body>
 </html>

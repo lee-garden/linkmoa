@@ -20,6 +20,8 @@ import testapp.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', testapp.views.index, name='index'),
+    path('login/', testapp.views.login, name='login'),
+    path('signup/', testapp.views.signup, name='signup'),
     
-    path('make_memo',testapp.views.make_memo, name='make_memo')
+    path('make_memo',testapp.views.make_memo, name='make_memo'),
 ]

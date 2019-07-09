@@ -11,9 +11,9 @@
     <div class="container">
         <header class="main-header">
                 <ul class="header-ul">
-                    <li class="header-li1"><h2>링크모아</h2></li>
-                    <li class="header-li2">버튼1</li>
-                    <li class="header-li3">버튼2</li>
+                    <li class="header-li1"><h2><a href="#">링크모아</a></h2></li>
+                    <li class="header-li2"><a href="{% url 'login' %}">로그인</a></li>
+                    <li class="header-li3"><a href="{% url 'signup' %}">회원가입</a></li>
                     <li class="header-li4">버튼3</li>
                 </ul>
         </header>
@@ -27,7 +27,7 @@
         </div>
         <div id = "app" class="search-bar">
             <form method="POST" action ="{% url 'make_memo' %}">
-                {% csrf_token%}
+                {% csrf_token%} 
                 <br>
                 검색 : 
                 <input id="keyword-search"type="text" placeholder="키워드 입력" name='key'>
@@ -63,7 +63,6 @@
                     </ol>
                 </nav>
             </div>
-
         </div>
     </div>
 

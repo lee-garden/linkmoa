@@ -18,3 +18,9 @@ def make_memo(request):
     if len(memo.urls) > 1:
         memo.save()
     return redirect('/')
+
+def login(request):
+    return render(request,'login.html')
+
+def signup(request):
+    return render(request,'signup.html')

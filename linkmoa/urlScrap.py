@@ -13,7 +13,6 @@ def scrapUrl(list, key):
         print(i+1," 번째 URL : " + list[i])
         if list[i] is not '':
             if crawling(list[i], key) is not False:
-                print('추가')
                 urlList.append(list[i])
 
     if len(urlList) == 0:
@@ -52,5 +51,3 @@ def crawling(url, key):
 
     print("여긴 없당")
     return False
-    #print(p_tag)
-    #print(span_tag)

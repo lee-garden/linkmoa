@@ -43,6 +43,7 @@
 
             <div id = "directory-bar">
                 <h2>Directory-bar</h2>
+                <button>폴더 만들기</button>
                 <nav class="directoryNav" role="navigation">
                     <ol class="directory-container">
                         <li class="directory"><a href="#">Recently</a>
@@ -91,6 +92,18 @@
                     localStorage.setItem('temp', this.newMessage);
                 }
             },
+        })
+        // AJAX
+
+        
+        document.getElementById('whatToDo').addEventListener('change', function (event) {
+            var toDo = document.getElementById('whatToDo').value;
+            toDoList.push(toDo);
+
+            let text = `<li class='nav-item'><a class='nav-link'><span data-feather='file-text'></span>${toDo}</a></li>`;
+            $('#toDoList').append(text);
+
+            console.log(toDoList);
         })
     </script>
 </body>

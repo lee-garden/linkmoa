@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from testapp import urlScrap
+from linkmoa import urlScrap
 from .models import Memo
 
 # Create your views here.
@@ -18,9 +18,3 @@ def make_memo(request):
     if len(memo.urls) > 1:
         memo.save()
     return redirect('/')
-
-def login(request):
-    return render(request,'login.html')
-
-def signup(request):
-    return render(request,'signup.html')

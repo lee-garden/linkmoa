@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'testapp.apps.TestappConfig',
+    'linkmoa.apps.LinkmoaConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES = [
-    os.path.join(BASE_DIR, 'testapp', 'static')
+    os.path.join(BASE_DIR, 'linkmoa', 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

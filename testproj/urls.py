@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import testapp.views
+import linkmoa.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', testapp.views.index, name='index'),
-    path('login/', testapp.views.login, name='login'),
-    path('signup/', testapp.views.signup, name='signup'),
-    
-    path('make_memo',testapp.views.make_memo, name='make_memo'),
+    path('', linkmoa.views.index, name='index'),
+    path('make_memo',linkmoa.views.make_memo, name='make_memo'),
+
+    path('login/', accounts.views.login, name='login'),
+    path('signup/', accounts.views.signup, name='signup'),
 ]

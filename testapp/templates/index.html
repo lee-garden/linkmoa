@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../../static/css/default.css" rel="stylesheet">
-    <title>Document</title>
+    <title>링 크 모 아</title>
 </head>
 <body>
     <div class="container">
         <header class="main-header">
-            <h2>header</h2>
+                <ul class="header-ul">
+                    <li class="header-li1"><h2>링크모아</h2></li>
+                    <li class="header-li2">버튼1</li>
+                    <li class="header-li3">버튼2</li>
+                    <li class="header-li4">버튼3</li>
+                </ul>
         </header>
-        <div class="side-bar">
-            <h2>Side-bar</h2>
+        <div class="items">
+            {% for memo in memos.all %}
+                <div class = "dashboard">
+                    <h2>'<a href="#">{{memo.keyword}}</a>'를 포함하는 URL List</h2>
+                    <p>{{memo.urls}}</p>
+                </div>
+            {% endfor %}
         </div>
         <div id = "app" class="search-bar">
             <form method="POST" action ="{% url 'make_memo' %}">
@@ -25,14 +35,35 @@
                 <br>
                 <textarea class = "message" id="urlList" wrap="off" cols="50" rows="30" name='url' v-model="newMessage"></textarea>
             </form>
-        </div>    
-        <div class="items">
-            {% for memo in memos.all %}
-                <div class = "memolist">
-                    <h2>'<a href="#">{{memo.keyword}}</a>'를 포함하는 URL List</h2>
-                    <p>{{memo.urls}}</p>
-                </div>
-            {% endfor %}
+        </div>
+        <div class="side-bar">
+            <div id = "user-info">
+                <h2>User Info</h2>
+            </div>
+
+            <div id = "directory-bar">
+                <h2>Directory-bar</h2>
+                <nav class="directoryNav" role="navigation">
+                    <ol class="directory-container">
+                        <li class="directory"><a href="#">Recently</a>
+                            <ol class="memolist">
+                                {% for memo in memos.all %}
+                                    {% if memo.directory == 'recently' %}
+                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ol>
+                        </li>
+                        <li class="directory"><a href="#">SampleDirectory</a>
+                            <ol class="memolist">
+                                <li class="memolink"><a href="#">memo1</a></li>
+                                <li class="memolink"><a href="#">memo2</a></li>
+                            </ol>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
         </div>
     </div>
 

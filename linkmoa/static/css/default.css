@@ -51,16 +51,16 @@ body{
     margin-top: 20px;
 }
 
-.directory-container, .memolist{
+#directory-container, .memolist{
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
 
-.directory-container > li{
+#directory-container > li{
     border: 1px solid red;
 }
-.directory-container >li >a{
+#directory-container >li >a{
     font-size: 0.85rem;
     color: rgba(255,255,255,0.85);
     text-decoration: none;
@@ -88,7 +88,7 @@ body{
 }
 
 
-.directory-container > li:hover .memolist{
+#directory-container > li:hover .memolist{
     opacity: 1;
     visibility: visible;
 }
@@ -120,7 +120,21 @@ body{
     float: left;
 }
 
+.memoContainer{
+    border: 1px solid black;
+    margin: 10px;
+}
 
+.buttons{
+    float: right;
+}
+
+.i-btn{
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+}
 
 .loginBox{
     border: 1px solid black;

@@ -8,19 +8,28 @@
     <title>login</title>
 </head>
 <body>
+    {% if error == 'username or password is incorrect.' %}
+        <script>alert("아이디 또는 패스워드가 틀렸습니다.");</script>
+    {%endif%}
     <div class="container">
         <header class="main-header">
             <ul class="header-ul">
-                <li class="header-li1"><h2><a href="{%url 'index'%}">링크모아</a></h2></li>
+                <li class="header-li1"><h2><a href="{%url 'board'%}">링크모아</a></h2></li>
                 <li class="header-li2"><a href="{% url 'login' %}">로그인</a></li>
                 <li class="header-li3"><a href="{% url 'signup' %}">회원가입</a></li>
                 <li class="header-li4">버튼3</li>
             </ul>
         </header>
         <div class="loginBox">
-            <input id ="username" type="text" placeholder="username" name="username"><br>
-            <input id ="password" type="password" placeholder="password" name="password"><br>
-            <button>Sign in</button>
+            
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input id ="username" type="text" placeholder="username" name="username"><br>
+                <input id ="password" type="password" placeholder="password" name="password"><br>
+            
+                <input class="btn btn-primary" type="submit" value="로그인">
+            </form>
+            
             <button>아이디/비밀번호 찾기</button>
             <button>회원가입</button>
         </div>

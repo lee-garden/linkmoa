@@ -5,23 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../../static/css/default.css" rel="stylesheet">
+    <link href="../../static/css/default.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>링 크 모 아</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <header class="main-header">
                 <ul class="header-ul">
-                    <li class="header-li1"><h2><a href="#">링크모아</a></h2></li>
-                    <li class="header-li2"><a href="{% url 'login' %}">로그인</a></li>
-                    <li class="header-li3"><a href="{% url 'signup' %}">회원가입</a></li>
-                    <li class="header-li4">버튼3</li>
+                    <li class="header-li1"><h2><a href="{% url 'board' %}">링크모아</a></h2></li>
+                    {% if user.is_authenticated %}
+                    
+                    <li class="header-li2">
+                        <form id="logout" method="POST" action="{%url 'logout'%}">
+                                {% csrf_token%}
+                                <input class="btn btn-primary" type="submit" value="로그아웃">
+                        </form>
+                    </li>
+                    {% endif %}
+                    <li class="header-li3"><a href="{% url 'board' %}">게시판</a></li>
                 </ul>
         </header>
         <div class="items">
             {% for memo in memos.all %}
-                <div class = "dashboard">
+                <div class="memoContainer">
                     <h2>'<a href="#">{{memo.keyword}}</a>'를 포함하는 URL List</h2>
+                    <span class="buttons">
+                        <button class="i-btn"><i class="fa fa-edit"></i></button> 
+                        <button class="i-btn"><i class="fa fa-plus"></i></button>
+                        <button class="i-btn"><i class="fa fa-times"></i></button>
+                    </span>
                     <p>{{memo.urls}}</p>
+                    <button class="i-btn" onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
                 </div>
             {% endfor %}
         </div>
@@ -39,13 +58,15 @@
         <div class="side-bar">
             <div id = "user-info">
                 <h2>User Info</h2>
+                {{user.id}}
             </div>
 
             <div id = "directory-bar">
                 <h2>Directory-bar</h2>
+                <input id="mkdir" type="text" placeholder="폴더 이름 입력">
                 <button>폴더 만들기</button>
                 <nav class="directoryNav" role="navigation">
-                    <ol class="directory-container">
+                    <ol id="directory-container">
                         <li class="directory"><a href="#">Recently</a>
                             <ol class="memolist">
                                 {% for memo in memos.all %}
@@ -96,14 +117,20 @@
         // AJAX
 
         
-        document.getElementById('whatToDo').addEventListener('change', function (event) {
-            var toDo = document.getElementById('whatToDo').value;
-            toDoList.push(toDo);
+        document.getElementById('mkdir').addEventListener('change', function (event) {
+            console.log('헉');
+            var dirname = document.getElementById('mkdir').value;
 
-            let text = `<li class='nav-item'><a class='nav-link'><span data-feather='file-text'></span>${toDo}</a></li>`;
-            $('#toDoList').append(text);
-
-            console.log(toDoList);
+            let text = `<li class="directory"><a href="#">${dirname}</a>
+                            <ol class="memolist">
+                                {% for memo in memos.all %}
+                                    {% if memo.directory == '${dirname}' %}
+                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ol>
+                        </li>`;
+            $('#directory-container').append(text);
         })
     </script>
 </body>

@@ -1,0 +1,137 @@
+body{
+    margin : 0 0 0 0;
+}
+
+.container{
+    margin: 0 20px 0 20px;
+    border: 2px solid black;
+    height: 900px;
+}
+
+
+/* Header Part */
+.main-header{
+    margin: 20px 20px 0 20px;
+    border: 1.5px solid purple;
+    width: 1fr;
+}
+
+.header-ul{
+    list-style: none;
+    overflow: auto;
+}
+
+.header-li1, .header-li2, .header-li3, .header-li4{
+    float: left;
+    height: 100%;
+    margin-left: 20px;
+}
+
+/* Side-bar Part */
+.side-bar{
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 20px ;
+    border: 1.5px solid red;
+    width: 300px;
+    height: 740px;
+    float: left;
+}
+
+#user-info{
+    border: 1px solid black;
+    width: 300px;
+    height: 150px;
+    margin-top: 20px;
+}
+
+#directory-bar{
+    border: 1px solid black;
+    width: 300px;
+    height: 550px;
+    margin-top: 20px;
+}
+
+#directory-container, .memolist{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#directory-container > li{
+    border: 1px solid red;
+}
+#directory-container >li >a{
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border-right: 1px solid rgba(0,0,0,0.15);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.directory{
+    background: black;
+}
+
+.memolist{
+    position: absolute;
+    background: wheat;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.memolink > a{
+    color:black;
+    text-decoration: none;
+}
+
+
+#directory-container > li:hover .memolist{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Search-bar Part */
+.search-bar{
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 20px ;
+    border: 1.5px solid blue;
+    width: 400px;
+    height: 740px;
+    float: left;
+}
+
+#keyword-search{
+    margin: 10px 0 0 0;
+}
+
+#urlList{
+    margin: 10px 0 0 0;
+}
+
+/* Items Part */
+.items{
+    margin: 20px 0 0 20px ;
+    border: 1.5px solid green;
+    width: 500px;
+    height: 740px;
+    float: left;
+}
+
+
+
+.loginBox{
+    border: 1px solid black;
+    width: 500px;
+    height: 400px;
+    margin: 80px auto;
+}
+
+.signupBox{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    margin: 40px auto;
+}

@@ -20,9 +20,12 @@ import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', linkmoa.views.index, name='index'),
+    path('',linkmoa.views.board, name='board'),
+    path('index/', linkmoa.views.index, name='index'),
     path('make_memo',linkmoa.views.make_memo, name='make_memo'),
+    path('delete_memo/<int:memo_id>/', linkmoa.views.delete_memo, name='delete_memo'),
 
     path('login/', accounts.views.login, name='login'),
+    path('logout/', accounts.views.logout, name='logout'),
     path('signup/', accounts.views.signup, name='signup'),
 ]

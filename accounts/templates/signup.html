@@ -11,26 +11,30 @@
     <div class="container">
         <header class="main-header">
             <ul class="header-ul">
-                <li class="header-li1"><h2><a href="{%url 'index'%}">링크모아</a></h2></li>
+                <li class="header-li1"><h2><a href="{%url 'board'%}">링크모아</a></h2></li>
                 <li class="header-li2"><a href="{% url 'login' %}">로그인</a></li>
                 <li class="header-li3"><a href="#">회원가입</a></li>
                 <li class="header-li4">버튼3</li>
             </ul>
         </header>
         <div class="signupBox">
-            성명<br>
-            <input type="text" placeholder="이름을 입력해 주세요"><br>
-            아이디<br>
-            <input type="text" placeholder="아이디를 입력해 주세요"><button>중복 확인</button><br>
-            이메일 주소<br>
-            <input type="text" placeholder="xxxxxx@example.com"><br>
-            비밀번호<br>
-            <input type="password" placeholder="비밀번호를 입력해 주세요"><br>
-            비밀번호 확인<br>
-            <input type="password" placeholder="비밀번호를 다시한번 입력 해 주세요"><br>
-            휴대폰 번호<br>
-            <input type="text" placeholder="000-0000-0000"><br>
-            <button>회원가입</button>
+        <form method="POST" action="{% url 'signup' %}">
+                {% csrf_token %}
+                성명<br>
+                <input type="text" placeholder="이름을 입력해 주세요"><br>
+                아이디<br>
+                <input type="text" placeholder="아이디를 입력해 주세요" name="username"><button>중복 확인</button><br>
+                이메일 주소<br>
+                <input type="text" placeholder="xxxxxx@example.com"><br>
+                비밀번호<br>
+                <input type="password" placeholder="비밀번호를 입력해 주세요" name="password"><br>
+                비밀번호 확인<br>
+                <input type="password" placeholder="비밀번호를 다시한번 입력 해 주세요" name="password_confirm"><br>
+                휴대폰 번호<br>
+                <input type="text" placeholder="000-0000-0000"><br>
+            
+                <input class="btn btn-primary" type="submit" value="회원가입">
+            </form>
             <button>가입취소</button>
             
         </div>

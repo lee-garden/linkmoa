@@ -30,7 +30,7 @@
                 {% csrf_token%} 
                 <br>
                 검색 : 
-                <input id="keyword-search"type="text" placeholder="키워드 입력" name='key'>
+                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key'>
                 <button v-on:click="renew()">버튼</button>
                 <br>
                 <textarea class = "message" id="urlList" wrap="off" cols="50" rows="30" name='url' v-model="newMessage"></textarea>

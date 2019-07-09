@@ -119,3 +119,19 @@ body{
     height: 740px;
     float: left;
 }
+
+
+
+.loginBox{
+    border: 1px solid black;
+    width: 500px;
+    height: 400px;
+    margin: 80px auto;
+}
+
+.signupBox{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    margin: 40px auto;
+}

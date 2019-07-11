@@ -7,6 +7,8 @@ from accounts import views
 from .models import Memo
 from. models import Profile
 
+import re as re
+
 # Create your views here.
 def board(request):
     user=request.user
@@ -48,4 +50,10 @@ def share_memo(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
     memo.shared = True
     memo.save()
+    return redirect('index')
+
+def test1(request):
+    if 'a' in request.POST:
+        print('hello')
+    print('test1 called')
     return redirect('index')

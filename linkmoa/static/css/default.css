@@ -2,7 +2,7 @@ body{
     margin : 0 0 0 0;
 }
 
-.container{
+.container-linkmoa{
     margin: 0 20px 0 20px;
     border: 2px solid black;
     height: 900px;
@@ -10,13 +10,13 @@ body{
 
 
 /* Header Part */
-.main-header{
+.main-header-linkmoa{
     margin: 20px 20px 0 20px;
     border: 1.5px solid purple;
     width: 1fr;
 }
 
-.header-ul{
+.header-ul-linkmoa{
     list-style: none;
     overflow: auto;
 }
@@ -130,7 +130,7 @@ body{
     float: right;
 }
 
-.i-btn{
+.i-btn, .i-btn-cd{
     background: none;
     color: inherit;
     border: none;

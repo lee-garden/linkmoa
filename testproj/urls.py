@@ -24,6 +24,7 @@ urlpatterns = [
     path('index/', linkmoa.views.index, name='index'),
     path('make_memo',linkmoa.views.make_memo, name='make_memo'),
     path('delete_memo/<int:memo_id>/', linkmoa.views.delete_memo, name='delete_memo'),
+    path('share_memo/<int:memo_id>/', linkmoa.views.share_memo, name="share_memo"),
     path('mkdir', linkmoa.views.mkdir, name='mkdir'),
 
     path('login/', accounts.views.login, name='login'),

@@ -9,7 +9,9 @@ from. models import Profile
 
 # Create your views here.
 def board(request):
-    return render(request,'board.html')
+    user=request.user
+    memos = Memo.objects.filter(shared=True)
+    return render(request,'board.html',{'memos' : memos})
 
 def index(request):
     user=request.user
@@ -22,6 +24,7 @@ def make_memo(request):
     print(user.id)
     memo = Memo()
     memo.user_id = user.id
+    memo.owner = user.username
     memo.keyword = request.POST['key']
     urls = request.POST['url']
     splited = urls.split('\n')
@@ -39,4 +42,10 @@ def mkdir(request):
 def delete_memo(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
     memo.delete()
+    return redirect('index')
+
+def share_memo(request, memo_id):
+    memo = Memo.objects.get(id=memo_id)
+    memo.shared = True
+    memo.save()
     return redirect('index')

@@ -30,7 +30,13 @@
             </header>
             <div class="board">
                 <h1>게시판 들어갈 자리</h1>
-            </div>
+                {% for memo in memos.all %}
+                <div class="memoContainer">
+                    <h2>'<a href="#">{{memo.keyword}}</a>'를 포함하는 URL List</h2>
+                    <h4>{{memo.owner}}</h4>
+                    <p>{{memo.urls}}</p>
+                </div>
+                {% endfor %}
         </div>
 </body>
 </html>

@@ -39,6 +39,7 @@
                         <button class="i-btn"><i class="fa fa-times"></i></button>
                     </span>
                     <p>{{memo.urls}}</p>
+                    <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
                     <button class="i-btn" onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
                 </div>
             {% endfor %}

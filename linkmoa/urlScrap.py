@@ -1,5 +1,6 @@
 from multiprocessing import Pool
 from urllib.request import urlopen
+from urllib.request import HTTPError
 import urllib.request
 import bs4
 import requests
@@ -14,11 +15,10 @@ def scrapUrl(list, key):
         if list[i] is not '':
             if crawling(list[i], key) is not False:
                 urlList.append(list[i])
-
+    print("time : ", time.time() - start )
     if len(urlList) == 0:
         return 'N'
 
-    print("time : ", time.time() - start )
     urlList = "\n".join(urlList)
     return urlList
 
@@ -26,7 +26,7 @@ def crawling(url, key):
     try:
         main_url = url
         main_html = urlopen(main_url)
-    except:
+    except HTTPError as e:
         print('open faild')
         return False
     if key.lower() in main_html.read().decode("utf-8").lower():

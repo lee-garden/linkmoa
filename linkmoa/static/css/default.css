@@ -121,8 +121,9 @@ body{
 }
 
 .memoContainer{
-    border: 1px solid black;
+    border: 2.5px solid purple;
     margin: 10px;
+    border-radius: 15px
 }
 
 .buttons{

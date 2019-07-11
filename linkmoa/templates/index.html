@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css" rel="stylesheet">
-    <link href="../../static/css/default.css" rel="stylesheet">
+    <link href="../../static/css/default.css?ver=1.0" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>링 크 모 아</title>
 
@@ -63,8 +62,12 @@
 
             <div id = "directory-bar">
                 <h2>Directory-bar</h2>
-                <input id="mkdir" type="text" placeholder="폴더 이름 입력">
-                <button>폴더 만들기</button>
+                <form method="POST" action ="{% url 'mkdir' %}">
+                    {% csrf_token%}
+                    폴더 만들기 : <input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname'>
+                    <button class="i-btn"><i class="fa fa-plus"></i></button>
+                </form>
+
                 <nav class="directoryNav" role="navigation">
                     <ol id="directory-container">
                         <li class="directory"><a href="#">Recently</a>
@@ -76,12 +79,12 @@
                                 {% endfor %}
                             </ol>
                         </li>
-                        <li class="directory"><a href="#">SampleDirectory</a>
+                        {% for a in user.profile.get_fields_name %}
+                        <li class="directory"><a href="#">{{a}}</a>
                             <ol class="memolist">
-                                <li class="memolink"><a href="#">memo1</a></li>
-                                <li class="memolink"><a href="#">memo2</a></li>
                             </ol>
                         </li>
+                        {% endfor %}
                     </ol>
                 </nav>
             </div>
@@ -113,24 +116,6 @@
                     localStorage.setItem('temp', this.newMessage);
                 }
             },
-        })
-        // AJAX
-
-        
-        document.getElementById('mkdir').addEventListener('change', function (event) {
-            console.log('헉');
-            var dirname = document.getElementById('mkdir').value;
-
-            let text = `<li class="directory"><a href="#">${dirname}</a>
-                            <ol class="memolist">
-                                {% for memo in memos.all %}
-                                    {% if memo.directory == '${dirname}' %}
-                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ol>
-                        </li>`;
-            $('#directory-container').append(text);
         })
     </script>
 </body>

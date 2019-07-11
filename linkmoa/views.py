@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from linkmoa import urlScrap
+from linkmoa import dirManagement
 from accounts import views
 from .models import Memo
+from. models import Profile
 
 # Create your views here.
 def board(request):
@@ -11,9 +13,8 @@ def board(request):
 
 def index(request):
     user=request.user
-    print(user.id)
+    print('current user : ', user.id)
     memos = Memo.objects.filter(user_id=user.id)
-    print('open page')
     return render(request,'index.html',{'memos' : memos, 'userid' : user.id})
 
 def make_memo(request):
@@ -27,6 +28,12 @@ def make_memo(request):
     memo.urls = urlScrap.scrapUrl(splited, memo.keyword)
     if len(memo.urls) > 1:
         memo.save()
+    return redirect('index')
+
+def mkdir(request):
+    user=request.user
+    dname = request.POST['dirname']
+    dirManagement.makeDirectory(user,dname)
     return redirect('index')
 
 def delete_memo(request, memo_id):

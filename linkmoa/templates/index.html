@@ -71,22 +71,27 @@
 
                 <nav class="directoryNav" role="navigation">
                     <ol id="directory-container">
-                        <li class="directory"><a href="#">Recently</a>
-                            <ol class="memolist">
-                                {% for memo in memos.all %}
-                                    {% if memo.directory == 'recently' %}
-                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ol>
-                        </li>
-                        {% for a in user.profile.get_fields_name %}
-                        <li class="directory"><a href="#">{{a}}</a>
-                            <ol class="memolist">
-                            </ol>
-                        </li>
-                        {% endfor %}
-                    </ol>
+                            <li class="directory"><a href="#">Recently</a>
+                                <ol class="memolist">
+                                    {% for memo in memos.all %}
+                                        {% if memo.directory == 'test4' %}
+                                            <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ol>
+                            </li>
+                            {% for a in user.profile.get_fields_name %}
+                            <li class="directory"><a href="#">{{a}}</a>
+                                <ol class="memolist">
+                                    {% for memo in memos.all %}
+                                        {% if memo.directory == a %}
+                                            <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ol>
+                            </li>
+                            {% endfor %}
+                        </ol>
                 </nav>
             </div>
         </div>

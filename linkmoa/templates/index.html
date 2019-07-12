@@ -76,28 +76,28 @@
 
                 <nav class="directoryNav" role="navigation">
                     <ol id="directory-container">
-                        <li class="directory"><a href="#">Recently</a>
-                            <ol class="memolist">
-                                {% for memo in memos.all %}
-                                    {% if memo.directory == 'recently' %}
-                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ol>
-                        </li>
-                        {% for a in user.profile.get_fields_name %}
-                        <li class="directory"><a href="#">{{a}}</a>
-                            <button class="dir-delete-btn"><i class="fa fa-trash"></i></button>
-                            <ol class="memolist">
-                                {% for memo in memos.all %}
-                                    {% if memo.directory == a %}
-                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ol>
-                        </li>
-                        {% endfor %}
-                    </ol>
+                            <li class="directory"><a href="#">Recently</a>
+                                <ol class="memolist">
+                                    {% for memo in memos.all %}
+                                        {% if memo.directory == 'recently' %}
+                                            <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ol>
+                            </li>
+                            {% for a in user.profile.get_fields_name %}
+                            <li class="directory"><a href="#">{{a}}</a>
+                            <button class="dir-delete-btn"onclick="if(confirm(delcontext)){location.href='{%url 'deletedir' a %}';}"><i class="fa fa-trash"></i></button>
+                                <ol class="memolist">
+                                    {% for memo in memos.all %}
+                                        {% if memo.directory == a %}
+                                            <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ol>
+                            </li>
+                            {% endfor %}
+                        </ol>
                 </nav>
             </div>
         </div>
@@ -135,6 +135,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>
+        var delcontext='폴더 삭제시 해당 폴더의 메모들도 함께 삭제됩니다.\n정말 삭제 하시겠습니까?'
 
         var app = new Vue({
             el: '#app',

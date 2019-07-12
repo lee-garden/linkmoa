@@ -49,3 +49,25 @@ def share_memo(request, memo_id):
     memo.shared = True
     memo.save()
     return redirect('index')
+
+def edit_memo(request, memo_id):
+
+    memo = Memo.objects.get(id=memo_id)
+    #print(keyword)
+    #print(urls)
+    #print(request)
+
+    '''
+    if request.method == "POST":
+        form = CatPost(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data)
+            # {'name': '수정된 이름', 'image': <InMemoryUploadedFile: Birman_43.jpg 	(image/jpeg)>, 'gender': 'female', 'body': '수정된 내용'}
+            cat.name = form.cleaned_data['name']
+            cat.image = form.cleaned_data['image']
+            cat.gender = form.cleaned_data['gender']
+            cat.body = form.cleaned_data['body']
+            cat.save()
+    '''
+
+    return redirect('index')

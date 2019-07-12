@@ -13,6 +13,5 @@ def makeDirectory(user, name):
 def deleteDirectory(user, name):
     for dir, key in model_to_dict(user.profile).items():
         if key == name:
-            print(user.username,"'s directory : " + name + " dir is deleted")
             setattr(user.profile, dir, "")
             user.profile.save()

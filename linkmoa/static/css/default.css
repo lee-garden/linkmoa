@@ -154,3 +154,7 @@ body{
 .dir-delete-btn{
     float: right;
 }
+
+.mvdir-btn{
+    position: center;
+}

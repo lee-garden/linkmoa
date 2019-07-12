@@ -82,6 +82,7 @@
                             </li>
                             {% for a in user.profile.get_fields_name %}
                             <li class="directory"><a href="#">{{a}}</a>
+                            <button class="dir-delete-btn"onclick="location.href='{%url 'deletedir' a %}'"><i class="fa fa-trash"></i></button>
                                 <ol class="memolist">
                                     {% for memo in memos.all %}
                                         {% if memo.directory == a %}

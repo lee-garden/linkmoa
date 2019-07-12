@@ -39,6 +39,13 @@ def mkdir(request):
     dirManagement.makeDirectory(user,dname)
     return redirect('index')
 
+def deletedir(request, dirname):
+    user=request.user
+    dname = dirname
+    dirManagement.deleteDirectory(user, dname)
+    print('Delete ' + dname + ' dir function called')
+    return redirect('index')
+
 def delete_memo(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
     memo.delete()

@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css?ver=1.0" rel="stylesheet">
+    <link href="../../static/css/default.css?ver=1.1" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>링 크 모 아</title>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -13,9 +16,10 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <header class="main-header">
-                <ul class="header-ul">
+    {% load quicksave %}
+    <div class="container-linkmoa">
+        <header class="main-header-linkmoa">
+                <ul class="header-ul-linkmoa">
                     <li class="header-li1"><h2><a href="{% url 'board' %}">링크모아</a></h2></li>
                     {% if user.is_authenticated %}
                     
@@ -35,7 +39,8 @@
                     <h2>'<a href="#">{{memo.keyword}}</a>'를 포함하는 URL List</h2>
                     <span class="buttons">
                         <button class="i-btn"><i class="fa fa-edit"></i></button> 
-                        <button class="i-btn"><i class="fa fa-plus"></i></button>
+                        <!-- <button class="i-btn"><i class="fa fa-plus"></i></button> -->
+                        <button class="i-btn" data-toggle="modal" data-target="#myModal" onclick="'{% setSelectedMemo user.profile memo.id %}'"><i class="fa fa-plus"></i></button>
                         <button class="i-btn"><i class="fa fa-times"></i></button>
                     </span>
                     <p>{{memo.urls}}</p>
@@ -46,7 +51,7 @@
         </div>
         <div id = "app" class="search-bar">
             <form method="POST" action ="{% url 'make_memo' %}">
-                {% csrf_token%} 
+                {% csrf_token%}
                 <br>
                 검색 : 
                 <input id="keyword-search" type="text" placeholder="키워드 입력" name='key'>
@@ -74,7 +79,7 @@
                             <li class="directory"><a href="#">Recently</a>
                                 <ol class="memolist">
                                     {% for memo in memos.all %}
-                                        {% if memo.directory == 'test4' %}
+                                        {% if memo.directory == 'recently' %}
                                             <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
                                         {% endif %}
                                     {% endfor %}
@@ -96,6 +101,36 @@
                 </nav>
             </div>
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'movedir' 'recently' %}">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-default" onclick="getMemo();" value="Recently">
+                    <input type="hidden" name="mem-id" value = "">
+                </form>
+              {% for dirname in user.profile.get_fields_name %}
+              <form method="POST" action="{% url 'movedir' dirname %}">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-default" onclick="getMemo();" value="{{dirname}}">
+                <input type="hidden" name="{{dirname}}" value = "">
+              </form>
+              {% endfor %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>

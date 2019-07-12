@@ -34,17 +34,19 @@
         </header>
         <div class="items">
             {% for memo in memos.all %}
+            {% if memo.display == 'visible' %}
             <div class="memoContainer">
                 <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
                 <span class="buttons">
                     <button class="i-btn"><i class="fa fa-edit"></i></button> 
-                    <button class="i-btn" data-toggle="modal" data-target="#myModal" onclick="'{% setSelectedMemo user.profile memo.id %}'"><i class="fa fa-plus"></i></button>
-                    <button class="i-btn"><i class="fa fa-times"></i></button>
+                    <button class="i-btn" data-toggle="modal" data-target="#myModal" onclick="'{% setSelectedMemo user.profile memo.id %}'"><i class="fa fa-folder"></i></button>
+                    <button class="i-btn"onclick="location.href='{%url 'disappear_memo' memo.id %}'"><i class="fa fa-times"></i></button>
                 </span>
                 <p>{{memo.urls}}</p>
                 <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
                 <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
         <div id = "app" class="search-bar">
@@ -77,7 +79,7 @@
                             <ol class="memolist">
                                 {% for memo in memos.all %}
                                     {% if memo.directory == 'recently' %}
-                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                        <li class="memolink"><a href="{% url 'appear_memo' memo.id%}">{{memo.keyword}}</a></li>
                                     {% endif %}
                                 {% endfor %}
                             </ol>
@@ -88,7 +90,7 @@
                             <ol class="memolist">
                                 {% for memo in memos.all %}
                                     {% if memo.directory == a %}
-                                        <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
+                                        <li class="memolink"><a href="{% url 'appear_memo' memo.id%}">{{memo.keyword}}</a></li>
                                     {% endif %}
                                 {% endfor %}
                             </ol>
@@ -117,13 +119,12 @@
             {% for dirname in user.profile.get_fields_name %}
             <form method="POST" action="{% url 'movedir' dirname %}">
               {% csrf_token %}
-              <input type="submit" class ="mvdir-btn" onclick="getMemo();" value="{{dirname}}">
+              <input type="submit" class ="btn btn-default" onclick="getMemo();" value="{{dirname}}">
               <input type="hidden" name="{{dirname}}" value = "">
             </form>
             {% endfor %}
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

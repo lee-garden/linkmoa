@@ -45,7 +45,6 @@ def deletedir(request, dirname):
     memos = Memo.objects.filter(user_id=user.id, directory=dirname)
     memos.delete()
     dirManagement.deleteDirectory(user, dname)
-    print('Delete ' + dname + ' dir function called')
     return redirect('index')
 
 def delete_memo(request, memo_id):
@@ -59,9 +58,38 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
+def undo_share(request, memo_id):
+    memo = Memo.objects.get(id=memo_id)
+    memo.shared = False
+    memo.save()
+    return redirect('/')
+
+def download_memo(request, memo_id):
+    user=request.user
+    newMemo = Memo()
+    oldMemo = Memo.objects.get(id=memo_id)
+    newMemo.user_id = user.id
+    newMemo.owner = user.username
+    newMemo.keyword = oldMemo.keyword
+    newMemo.urls = oldMemo.urls
+    newMemo.save()
+    return redirect('index')
+
 def movedir(request, dirname):
     user = request.user
     memo = Memo.objects.get(id=user.profile.selectedMemo)
     setattr(memo, 'directory', dirname)
+    memo.save()
+    return redirect('index')
+
+def appear_memo(request, memo_id):
+    memo = Memo.objects.get(id=memo_id)
+    memo.display='visible'
+    memo.save()    
+    return redirect('index')
+
+def disappear_memo(request, memo_id):
+    memo = Memo.objects.get(id=memo_id)
+    memo.display='invisible'
     memo.save()
     return redirect('index')

@@ -31,13 +31,20 @@
                 </ul>
             </header>
             <div class="board">
-                <h1>게시판 들어갈 자리</h1>
+                <h1>Dash Board</h1>
                 {% for memo in memos.all %}
                 <div class="memoContainer">
-                    <h2>'<a href="#">{{memo.keyword}}</a>'를 포함하는 URL List</h2>
+                    <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
                     <h4>{{memo.owner}}</h4>
                     <p>{{memo.urls}}</p>
-                </div>
+                    {% if user.is_authenticated %}
+                      {% if user.id == memo.user_id %}
+                      <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
+                      {% else %}
+                      <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
+                      {% endif %}
+                    {% endif %}
+                  </div>
                 {% endfor %}
         </div>
         

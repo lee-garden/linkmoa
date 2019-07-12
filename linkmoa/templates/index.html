@@ -16,6 +16,7 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
+    {% load quicksave %}
     <div class="container-linkmoa">
         <header class="main-header-linkmoa">
                 <ul class="header-ul-linkmoa">
@@ -39,7 +40,7 @@
                     <span class="buttons">
                         <button class="i-btn"><i class="fa fa-edit"></i></button> 
                         <!-- <button class="i-btn"><i class="fa fa-plus"></i></button> -->
-                        <button class="i-btn" data-toggle="modal" data-target="#myModal" onclick="memo_identifier = '{{memo.id}}' "><i class="fa fa-plus"></i></button>
+                        <button class="i-btn" data-toggle="modal" data-target="#myModal" onclick="'{% setSelectedMemo user.profile memo.id %}'"><i class="fa fa-plus"></i></button>
                         <button class="i-btn"><i class="fa fa-times"></i></button>
                     </span>
                     <p>{{memo.urls}}</p>
@@ -78,7 +79,7 @@
                         <li class="directory"><a href="#">Recently</a>
                             <ol class="memolist">
                                 {% for memo in memos.all %}
-                                    {% if memo.directory == 'test4' %}
+                                    {% if memo.directory == 'recently' %}
                                         <li class="memolink"><a href="#">{{memo.keyword}}</a></li>
                                     {% endif %}
                                 {% endfor %}
@@ -111,11 +112,16 @@
               <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body">
+                <form method="POST" action="{% url 'movedir' 'recently' %}">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-default" onclick="getMemo();" value="Recently">
+                    <input type="hidden" name="mem-id" value = "">
+                </form>
               {% for dirname in user.profile.get_fields_name %}
-              <form method="POST" action="{% url 'test1' dirname %}">
+              <form method="POST" action="{% url 'movedir' dirname %}">
                 {% csrf_token %}
-                <input type="submit" class="btn btn-default" onclick="getMemo()" value="{{dirname}}">
-                <input type="hidden" name="mem-id" value = "">
+                <input type="submit" class="btn btn-default" onclick="getMemo();" value="{{dirname}}">
+                <input type="hidden" name="{{dirname}}" value = "">
               </form>
               {% endfor %}
             </div>
@@ -129,12 +135,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>
-        var memo_identifier=-1;
-
-        function getMemo(){
-            document.getElementsByName("mem-id").value=String(memo_identifier);
-            console.log(document.getElementsByName("mem-id").value);
-        }
 
         var app = new Vue({
             el: '#app',

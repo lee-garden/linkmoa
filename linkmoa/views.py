@@ -5,9 +5,7 @@ from linkmoa import urlScrap
 from linkmoa import dirManagement
 from accounts import views
 from .models import Memo
-from. models import Profile
-
-import re as re
+from .models import Profile
 
 # Create your views here.
 def board(request):
@@ -52,9 +50,9 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
-def test1(request, dirname):
-    num = request.POST.get('mem-id')
-    print(num)
-    print(dirname)
-    print('test1 function called')
+def movedir(request, dirname):
+    user = request.user
+    memo = Memo.objects.get(id=user.profile.selectedMemo)
+    setattr(memo, 'directory', dirname)
+    memo.save()
     return redirect('index')

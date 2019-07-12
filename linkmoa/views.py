@@ -52,8 +52,9 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
-def test1(request):
-    if 'a' in request.POST:
-        print('hello')
-    print('test1 called')
+def test1(request, dirname):
+    num = request.POST.get('mem-id')
+    print(num)
+    print(dirname)
+    print('test1 function called')
     return redirect('index')

@@ -42,6 +42,8 @@ def mkdir(request):
 def deletedir(request, dirname):
     user=request.user
     dname = dirname
+    memos = Memo.objects.filter(user_id=user.id, directory=dirname)
+    memos.delete()
     dirManagement.deleteDirectory(user, dname)
     print('Delete ' + dname + ' dir function called')
     return redirect('index')

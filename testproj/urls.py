@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 import linkmoa.views
 import accounts.views
 
@@ -26,6 +26,7 @@ urlpatterns = [
     path('delete_memo/<int:memo_id>/', linkmoa.views.delete_memo, name='delete_memo'),
     path('share_memo/<int:memo_id>/', linkmoa.views.share_memo, name="share_memo"),
     path('mkdir', linkmoa.views.mkdir, name='mkdir'),
+    re_path(r'^edit_memo/(?P<memo_id>\d+)/(?P<keyword>[\w\-]+)/(?P<urls>.*)/$', linkmoa.views.edit_memo, name='edit_memo'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

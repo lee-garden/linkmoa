@@ -68,6 +68,7 @@ def download_memo(request, memo_id):
     user=request.user
     newMemo = Memo()
     oldMemo = Memo.objects.get(id=memo_id)
+    oldMemo.increaseDL()
     newMemo.user_id = user.id
     newMemo.owner = user.username
     newMemo.keyword = oldMemo.keyword

@@ -15,6 +15,7 @@ class Memo(models.Model):
     directory = models.CharField(max_length=20, default="recently")
     display = models.CharField(max_length=10, default="visible")
     shared = models.BooleanField(default=False)
+    download = models.IntegerField(default=0)
     keyword = models.CharField(max_length=30)
     urls = models.TextField(default=None)
     memo = models.TextField(default="")
@@ -25,6 +26,11 @@ class Memo(models.Model):
     def split(urls):
         urlList = urls.split('\n')
         return urlList
+
+    def increaseDL(self):
+        self.download+=1
+        self.save()
+
 
 class Profile(models.Model):  
     user = models.OneToOneField(User, on_delete=models.CASCADE)

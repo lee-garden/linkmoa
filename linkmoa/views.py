@@ -10,7 +10,14 @@ from .models import Profile
 # Create your views here.
 def board(request):
     user=request.user
-    memos = Memo.objects.filter(shared=True)
+    sort = request.GET.get('sort','')
+    if sort == 'likes':
+        memos = Memo.objects.filter(shared=True).order_by('-download')
+        return render(request,'board.html',{'memos' : memos})
+    elif sort == 'mymemo':
+        memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
+        return render(request,'board.html',{'memos' : memos})
+    memos = Memo.objects.filter(shared=True).order_by('-id')
     return render(request,'board.html',{'memos' : memos})
 
 def index(request):

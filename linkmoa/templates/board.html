@@ -32,6 +32,13 @@
             </header>
             <div class="board">
                 <h1>Dash Board</h1>
+                <select id="sort-select" onchange="location = this.value;">
+                    <option class="sort-date" value="/">최신순</option>
+                    <option class="sort-likes" value="?sort=likes">다운로드순</option>
+                    {% if user.is_authenticated %}
+                    <option class="sort-mymemo" value="?sort=mymemo">내 메모</option>
+                    {% endif %}
+                </select><br><br>
                 검색 :
                 <form method="POST" action="{% url 'search_board' %}">
                     {% csrf_token %}
@@ -55,5 +62,34 @@
         
         <div class="container">
         </div>
+
+        <script>
+        // get url query string
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        // 정렬방식 셀렉트 박스 유지
+        $(document).ready(function(){
+        var sort = getUrlParameter('sort');
+        if(sort == 'likes'){
+            $('.sort-likes').prop('selected', 'selected')
+        }else if(sort == 'mymemo'){
+            $('.sort-mymemo').prop('selected', 'selected')
+        }else{
+            $('.sort-date').prop('selected', 'selected')
+        }
+        });
+        </script>
 </body>
 </html>

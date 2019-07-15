@@ -13,6 +13,30 @@
     <title>링 크 모 아</title>
 </head>
 <body>
+    <!--재확씨 하이퍼링크-->
+    <script>
+        function linkPrint(count) {
+                var txtId = "memotxt"+count;
+                var Mtxt = document.getElementById(txtId).innerHTML;
+                var lines = Mtxt.split("\n");
+                
+                var Ptxt = "";
+                for (var i =0 ; i<lines.length; i++) {
+                    Ptxt += "<a href=";
+                    Ptxt += lines[i];
+                    Ptxt += ">";
+                    Ptxt += lines[i];
+                    Ptxt += "</a>"
+                    Ptxt += "<br>"
+                    Ptxt += "<br>"
+                }
+                var memoID = "result"+count;
+                var blk = document.getElementById(memoID);
+                blk.innerHTML = Ptxt;
+                console.log(memoID);
+        }
+    </script>
+
     <div class="container">
         <header class="main-header">
                 <ul class="header-ul">
@@ -38,10 +62,18 @@
                         <button class="i-btn"><i class="fa fa-plus"></i></button>
                         <button class="i-btn"><i class="fa fa-times"></i></button>
                     </span>
-                    <p>{{memo.urls}}</p>
+                    <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
+
+                    <div id="result{{forloop.counter}}">sample</div>
+
                     <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
                     <button class="i-btn" onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
                 </div>
+
+                <script>
+                    linkPrint({{forloop.counter}});
+                </script>
+
             {% endfor %}
         </div>
         <div id = "app" class="search-bar">
@@ -114,7 +146,7 @@
                     </form>
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary"><a href="">완료</a></button>
+                        <button type="button" class="btn btn-success"><a href="" class="modal-complete">완료</a></button> <!---->
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
@@ -160,10 +192,16 @@
             var modal = $(this)
 
             modal.find('.modal-title').text('편집하기')
-
             modal.find('.modal-body input').val(keyword)
             modal.find('.modal-body textarea').val(urls)
-            modal.find('.modal-footer a').attr('href', '/edit_memo/' + id)
+
+            $('.modal-complete').click(function(){
+
+                console.log($("#keyword").val())
+                console.log($("#urls").val())
+
+                modal.find('.modal-footer a').attr('href', '/edit_memo/' + id + '/' + $("#keyword").val() + '/' + $("#urls").val())
+            })
         })
         </script>
 </body>

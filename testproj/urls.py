@@ -30,13 +30,10 @@ urlpatterns = [
     path('appear_memo/<int:memo_id>', linkmoa.views.appear_memo, name="appear_memo"),
     path('disappear_memo/<int:memo_id>', linkmoa.views.disappear_memo, name="disappear_memo"),
     path('mkdir', linkmoa.views.mkdir, name='mkdir'),
-<<<<<<< HEAD
     path('movedir/<dirname>/',linkmoa.views.movedir, name='movedir'),
     path('deletedir/<dirname>', linkmoa.views.deletedir, name='deletedir'),
     path('search_board/', linkmoa.views.search, name='search_board'),
-=======
     re_path(r'^edit_memo/(?P<memo_id>\d+)/(?P<keyword>[\w\-]+)/(?P<urls>.*)/$', linkmoa.views.edit_memo, name='edit_memo'),
->>>>>>> 8315fe4333137c0be38ab08ac1f4270f377657a9
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

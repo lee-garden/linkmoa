@@ -14,5 +14,6 @@ def deleteDirectory(user, name):
     print(model_to_dict(user.profile).items())
     for dir, key in model_to_dict(user.profile).items():
         if key == name:
+            user.profile.decrease()
             setattr(user.profile, dir, "")
             user.profile.save()

@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'linkmoa.apps.LinkmoaConfig',
     'accounts.apps.AccountsConfig',
-    'bootstrap_modal_forms',
 ]
 
 MIDDLEWARE = [

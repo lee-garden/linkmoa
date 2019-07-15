@@ -44,7 +44,10 @@ def make_memo(request):
 def mkdir(request):
     user=request.user
     dname = request.POST['dirname']
-    dirManagement.makeDirectory(user,dname)
+    if user.profile.numofDir == 10:
+        print('xxxxxxxxxxxxxxxxxxxxxx안돼')
+    else:
+        dirManagement.makeDirectory(user,dname)
     return redirect('index')
 
 def deletedir(request, dirname):

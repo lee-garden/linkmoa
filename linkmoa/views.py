@@ -96,13 +96,17 @@ def download_memo(request, memo_id):
     newMemo.save()
     return redirect('index')
 
-def movedir(request, dirname):
+def movedir(request, memo_id, dirname):
+
     user = request.user
-    memo = Memo.objects.get(id=user.profile.selectedMemo)
-    a = request.POST.get('memo_id')
-    print(a)
-    print(dirname,'called')
-    setattr(memo, 'directory', dirname)
+    print(user)
+    memo = Memo.objects.get(id=memo_id)
+    dir = dirname
+
+    print('id: ', memo_id, '\n')
+    print('dirname: ', dir, '\n')
+
+    setattr(memo, 'directory', dir)
     memo.save()
     return redirect('index')
 

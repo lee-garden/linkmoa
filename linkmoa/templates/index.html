@@ -129,7 +129,7 @@
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- editModal -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -159,7 +159,7 @@
             </div>
         </div>
 
-    <!-- Modal -->
+    <!-- moveModal -->
     <div class="modal fade" id="moveModal" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -168,21 +168,15 @@
             <h4 class="modal-title">폴더 옮기기</h4>
           </div>
           <div class="modal-body">
-            <form method="POST" action="{% url 'movedir' 'recently' %}">
-              {% csrf_token %}
-              <input type="submit" class="btn btn-default" onclick="getMemo();" value="Recently">
-              <input type="hidden" name="mem-id" value = "">
-            </form>
-            {% for dirname in user.profile.get_fields_name %}
-            <form method="POST" action="{% url 'movedir' dirname %}">
-              {% csrf_token %}
-              <input type="submit" class ="btn btn-default" onclick="selected='{{dirname}}'" value="{{dirname}}">
-              <input type="hidden" name="{{dirname}}" value = "">
-            </form>
-            {% endfor %}
+                <button type="button" class="btn btn-default"><a href="" id="recently" name="Recently" class="recently-clicked">Recently</a></button>
+                {% for dirname in user.profile.get_fields_name %}
+                <button type="button" class="btn btn-default"><a href="" id="dirname" name="{{dirname}}" class="dirname-clicked" onclick="setDirname('{{dirname}}')">{{dirname}}</a></button>
+                {% endfor %}
             </div>
+            
             <div class="modal-footer">
             </div>
+          
           </div>
         </div>
       </div>
@@ -221,8 +215,11 @@
     </script>
 
     <script>
+
+        var dirname // Global Variable(정원찡's Good idea ㅎㅎ)
+
         $('#editModal').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget)
+            var button = $(event.relatedTarget)
             var id = button.data('id')
             var keyword = button.data('keyword')
             var urls = button.data('urls')
@@ -243,6 +240,30 @@
                 modal.find('.modal-footer a').attr('href', '/edit_memo/' + id + '/' + $("#keyword").val() + '/' + splited_urls)
             })
         })
+
+        $('#moveModal').on('show.bs.modal', function (event) {
+
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+
+            $('.recently-clicked').click(function(){
+
+                var recently = document.getElementById("recently").name
+                modal.find('.modal-body a').attr('href', '/movedir/' + id + '/' + recently)
+            })
+
+            $('.dirname-clicked').click(function(){
+
+                modal.find('.modal-body a').attr('href', '/movedir/' + id + '/' + dirname)
+            })
+
+        })
+        
+        function setDirname(name){
+
+            dirname = name
+        }
         </script>
 </body>
 </html>

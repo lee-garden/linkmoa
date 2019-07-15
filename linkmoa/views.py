@@ -24,7 +24,8 @@ def index(request):
     user=request.user
     print('current user : ', user.id)
     memos = Memo.objects.filter(user_id=user.id)
-    return render(request,'index.html',{'memos' : memos, 'userid' : user.id})
+    visible = memos.filter(display='visible')
+    return render(request,'index.html',{'memos' : memos, 'visible' : visible, 'userid' : user.id})
 
 def make_memo(request):
     user=request.user
@@ -120,6 +121,6 @@ def disappear_memo(request, memo_id):
 
 def search(request):
     keyword = request.POST['searchBox']
-    searched_memos = Memo.objects.filter(keyword= keyword)
+    searched_memos = Memo.objects.filter(keyword= keyword, shared=True)
     print(keyword + " search!")
     return render(request,'search_board.html', {'searched_memos' : searched_memos})

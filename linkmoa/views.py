@@ -5,7 +5,7 @@ from linkmoa import urlScrap
 from linkmoa import dirManagement
 from accounts import views
 from .models import Memo
-from. models import Profile
+from .models import Profile
 
 # Create your views here.
 def board(request):
@@ -39,6 +39,14 @@ def mkdir(request):
     dirManagement.makeDirectory(user,dname)
     return redirect('index')
 
+def deletedir(request, dirname):
+    user=request.user
+    dname = dirname
+    memos = Memo.objects.filter(user_id=user.id, directory=dirname)
+    memos.delete()
+    dirManagement.deleteDirectory(user, dname)
+    return redirect('index')
+
 def delete_memo(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
     memo.delete()
@@ -63,3 +71,48 @@ def edit_memo(request, memo_id, keyword, urls):
     memo.save()
 
     return redirect('index')
+def undo_share(request, memo_id):
+    memo = Memo.objects.get(id=memo_id)
+    memo.shared = False
+    memo.save()
+    return redirect('/')
+
+def download_memo(request, memo_id):
+    user=request.user
+    newMemo = Memo()
+    oldMemo = Memo.objects.get(id=memo_id)
+    oldMemo.increaseDL()
+    newMemo.user_id = user.id
+    newMemo.owner = user.username
+    newMemo.keyword = oldMemo.keyword
+    newMemo.urls = oldMemo.urls
+    newMemo.save()
+    return redirect('index')
+
+def movedir(request, dirname):
+    user = request.user
+    memo = Memo.objects.get(id=user.profile.selectedMemo)
+    a = request.POST.get('memo_id')
+    print(a)
+    print(dirname,'called')
+    setattr(memo, 'directory', dirname)
+    memo.save()
+    return redirect('index')
+
+def appear_memo(request, memo_id):
+    memo = Memo.objects.get(id=memo_id)
+    memo.display='visible'
+    memo.save()    
+    return redirect('index')
+
+def disappear_memo(request, memo_id):
+    memo = Memo.objects.get(id=memo_id)
+    memo.display='invisible'
+    memo.save()
+    return redirect('index')
+
+def search(request):
+    keyword = request.POST['searchBox']
+    searched_memos = Memo.objects.filter(keyword= keyword)
+    print(keyword + " search!")
+    return render(request,'search_board.html', {'searched_memos' : searched_memos})

@@ -222,7 +222,7 @@
 
     <script>
         $('#editModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
+          var button = $(event.relatedTarget)
             var id = button.data('id')
             var keyword = button.data('keyword')
             var urls = button.data('urls')
@@ -238,7 +238,9 @@
                 console.log($("#keyword").val())
                 console.log($("#urls").val())
 
-                modal.find('.modal-footer a').attr('href', '/edit_memo/' + id + '/' + $("#keyword").val() + '/' + $("#urls").val())
+                splited_urls = $("#urls").val().split('\n')
+
+                modal.find('.modal-footer a').attr('href', '/edit_memo/' + id + '/' + $("#keyword").val() + '/' + splited_urls)
             })
         })
         </script>

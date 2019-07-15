@@ -65,12 +65,19 @@ def edit_memo(request, memo_id, keyword, urls):
     print('id: ', memo_id, '\n')
     print('keyword: ', keyword, '\n')
     print('urls: ', urls, '\n')
+    
+    splited_urls = urls.split(',')
+    newline_urls = ''
+
+    for i in range(0, len(splited_urls)):
+        newline_urls += splited_urls[i] + '\n'
 
     memo.keyword = keyword
-    memo.urls = urls
+    memo.urls = newline_urls
     memo.save()
 
     return redirect('index')
+
 def undo_share(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
     memo.shared = False

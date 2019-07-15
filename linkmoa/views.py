@@ -65,6 +65,19 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
+def edit_memo(request, memo_id, keyword, urls):
+
+    memo = Memo.objects.get(id=memo_id)
+
+    print('id: ', memo_id, '\n')
+    print('keyword: ', keyword, '\n')
+    print('urls: ', urls, '\n')
+
+    memo.keyword = keyword
+    memo.urls = urls
+    memo.save()
+
+    return redirect('index')
 def undo_share(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
     memo.shared = False

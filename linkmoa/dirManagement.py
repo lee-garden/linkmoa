@@ -11,6 +11,7 @@ def makeDirectory(user, name):
             break
 
 def deleteDirectory(user, name):
+    print(model_to_dict(user.profile).items())
     for dir, key in model_to_dict(user.profile).items():
         if key == name:
             setattr(user.profile, dir, "")

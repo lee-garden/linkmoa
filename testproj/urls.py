@@ -32,6 +32,7 @@ urlpatterns = [
     path('mkdir', linkmoa.views.mkdir, name='mkdir'),
     path('movedir/<dirname>/',linkmoa.views.movedir, name='movedir'),
     path('deletedir/<dirname>', linkmoa.views.deletedir, name='deletedir'),
+    path('search_board/', linkmoa.views.search, name='search_board'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

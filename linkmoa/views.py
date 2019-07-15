@@ -78,6 +78,9 @@ def download_memo(request, memo_id):
 def movedir(request, dirname):
     user = request.user
     memo = Memo.objects.get(id=user.profile.selectedMemo)
+    a = request.POST.get('memo_id')
+    print(a)
+    print(dirname,'called')
     setattr(memo, 'directory', dirname)
     memo.save()
     return redirect('index')
@@ -93,3 +96,9 @@ def disappear_memo(request, memo_id):
     memo.display='invisible'
     memo.save()
     return redirect('index')
+
+def search(request):
+    keyword = request.POST['searchBox']
+    searched_memos = Memo.objects.filter(keyword= keyword)
+    print(keyword + " search!")
+    return render(request,'search_board.html', {'searched_memos' : searched_memos})

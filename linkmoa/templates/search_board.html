@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css?ver=1.0" rel="stylesheet">
+    <link href="../../static/css/default.css?ver=1.1" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,8 +14,8 @@
 <body>
     <div class="container-linkmoa">
             <header class="main-header-linkmoa">
-                <ul class="header-ul-linkmoa">
-                    <li class="header-li1"><h2><a href="{% url 'board' %}">링크모아</a></h2></li>
+                    <a href="{%url 'board' %}" class="logo-link">Link Moa</a>
+                    <ul class="header-ul-linkmoa">
                     {% if user.is_authenticated %}
                     <li class="header-li2">
                         <form id="logout" method="POST" action="{%url 'logout'%}">

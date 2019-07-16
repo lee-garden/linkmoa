@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css?ver=1.0" rel="stylesheet">
+    <link href="../../static/css/default.css?ver=1.2" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -17,55 +17,70 @@
 </head>
 <body>
     <div class="container-linkmoa">
-            <header class="main-header-linkmoa">
+        <header class="main-header-linkmoa">
+            <div class="logo-part">
+                <a href="#" class="logo-link">Link Moa</a>
+            </div>
+            <div class="nav-part">
                 <ul class="header-ul-linkmoa">
-                    <li class="header-li1"><h2><a href="#">링크모아</a></h2></li>
                     {% if user.is_authenticated %}
                     <li class="header-li2">
-                        <form id="logout" method="POST" action="{%url 'logout'%}">
-                                {% csrf_token%}
-                                <input class="btn btn-primary" type="submit" value="로그아웃">
-                        </form>
-                        <li class="header-li3"><a href="{% url 'index' %}">MYPAGE</a></li>
+                        <li class="header-li2"><a href="{% url 'logout' %}" class="nav-link">LOGOUT</a></li>
+                        <li class="header-li3"><a href="{% url 'index' %}" class="nav-link">MY PAGE</a></li>
                     </li>
                     {% else %}
-                    <li class="header-li2"><a href="{% url 'login' %}">로그인</a></li>
-                    <li class="header-li3"><a href="{% url 'signup' %}">회원가입</a></li>
+                    <li class="header-li2"><a href="{% url 'login' %}" class="nav-link">LOGIN</a></li>
+                    <li class="header-li3"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
                     {% endif%}
                 </ul>
-            </header>
-            <div class="board">
-                <h1>Dash Board</h1>
-                <select id="sort-select" onchange="location = this.value;">
-                    <option class="sort-date" value="/">최신순</option>
-                    <option class="sort-likes" value="?sort=likes">다운로드순</option>
-                    {% if user.is_authenticated %}
-                    <option class="sort-mymemo" value="?sort=mymemo">내 메모</option>
-                    {% endif %}
-                </select><br><br>
-                검색 :
-                <form method="POST" action="{% url 'search_board' %}">
-                    {% csrf_token %}
-                    <input type="text" placeholder="search" name="searchBox">
-                </form>
+            </div>
+        </header>
+        <div class="board">
+            <div class="upper-part">
+                <div class="upper-left-part">
+                    <br>
+                    <p class="slogan">서로의 지식을 연결하다</p>
+                    <p class="slogan-name">링크모아</p>
+                    <form method="POST" action="{% url 'search_board' %}" class="search-form">
+                        {% csrf_token %}
+                        <input type="text" placeholder="search" name="searchBox" class="searchTerm">
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form><br>
+                    <select id="sort-select" onchange="location = this.value;">
+                        <option class="sort-date" value="/">최신순</option>
+                        <option class="sort-likes" value="?sort=likes">다운로드순</option>
+                        {% if user.is_authenticated %}
+                        <option class="sort-mymemo" value="?sort=mymemo">내 메모</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="upper-right-part">
+                    흠
+                </div>
+            </div>
+            <div class="lower-part">
+                <div class="line"></div>
+                <div class="objects">
                 {% for memo in memos.all %}
                 <div class="memoContainer">
                     <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
                     <h4>{{memo.owner}}</h4>
                     <p>{{memo.urls}}</p>
                     {% if user.is_authenticated %}
-                      {% if user.id == memo.user_id %}
-                      <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
-                      {% else %}
-                      <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
-                      {% endif %}
+                        {% if user.id == memo.user_id %}
+                        <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
+                        {% else %}
+                        <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
+                        {% endif %}
                     {% endif %}
-                  </div>
+                </div>
                 {% endfor %}
+                </div>
+            </div>
         </div>
-        
-        <div class="container">
-        </div>
+    </div>
 
         <script>
         // get url query string

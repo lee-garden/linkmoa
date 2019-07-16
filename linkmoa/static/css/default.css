@@ -1,24 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 body{
     margin : 0 0 0 0;
 }
-
 .container-linkmoa{
-    margin: 0 20px 0 20px;
-    border: 2px solid black;
+    margin: 0;
     height: 900px;
 }
 
 
 /* Header Part */
 .main-header-linkmoa{
-    margin: 20px 20px 0 20px;
-    border: 1.5px solid purple;
+    margin: 0;
+    border: 1.5px solid #343434;
+    background-color: #333333;
     width: 1fr;
+    height: 96px;
+}
+.logo-part{
+    margin: 0 0 0 0;
+    float: left;
+    height: 96px;
+    padding-top: 25px;
+}
+.logo-link{
+    color: #CDCDCD;
+    font-family: 'Courgette', cursive;
+    font-size: 30px;
+    margin: 0 50px 0 240px;
+}
+.nav-part{
+    height: 96px;
+}
+.nav-link{
+    color: #FEFEFE;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .header-ul-linkmoa{
     list-style: none;
     overflow: auto;
+    float: right;
+    margin: 35px 200px 0 0;
 }
 
 .header-li1, .header-li2, .header-li3, .header-li4{
@@ -27,6 +51,30 @@ body{
     margin-left: 20px;
 }
 
+/*board-part*/
+#sort-select{
+    margin:0 0 0 240px;
+}
+.upper-sub-part{
+    width: 600px;
+    position: absolute;
+    float: left;
+}
+.upper-right-part{
+    width: 300px;
+}
+
+.lower-part{
+    margin-top:30px;
+    padding: 0 150px 0 150px;
+}
+.line{
+    height: 20px;
+    background-color: #333333
+}
+.objects{
+    background-color: #EFEFEF;
+}
 /* Side-bar Part */
 .side-bar{
     padding: 0 10px 0 10px;
@@ -123,7 +171,9 @@ body{
 .memoContainer{
     border: 2.5px solid purple;
     margin: 10px;
-    border-radius: 15px
+    border-radius: 15px;
+    width: 250px;
+    float: left;
 }
 
 .buttons{
@@ -158,3 +208,49 @@ body{
 .mvdir-btn{
     position: center;
 }
+
+/*search bar*/
+.search-form{
+    width: 500px;
+    position: relative;
+    display: flex;
+    margin-left: 240px;
+}
+.searchTerm {
+    width: 300px;
+    border: 3px solid #333333;
+    border-right: none;
+    padding: 5px;
+    height: 38px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+  }
+  
+  .searchTerm:focus{
+    color: #333333;
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #333333;
+    background: #333333;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 1px;
+  }
+
+  /*Font*/
+  .slogan, .slogan-name{
+    font-family: 'East Sea Dokdo', cursive;
+    font-size: 50px;
+    margin: 0 0 0 240px;
+  }
+  .slogan-name{
+    font-size: 30px;
+    margin-left: 480px;
+  }

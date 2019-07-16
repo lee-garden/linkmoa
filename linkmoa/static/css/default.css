@@ -8,29 +8,32 @@ body{
     margin: 0;
     height: 900px;
 }
-
+/*38B9C8 - > 333333*/
 
 /* Header Part */
 .main-header-linkmoa{
     margin: 0;
-    border: 1.5px solid #343434;
-    background-color: #333333;
+    border: 1.5px solid #38B9C0;
+    /* border: 1.5px solid #343434; */
+
+    background-color: #38B9C8;
     width: 1fr;
     height: 96px;
 }
 .logo-part{
     margin: 0 0 0 0;
     float: left;
-    height: 96px;
+    height: 94px;
     padding-top: 25px;
 }
 .logo-link{
-    color: #CDCDCD;
+    color: #fff;
+    /* color: #cdcdcd; */
     font-family: 'Courgette', cursive;
     font-size: 30px;
     margin: 0 50px 0 240px;
 }
-.nav-part{
+.nav-part{  
     height: 96px;
 }
 .nav-link{
@@ -55,13 +58,9 @@ body{
 #sort-select{
     margin:0 0 0 240px;
 }
-.upper-sub-part{
-    width: 600px;
-    position: absolute;
-    float: left;
-}
-.upper-right-part{
-    width: 300px;
+.upper-part{
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
 }
 
 .lower-part{
@@ -70,9 +69,10 @@ body{
 }
 .line{
     height: 20px;
-    background-color: #333333
+    background-color: #38B9C8
 }
 .objects{
+    height: 500px;
     background-color: #EFEFEF;
 }
 /* Side-bar Part */
@@ -174,6 +174,7 @@ body{
     border-radius: 15px;
     width: 250px;
     float: left;
+    background-color: #fff
 }
 
 .buttons{
@@ -218,7 +219,7 @@ body{
 }
 .searchTerm {
     width: 300px;
-    border: 3px solid #333333;
+    border: 3px solid #38B9C8;
     border-right: none;
     padding: 5px;
     height: 38px;
@@ -228,14 +229,16 @@ body{
   }
   
   .searchTerm:focus{
-    color: #333333;
+    color: #38B9C8;
   }
   
   .searchButton {
     width: 40px;
     height: 36px;
-    border: 1px solid #333333;
-    background: #333333;
+    border: 1px solid #38B9C8;
+    background: #38B9C8;
+    /* border: 1px solid #333333; */
+    /* background: #333333; */
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
@@ -253,4 +256,8 @@ body{
   .slogan-name{
     font-size: 30px;
     margin-left: 480px;
+  }
+
+  .taglist{
+      margin-top:100px;
   }

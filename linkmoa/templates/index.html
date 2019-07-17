@@ -64,15 +64,12 @@
                             <br>
                             검색 : 
                             <input id="keyword-search" type="text" placeholder="키워드 입력" name='key'>
+                            <textarea class = "urlArea" id="urlList" wrap="off" cols="50" rows="15" name='url' v-model="newMessage"></textarea>
                             <button v-on:click="renew()">버튼</button>
                             <br>
                         </form>
                     <div class="upper-left-part">
-                        <br>
-                        <form method="POST" action="{% url 'search_board' %}" class="search-form">
-                            {% csrf_token %}
-                            <textarea class = "urlArea" id="urlList" wrap="off" cols="50" rows="15" name='url' v-model="newMessage"></textarea>
-                        </form><br>
+
                     </div>
                     <div class="upper-right-part">
                     </div>
@@ -84,10 +81,11 @@
                                 <button class="i-btn"><i class="fa fa-plus"></i></button>
                             </form>
                     <div class="line">
-                        <ul>
+                        <ul class="directory-nav">
                             {% for a in user.profile.get_fields_name %}
-                            <li>{{a}}</li>
+                            <li class="directory-nav-items">|&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{a}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
                             {% endfor %}
+                            |
                         </ul>
                     </div>
                     <div class="objects">
@@ -102,9 +100,12 @@
                             <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
         
                             <div id="result{{forloop.counter}}">sample</div>
-        
-                            <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
-                            <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+                            <div class="button-list">
+                                <span class="btns">
+                                    <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
+                                    <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+                                </span>
+                            </div>
                         </div>
         
                         <script>
@@ -115,7 +116,7 @@
                     {% for memo in memos.all %}
                     <div class="memoContainer">
                         <h2 class="memo-key">'{{memo.keyword}}'</h2>
-                        <span class="memo-id">{{memo.owner}}</span>      <span class="memo-date">{{memo.pub_date|date:"Y-m-d"}}</span>
+                        <span class="memo-id">{{memo.owner}}</span><span class="memo-date">{{memo.pub_date|date:"Y-m-d"}}</span>
                         <p>{{memo.urls}}</p>
                         <div class="button-list">
                         <span class="downnum">{{memo.download}} 회 다운로드 됨.</span>
@@ -134,10 +135,6 @@
                     </div>
                 </div>
             </div>
-        <div class="items">
-        </div>
-        <div id = "app" class="search-bar">
-        </div>
         <div class="side-bar">
             <div id = "directory-bar">
                 <h2>Directory-bar</h2>

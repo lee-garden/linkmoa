@@ -28,6 +28,13 @@ def index(request):
     visible = memos.filter(display='visible')
     return render(request,'index.html',{'memos' : memos, 'visible' : visible, 'userid' : user.id})
 
+def indexSub(request, dirname):
+    user=request.user
+    memos = Memo.objects.filter(user_id=user.id)
+    print(dirname + '선택됨')
+    dirmemo = memos.objects.filter(directory = dirname)
+    return render(request,'index.html',{'memos' : memos, 'dirmemo' : dirname})
+
 def make_memo(request):
     user=request.user
     print(user.id)

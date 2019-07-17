@@ -39,60 +39,106 @@
         }
     </script>
 
-<div class="container-linkmoa">
+    <div class="container-linkmoa">
         <header class="main-header-linkmoa">
-            <ul class="header-ul-linkmoa">
-                <li class="header-li1"><h2><a href="{% url 'board' %}">링크모아</a></h2></li>
-                {% if user.is_authenticated %}
-                <li class="header-li2">
-                    <form id="logout" method="POST" action="{%url 'logout'%}">
-                        {% csrf_token%}
-                        <input class="btn btn-primary" type="submit" value="로그아웃">
-                    </form>
-                </li>
-                {% endif %}
-                <li class="header-li3"><a href="{% url 'board' %}">게시판</a></li>
-            </ul>
-        </header>
-        <div class="items">
-            {% for memo in visible.all %}
-                <div class="memoContainer">
-                    <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
-                    <span class="buttons">
-                        <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
-                        <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
-                        <button class="i-btn"onclick="location.href='{%url 'disappear_memo' memo.id %}'"><i class="fa fa-times"></i></button>
-                    </span>
-                    <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
-
-                    <div id="result{{forloop.counter}}">sample</div>
-
-                    <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
-                    <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+                <div class="logo-part">
+                    <a href="{% url 'board' %}" class="logo-link">Link Moa</a>
                 </div>
-
-                <script>
-                    linkPrint({{forloop.counter}});
-                </script>
-
-            {% endfor %}
+                <div class="nav-part">
+                    <ul class="header-ul-linkmoa">
+                        {% if user.is_authenticated %}
+                        <li class="header-li2">
+                            <li class="header-li2"><a href="{% url 'logout' %}" class="nav-link">LOGOUT</a></li>
+                            <li class="header-li3"><a href="{% url 'index' %}" class="nav-link">MY PAGE</a></li>
+                        </li>
+                        {% else %}
+                        <li class="header-li2"><a href="{% url 'login' %}" class="nav-link">LOGIN</a></li>
+                        <li class="header-li3"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
+                        {% endif%}
+                    </ul>
+                </div>
+            </header>
+            <div class="upper-part">
+                    <form method="POST" action ="{% url 'make_memo' %}">
+                            {% csrf_token%}
+                            <br>
+                            검색 : 
+                            <input id="keyword-search" type="text" placeholder="키워드 입력" name='key'>
+                            <button v-on:click="renew()">버튼</button>
+                            <br>
+                        </form>
+                    <div class="upper-left-part">
+                        <br>
+                        <form method="POST" action="{% url 'search_board' %}" class="search-form">
+                            {% csrf_token %}
+                            <textarea class = "urlArea" id="urlList" wrap="off" cols="50" rows="15" name='url' v-model="newMessage"></textarea>
+                        </form><br>
+                    </div>
+                    <div class="upper-right-part">
+                    </div>
+                </div>
+                <div class="lower-part">
+                        <form method="POST" action ="{% url 'mkdir' %}">
+                                {% csrf_token%}
+                                폴더 만들기 : <input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname'>
+                                <button class="i-btn"><i class="fa fa-plus"></i></button>
+                            </form>
+                    <div class="line">
+                        <ul>
+                            {% for a in user.profile.get_fields_name %}
+                            <li>{{a}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="objects">
+                    {% for memo in visible.all %}
+                        <div class="memoContainer">
+                            <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
+                            <span class="buttons">
+                                <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
+                                <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
+                                <button class="i-btn"onclick="location.href='{%url 'disappear_memo' memo.id %}'"><i class="fa fa-times"></i></button>
+                            </span>
+                            <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
+        
+                            <div id="result{{forloop.counter}}">sample</div>
+        
+                            <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
+                            <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+                        </div>
+        
+                        <script>
+                            linkPrint({{forloop.counter}});
+                        </script>
+        
+                    {% endfor %}
+                    {% for memo in memos.all %}
+                    <div class="memoContainer">
+                        <h2 class="memo-key">'{{memo.keyword}}'</h2>
+                        <span class="memo-id">{{memo.owner}}</span>      <span class="memo-date">{{memo.pub_date|date:"Y-m-d"}}</span>
+                        <p>{{memo.urls}}</p>
+                        <div class="button-list">
+                        <span class="downnum">{{memo.download}} 회 다운로드 됨.</span>
+                        {% if user.is_authenticated %}
+                            <span class="btns">
+                            {% if user.id == memo.user_id %}
+                            <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
+                            {% else %}
+                            <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
+                            {% endif %}
+                            </span>
+                        {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        <div class="items">
         </div>
         <div id = "app" class="search-bar">
-            <form method="POST" action ="{% url 'make_memo' %}">
-                {% csrf_token%}
-                <br>
-                검색 : 
-                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key'>
-                <button v-on:click="renew()">버튼</button>
-                <br>
-                <textarea class = "message" id="urlList" wrap="off" cols="50" rows="30" name='url' v-model="newMessage"></textarea>
-            </form>
         </div>
         <div class="side-bar">
-            <div id = "user-info">
-                <h2>User Info</h2>
-                {{user.id}}
-            </div>
             <div id = "directory-bar">
                 <h2>Directory-bar</h2>
                 <form method="POST" action ="{% url 'mkdir' %}">

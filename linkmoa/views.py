@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.utils import timezone
 from linkmoa import urlScrap
 from linkmoa import dirManagement
 from accounts import views
@@ -35,6 +36,7 @@ def make_memo(request):
     memo.owner = user.username
     memo.keyword = request.POST['key']
     urls = request.POST['url']
+    memo.pub_date = timezone.datetime.now()
     splited = urls.split('\n')
     memo.urls = urlScrap.scrapUrl(splited, memo.keyword)
     if len(memo.urls) > 1:

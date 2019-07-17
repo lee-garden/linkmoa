@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.forms.models import model_to_dict
 from django.dispatch import receiver
+from datetime import datetime
 import urllib.request
 from django import template
 
@@ -19,6 +20,7 @@ class Memo(models.Model):
     keyword = models.CharField(max_length=30)
     urls = models.TextField(default=None)
     memo = models.TextField(default="")
+    pub_date = models.DateTimeField('date_published', default=datetime.now())
 
     def __str__(self):
         return self.keyword

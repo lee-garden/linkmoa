@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css?ver=1.3" rel="stylesheet">
+    <link href="../../static/css/default.css?ver=0.3" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -65,16 +65,21 @@
                 <div class="objects">
                 {% for memo in memos.all %}
                 <div class="memoContainer">
-                    <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
-                    <h4>{{memo.owner}}</h4>
+                    <h2 class="memo-key">'{{memo.keyword}}'</h2>
+                    <span class="memo-id">{{memo.owner}}</span>      <span class="memo-date">{{memo.pub_date|date:"Y-m-d"}}</span>
                     <p>{{memo.urls}}</p>
+                    <div class="button-list">
+                    <span class="downnum">{{memo.download}} 회 다운로드 됨.</span>
                     {% if user.is_authenticated %}
+                        <span class="btns">
                         {% if user.id == memo.user_id %}
                         <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
                         {% else %}
                         <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
                         {% endif %}
+                        </span>
                     {% endif %}
+                    </div>
                 </div>
                 {% endfor %}
                 </div>

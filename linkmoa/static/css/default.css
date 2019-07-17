@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Sunflower:300|Noto+Sans+KR&display=swap');
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body{
@@ -59,6 +59,7 @@ body{
     margin:0 0 0 240px;
 }
 .upper-part{
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 0.5fr 0.5fr;
 }
@@ -69,11 +70,18 @@ body{
 }
 .line{
     height: 20px;
+    width: 1219px;
+    margin: 0 auto;
     background-color: #38B9C8
 }
 .objects{
+    display: grid;
+    justify-items: center;
     height: 500px;
-    background-color: #EFEFEF;
+    width: 1219px;
+    margin: 0 auto;
+    background-color: #FFFEEE;
+    grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
 }
 /* Side-bar Part */
 .side-bar{
@@ -169,12 +177,20 @@ body{
 }
 
 .memoContainer{
-    border: 2.5px solid purple;
+    position: relative;
     margin: 10px;
-    border-radius: 15px;
-    width: 250px;
+    width: 200px;
+    height: 270px;
     float: left;
-    background-color: #fff
+    background-color: #fff;
+    border-width: 3px;
+    border-style: solid;
+    border-image: 
+      linear-gradient(
+        to bottom, 
+        #38B9C8, 
+        rgba(255, 255, 255, 0)
+      ) 1 100%;
 }
 
 .buttons{
@@ -217,19 +233,23 @@ body{
     display: flex;
     margin-left: 240px;
 }
-.searchTerm {
+.searchTerm , .urlArea{
     width: 300px;
     border: 3px solid #38B9C8;
-    border-right: none;
     padding: 5px;
-    height: 38px;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     outline: none;
     color: #9DBFAF;
   }
+
+  .searchTerm{
+    height: 38px;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+  }
   
-  .searchTerm:focus{
-    color: #38B9C8;
+  .searchTerm:focus, .urlArea:focus{
+    color: #333333;
   }
   
   .searchButton {
@@ -257,7 +277,37 @@ body{
     font-size: 30px;
     margin-left: 480px;
   }
-
+  .downnum{
+    font-family: 'Sunflower', sans-serif;
+    font-size: 16px;
+  }
   .taglist{
       margin-top:100px;
   }
+  .memo-key{
+      margin-left: 10px;
+  }
+  .memo-date{
+      float: right;
+      margin-right: 10px;
+      font-size: 15px;
+      font-family: 'Sunflower', sans-serif;
+  }
+  .memo-id{
+    margin-left: 10px;
+    font-size: 18px;
+    font-family: 'Sunflower', sans-serif;
+  }
+
+  /*Button*/
+  .button-list{
+      position: absolute;
+      width: 200px;
+      bottom: 25px;
+      text-align: center;
+  }
+
+  .btns{
+      float: right;
+      margin-right: 10px;
+    }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|family=Roboto|Sunflower:300|Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|family=Roboto|Sunflower:300|Jua|Noto+Sans+KR&display=swap');
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 html{margin: 0;}
 body{
@@ -83,8 +83,22 @@ body{
     margin-top:30px;
     padding: 0 150px 0 150px;
 }
+.mkdir-input{
+    width: 200px;
+    border: 3px solid #38B9C8;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+    height: 38px;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+  }
+  .form-mkdir{
+      float: left;
+  }
 .line{
-    height: 20px;
+    height: 50px;
     width: 1219px;
     margin: 0 auto;
     background-color: #38B9C8;
@@ -100,9 +114,11 @@ body{
 }
 .directory-nav{
     list-style:none;
+    height: 38px;
+    margin-bottom: 0;
 }
 .directory-nav-items{
-    margin: 0 0 0 0;
+    margin: 10px 0 0 0;
     padding: 0 0 0 0;
     border : 0;
     float: left;
@@ -114,15 +130,7 @@ body{
     border: 1.5px solid red;
     width: 300px;
     height: 740px;
-    float: left;
-}
-
-#user-info{
-    border: 1px solid black;
-    width: 300px;
-    height: 150px;
-    margin-top: 20px;
-}
+    float: left;}
 
 #directory-bar{
     border: 1px solid black;
@@ -151,10 +159,6 @@ body{
     text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 }
 
-.directory{
-    background: black;
-}
-
 .memolist{
     position: absolute;
     background: wheat;
@@ -167,21 +171,12 @@ body{
     text-decoration: none;
 }
 
-
 #directory-container > li:hover .memolist{
     opacity: 1;
     visibility: visible;
 }
 
 /* Search-bar Part */
-.search-bar{
-    padding: 0 10px 0 10px;
-    margin: 20px 0 0 20px ;
-    border: 1.5px solid blue;
-    width: 400px;
-    height: 740px;
-    float: left;
-}
 
 #urlList{
     margin: 10px 0 0 0;
@@ -329,6 +324,10 @@ body{
     font-family: 'Roboto', sans-serif;
     color: #FFFEEE;
   }
+  .mkdirtxt{
+    font-family: 'Jua', sans-serif;}
+  .d-nav-item{
+    font-family: 'Jua', sans-serif;}
 
   /*Button*/
   .button-list{
@@ -341,4 +340,30 @@ body{
   .btns{
       float: right;
       margin-right: 10px;
+    }
+
+    .edit-btn{
+        position: absolute;
+        margin-top: 10px;
+        left: 1300px;
+        background-color: #FFFEEE;
+        border: 2.5px solid #38B9C0;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    .edit-btn:hover, .d-nav-btns:hover{
+        background-color: #38B9C8;
+        transition: 0.3s;
+        color: #FFFEEE;
+    }
+
+    .d-nav-btns{
+        height: 28px;
+        width: 70px;
+        border: 2px solid #38B9C8;
+        border-radius: 10px 10px 0 0;
+        border-bottom: none;
+        background: #FEFEFE;
+        font-size: 10px;
     }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css?ver=0.1" rel="stylesheet">
+    <link href="../../static/css/default.css?ver=0.2" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -75,19 +75,20 @@
                     </div>
                 </div>
                 <div class="lower-part">
-                    <form method="POST" action ="{% url 'mkdir' %}">
+                    <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
                         {% csrf_token%}
-                        폴더 만들기 : <input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname'>
+                        <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
                         <button class="i-btn"><i class="fa fa-plus"></i></button>
                     </form>
-                    <div class="line">
-                        <ul class="directory-nav">
-                            <li class="directory-nav-items"><a href="{% url 'changedir' 'recently' %}" class="directory-a">Recently&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <ul class="directory-nav">
+                            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item"><span class="d-nav-item">Recently</span></button></li>
                             {% for a in user.profile.get_fields_name %}
-                            <li class="directory-nav-items">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'changedir' a %}" class="directory-a">{{a}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
                             {% endfor %}
-                            <button id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}">편집</button>
+                            <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button>
                         </ul>
+                    <div class="line">
+
                     </div>
                     <div class="objects">
                     {% for memo in current.all %}
@@ -181,7 +182,7 @@
                       {% for dirname in user.profile.get_fields_name %}
                       {{dirname}}
                       <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#editdirname" data-id="{{dirname}}"><i class="fa fa-edit"></i></button>
-                      <button class="i-btn"onclick="confirm(delcontext); if(confirm==true){location.href='{% url 'deletedir' dirname %}'};"><i class="fa fa-trash"></i></button><br>
+                      <button class="i-btn"onclick="var a= confirm(delcontext); console.log(a); if(a==true){location.href='{% url 'deletedir' dirname %}';}"><i class="fa fa-trash"></i></button><br>
                       {% endfor %}
                   </div>
                   

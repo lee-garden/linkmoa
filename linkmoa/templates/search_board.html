@@ -1,63 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css?ver=1.1" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Document</title>
-</head>
+
 <body>
-    <div class="container-linkmoa">
-            <header class="main-header-linkmoa">
-                    <a href="{%url 'board' %}" class="logo-link">Link Moa</a>
-                    <ul class="header-ul-linkmoa">
-                    {% if user.is_authenticated %}
-                    <li class="header-li2">
-                        <form id="logout" method="POST" action="{%url 'logout'%}">
-                                {% csrf_token%}
-                                <input class="btn btn-primary" type="submit" value="로그아웃">
-                        </form>
-                        <li class="header-li3"><a href="{% url 'index' %}">MYPAGE</a></li>
-                    </li>
-                    {% else %}
-                    <li class="header-li2"><a href="{% url 'login' %}">로그인</a></li>
-                    <li class="header-li3"><a href="{% url 'signup' %}">회원가입</a></li>
-                    {% endif%}
-                </ul>
-            </header>
-            <div class="board">
-                <h1>Dash Board</h1>
-                검색 :
-                <form method="POST" action="{% url 'search_board' %}">
-                    {% csrf_token %}
-                    <input type="text" placeholder="search" name="searchBox">
-                </form>
-                {%if searched_memos %}
-                {% for memo in searched_memos.all %}
-                <div class="memoContainer">
-                    <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
-                    <h4>{{memo.owner}}</h4>
-                    <p>{{memo.urls}}</p>
-                    {% if user.is_authenticated %}
-                      {% if user.id == memo.user_id %}
-                      <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
-                      {% else %}
-                      <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
-                      {% endif %}
-                    {% endif %}
-                  </div>
-                {% endfor %}
+    <div class="board">
+        <h1>Dash Board</h1>
+        검색 :
+        <form method="POST" action="{% url 'search_board' %}">
+            {% csrf_token %}
+            <input type="text" placeholder="search" name="searchBox" />
+        </form>
+        {% if searched_memos %}
+        {% for memo in searched_memos.all %}
+
+        <div class="memoContainer">
+            <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
+            <h4>{{memo.owner}}</h4>
+            <p>{{memo.urls}}</p>
+            {% if user.is_authenticated %}
+                {% if user.id == memo.user_id %}
+                <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
                 {% else %}
-                검색 결과를 찾을 수 없습니다.
+                <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
                 {% endif %}
-        </div>
-        
-        <div class="container">
-        </div>
-</body>
-</html>
+            {% endif %}
+            </div>
+        {% endfor %}
+        {% else %}
+        검색 결과를 찾을 수 없습니다.
+        {% endif %}
+
+<div class="container">
+</div>

@@ -23,132 +23,60 @@
         }
     </script>
 
-        <div class="items">
-            {% for memo in visible.all %}
-                <div class="memoContainer">
-                    <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
-                    <span class="buttons">
-                        <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
-                        <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
-                        <button class="i-btn"onclick="location.href='{%url 'disappear_memo' memo.id %}'"><i class="fa fa-times"></i></button>
-                    </span>
-                    <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
+    <form method="POST" action ="{% url 'make_memo' %}" class="">
+        {% csrf_token%}
+        <br>
+        검색 : 
+        <textarea class = "urlArea" id="urlList" wrap="off" cols="50" rows="15" name='url' v-model="newMessage"></textarea>
+        <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
+        <button id="keyword-button" v-on:click="renew()" class="searchButton">버튼</button>
+        <br>
+    </form>
 
-                    <div id="result{{forloop.counter}}">sample</div>
-
-                    <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-share-square-o"></i></button>
-                    <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
-                </div>
-
-                <script>
-                    linkPrint({{forloop.counter}});
-                </script>
-
+<div class="lower-part">
+    <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
+        {% csrf_token%}
+        <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
+        <button class="i-btn"><i class="fa fa-plus"></i></button>
+    </form>
+    <div class="line">
+        <ul class="directory-nav">
+            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item"><span class="d-nav-item">Recently</span></button></li>
+            {% for a in user.profile.get_fields_name %}
+            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
             {% endfor %}
-        </div>
-        <div id = "app" class="search-bar">
-            <form method="POST" action ="{% url 'make_memo' %}">
-                {% csrf_token%}
-                <br>
-                검색 : 
-                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key'>
-                <button v-on:click="renew()">버튼</button>
-                <br>
-                <textarea class = "message" id="urlList" wrap="off" cols="50" rows="30" name='url' v-model="newMessage"></textarea>
-            </form>
-        </div>
-        <div class="side-bar">
-            <div id = "user-info">
-                <h2>User Info</h2>
-                {{user.id}}
-            </div>
-            <div id = "directory-bar">
-                <h2>Directory-bar</h2>
-                <form method="POST" action ="{% url 'mkdir' %}">
-                    {% csrf_token%}
-                    폴더 만들기 : <input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname'>
-                    <button class="i-btn"><i class="fa fa-plus"></i></button>
-                </form>
-
-                <nav class="directoryNav" role="navigation">
-                    <ol id="directory-container">
-                        <li class="directory"><a href="#">Recently</a>
-                            <ol class="memolist">
-                                {% for memo in memos.all %}
-                                    {% if memo.directory == 'recently' %}
-                                        <li class="memolink"><a href="{% url 'appear_memo' memo.id%}">{{memo.keyword}}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ol>
-                        </li>
-                        {% for a in user.profile.get_fields_name %}
-                        <li class="directory"><a href="#">{{a}}</a>
-                        <button class="dir-delete-btn"onclick="if(confirm(delcontext)){location.href='{%url 'deletedir' a %}';}"><i class="fa fa-trash"></i></button>
-                            <ol class="memolist">
-                                {% for memo in memos.all %}
-                                    {% if memo.directory == a %}
-                                        <li class="memolink"><a href="{% url 'appear_memo' memo.id%}">{{memo.keyword}}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ol>
-                        </li>
-                        {% endfor %}
-                    </ol>
-                </nav>
-            </div>
-
-        <!-- editModal -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">편집하기</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">키워드</label>
-                            <input type="text" class="form-control" id="keyword">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">URL</label>
-                            <textarea class="form-control" id="urls"></textarea>
-                        </div>
-                    </form>
-                </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success"><a href="" class="modal-complete">완료</a></button> <!---->
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <!-- moveModal -->
-    <div class="modal fade" id="moveModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">폴더 옮기기</h4>
-          </div>
-          <div class="modal-body">
-                <button type="button" class="btn btn-default"><a href="" id="recently" name="Recently" class="recently-clicked">Recently</a></button>
-                {% for dirname in user.profile.get_fields_name %}
-                <button type="button" class="btn btn-default"><a href="" id="dirname" name="{{dirname}}" class="dirname-clicked" onclick="setDirname('{{dirname}}')">{{dirname}}</a></button>
-                {% endfor %}
-            </div>
-            
-            <div class="modal-footer">
-            </div>
-          
-          </div>
-        </div>
-      </div>
+            <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button>
+        </ul>
     </div>
+    <div class="objects">
+    {% for memo in current.all %}
+        <div class="memoContainer">
+            <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
+            <span class="buttons">
+                <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
+                <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
+            </span>
+            <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
+
+            <div id="result{{forloop.counter}}">sample</div>
+            <div class="button-list">
+                <span class="btns">
+                    <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-upload"></i></button>
+                    <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <script>
+            linkPrint({{forloop.counter}});
+        </script>
+
+    {% endfor %}
+    </div>
+</div>
+
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>

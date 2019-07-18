@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.utils import timezone
 from linkmoa import urlScrap
 from linkmoa import dirManagement
 from accounts import views
@@ -22,10 +23,10 @@ def board(request):
 
 def index(request):
     user=request.user
-    print('current user : ', user.id)
+    print('Request user : ', user.id)
     memos = Memo.objects.filter(user_id=user.id)
-    visible = memos.filter(display='visible')
-    return render(request,'index.html',{'memos' : memos, 'visible' : visible, 'userid' : user.id})
+    current = memos.filter(directory=user.profile.currentdir)
+    return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id})
 
 def make_memo(request):
     user=request.user
@@ -35,6 +36,7 @@ def make_memo(request):
     memo.owner = user.username
     memo.keyword = request.POST['key']
     urls = request.POST['url']
+    memo.pub_date = timezone.datetime.now()
     splited = urls.split('\n')
     memo.urls = urlScrap.scrapUrl(splited, memo.keyword)
     if len(memo.urls) > 1:
@@ -45,9 +47,24 @@ def mkdir(request):
     user=request.user
     dname = request.POST['dirname']
     if user.profile.numofDir == 10:
-        print('xxxxxxxxxxxxxxxxxxxxxx안돼')
+        print('디렉토리 최대 개수는 10 개 입니다.')
     else:
-        dirManagement.makeDirectory(user,dname)
+        a = dirManagement.makeDirectory(user,dname)
+        if a == 0:
+            print('같은 이름의 디렉토리를 생성 할 수 없습니다.')
+    return redirect('index')
+
+def changedir(request, cddir):
+    user=request.user
+    user.profile.currentdir=cddir
+    user.profile.save()
+    return redirect('index')
+
+def changedirname(request, dirname):
+    user=request.user
+    newname = request.GET.get('changename')
+    dirManagement.changedirname(user, dirname, newname)
+    print(newname)
     return redirect('index')
 
 def deletedir(request, dirname):
@@ -55,10 +72,13 @@ def deletedir(request, dirname):
     dname = dirname
     memos = Memo.objects.filter(user_id=user.id, directory=dirname)
     memos.delete()
+    user.profile.currentdir='recently'
+    user.profile.save()
     dirManagement.deleteDirectory(user, dname)
     return redirect('index')
 
 def delete_memo(request, memo_id):
+    user=request.user
     memo = Memo.objects.get(id=memo_id)
     memo.delete()
     return redirect('index')
@@ -70,23 +90,14 @@ def share_memo(request, memo_id):
     return redirect('index')
 
 def edit_memo(request, memo_id, keyword, urls):
-
     memo = Memo.objects.get(id=memo_id)
-
-    print('id: ', memo_id, '\n')
-    print('keyword: ', keyword, '\n')
-    print('urls: ', urls, '\n')
-    
     splited_urls = urls.split(',')
     newline_urls = ''
-
     for i in range(0, len(splited_urls)):
         newline_urls += splited_urls[i] + '\n'
-
     memo.keyword = keyword
     memo.urls = newline_urls
     memo.save()
-
     return redirect('index')
 
 def undo_share(request, memo_id):
@@ -108,30 +119,23 @@ def download_memo(request, memo_id):
     return redirect('index')
 
 def movedir(request, memo_id, dirname):
-
     user = request.user
-    print(user)
     memo = Memo.objects.get(id=memo_id)
-    dir = dirname
-
-    print('id: ', memo_id, '\n')
-    print('dirname: ', dir, '\n')
-
-    setattr(memo, 'directory', dir)
+    setattr(memo, 'directory', dirname)
     memo.save()
     return redirect('index')
 
-def appear_memo(request, memo_id):
-    memo = Memo.objects.get(id=memo_id)
-    memo.display='visible'
-    memo.save()    
-    return redirect('index')
+# def appear_memo(request, memo_id):
+#     memo = Memo.objects.get(id=memo_id)
+#     memo.display='visible'
+#     memo.save()    
+#     return redirect('index')
 
-def disappear_memo(request, memo_id):
-    memo = Memo.objects.get(id=memo_id)
-    memo.display='invisible'
-    memo.save()
-    return redirect('index')
+# def disappear_memo(request, memo_id):
+#     memo = Memo.objects.get(id=memo_id)
+#     memo.display='invisible'
+#     memo.save()
+#     return redirect('index')
 
 def search(request):
     keyword = request.POST['searchBox']

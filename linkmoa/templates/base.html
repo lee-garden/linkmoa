@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         
-        <link rel="stylesheet" href="{% static 'css/default.css' %}" >
+        <link rel="stylesheet" href="../../static/css/default.css?ver=1.2" >
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> {% endcomment %}
         {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> {% endcomment %}
@@ -46,7 +46,7 @@
             <p class="slogan-name">링크모아</p> {% endcomment %}
             <div>
                 <div class="nav">
-                        <img src="{% static 'image/1.png'%}" style="height:100%;">
+                        <a href="{% url 'board' %}"><img src="{% static 'image/1.png'%}" style="height:100%;"></a>
                     {% comment %} <div class="upper-part"> {% endcomment %}
 
                             <div class="sub-nav">
@@ -84,8 +84,6 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <h1 class="taglist">TAG 순위 LIST 들어갈 예정</h1>
 
                     {% comment %} </div> {% endcomment %}
 

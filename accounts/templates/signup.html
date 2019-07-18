@@ -13,12 +13,22 @@
 <body>
     <div class="container-linkmoa">
         <header class="main-header-linkmoa">
-            <ul class="header-ul-linkmoa">
-                <li class="header-li1"><h2><a href="{%url 'board'%}">링크모아</a></h2></li>
-                <li class="header-li2"><a href="{% url 'login' %}">로그인</a></li>
-                <li class="header-li3"><a href="#">회원가입</a></li>
-                <li class="header-li4">버튼3</li>
-            </ul>
+            <div class="logo-part">
+                <a href="{% url 'board' %}" class="logo-link">Link Moa</a>
+            </div>
+            <div class="nav-part">
+                <ul class="header-ul-linkmoa">
+                    {% if user.is_authenticated %}
+                    <li class="header-li2">
+                        <li class="header-li2"><a href="{% url 'logout' %}" class="nav-link">LOGOUT</a></li>
+                        <li class="header-li3"><a href="{% url 'index' %}" class="nav-link">MY PAGE</a></li>
+                    </li>
+                    {% else %}
+                    <li class="header-li2"><a href="{% url 'login' %}" class="nav-link">LOGIN</a></li>
+                    <li class="header-li3"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
+                    {% endif%}
+                </ul>
+            </div>
         </header>
         <div class="signupBox">
         <form method="POST" action="{% url 'signup' %}">

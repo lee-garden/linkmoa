@@ -23,7 +23,7 @@ def board(request):
 
 def index(request):
     user=request.user
-    print('current user : ', user.id)
+    print('Request user : ', user.id)
     memos = Memo.objects.filter(user_id=user.id)
     current = memos.filter(directory=user.profile.currentdir)
     return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id})
@@ -47,7 +47,7 @@ def mkdir(request):
     user=request.user
     dname = request.POST['dirname']
     if user.profile.numofDir == 10:
-        print('xxxxxxxxxxxxxxxxxxxxxx안돼')
+        print('디렉토리 최대 개수')
     else:
         dirManagement.makeDirectory(user,dname)
     return redirect('index')
@@ -56,7 +56,6 @@ def changedir(request, cddir):
     user=request.user
     user.profile.currentdir=cddir
     user.profile.save()
-    print(cddir+"로 cd합니다")
     return redirect('index')
 
 def deletedir(request, dirname):
@@ -64,6 +63,8 @@ def deletedir(request, dirname):
     dname = dirname
     memos = Memo.objects.filter(user_id=user.id, directory=dirname)
     memos.delete()
+    user.profile.currentdir=recently
+    user.profile.save()
     dirManagement.deleteDirectory(user, dname)
     return redirect('index')
 
@@ -80,23 +81,14 @@ def share_memo(request, memo_id):
     return redirect('index')
 
 def edit_memo(request, memo_id, keyword, urls):
-
     memo = Memo.objects.get(id=memo_id)
-
-    print('id: ', memo_id, '\n')
-    print('keyword: ', keyword, '\n')
-    print('urls: ', urls, '\n')
-    
     splited_urls = urls.split(',')
     newline_urls = ''
-
     for i in range(0, len(splited_urls)):
         newline_urls += splited_urls[i] + '\n'
-
     memo.keyword = keyword
     memo.urls = newline_urls
     memo.save()
-
     return redirect('index')
 
 def undo_share(request, memo_id):
@@ -118,16 +110,9 @@ def download_memo(request, memo_id):
     return redirect('index')
 
 def movedir(request, memo_id, dirname):
-
     user = request.user
-    print(user)
     memo = Memo.objects.get(id=memo_id)
-    dir = dirname
-
-    print('id: ', memo_id, '\n')
-    print('dirname: ', dir, '\n')
-
-    setattr(memo, 'directory', dir)
+    setattr(memo, 'directory', dirname)
     memo.save()
     return redirect('index')
 

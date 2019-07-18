@@ -82,7 +82,7 @@
                     </form>
                     <div class="line">
                         <ul class="directory-nav">
-                            <li class="directory-nav-items"><a href="{% url 'changedir' 'recently' %}">Recently</a></li>
+                            <li class="directory-nav-items"><a href="{% url 'changedir' 'recently' %}">Recently&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                             {% for a in user.profile.get_fields_name %}
                             <li class="directory-nav-items">|&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'changedir' a %}">{{a}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
                             {% endfor %}
@@ -272,7 +272,7 @@
             $('.recently-clicked').click(function(){
 
                 var recently = document.getElementById("recently").name
-                modal.find('.modal-body a').attr('href', '/movedir/' + id + '/' + recently)
+                modal.find('.modal-body a').attr('href', '/movedir/' + id + '/' + 'recently')
             })
 
             $('.dirname-clicked').click(function(){

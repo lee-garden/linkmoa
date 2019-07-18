@@ -80,15 +80,14 @@
                         <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
                         <button class="i-btn"><i class="fa fa-plus"></i></button>
                     </form>
-                    <ul class="directory-nav">
+                    <div class="line">
+                        <ul class="directory-nav">
                             <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item"><span class="d-nav-item">Recently</span></button></li>
                             {% for a in user.profile.get_fields_name %}
                             <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
                             {% endfor %}
                             <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button>
                         </ul>
-                    <div class="line">
-
                     </div>
                     <div class="objects">
                     {% for memo in current.all %}

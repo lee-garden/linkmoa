@@ -17,6 +17,7 @@ def deleteDirectory(user, name):
             user.profile.decrease()
             setattr(user.profile, dir, "")
             user.profile.save()
+            break
 
 def changedirname(user, old, new):
     for dir, value in model_to_dict(user.profile).items():

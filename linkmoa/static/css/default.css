@@ -95,13 +95,13 @@ body{
     border-radius: 10px 10px 0 0;
   }
   .form-mkdir{
-      float: left;
   }
 .line{
     height: 50px;
     width: 1219px;
     margin: 0 auto;
     background-color: #38B9C8;
+    border-radius: 15px 15px 0 0;
 }
 .objects{
     display: grid;
@@ -346,6 +346,7 @@ body{
         position: absolute;
         margin-top: 10px;
         left: 1300px;
+        top: 464px;
         background-color: #FFFEEE;
         border: 2.5px solid #38B9C0;
         border-radius: 10px;
@@ -359,10 +360,11 @@ body{
     }
 
     .d-nav-btns{
+        margin-left: 5px;
         height: 28px;
-        width: 70px;
+        width: 110px;
         border: 2px solid #38B9C8;
-        border-radius: 10px 10px 0 0;
+        border-radius: 30px;
         border-bottom: none;
         background: #FEFEFE;
         font-size: 10px;

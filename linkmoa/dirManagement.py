@@ -4,6 +4,8 @@ from django.forms.models import model_to_dict
 
 def makeDirectory(user, name):
     for dir, key in model_to_dict(user.profile).items():
+        if key == name:
+            return 0
         if key == '':
             user.profile.increase()
             setattr(user.profile, dir, name)

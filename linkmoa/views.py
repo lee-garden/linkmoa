@@ -47,9 +47,11 @@ def mkdir(request):
     user=request.user
     dname = request.POST['dirname']
     if user.profile.numofDir == 10:
-        print('디렉토리 최대 개수')
+        print('디렉토리 최대 개수는 10 개 입니다.')
     else:
-        dirManagement.makeDirectory(user,dname)
+        a = dirManagement.makeDirectory(user,dname)
+        if a == 0:
+            print('같은 이름의 디렉토리를 생성 할 수 없습니다.')
     return redirect('index')
 
 def changedir(request, cddir):

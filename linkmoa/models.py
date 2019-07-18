@@ -38,6 +38,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     numofDir = models.IntegerField(default=0)
     selectedMemo = models.IntegerField(default=0)
+    currentdir = models.CharField(max_length=20, default='recently')
     dir1 = models.CharField(max_length=30, blank=True)
     dir2 = models.CharField(max_length=30, blank=True)
     dir3 = models.CharField(max_length=30, blank=True)
@@ -66,6 +67,7 @@ class Profile(models.Model):
         for key in model_to_dict(model).values():
             if type(key) == str and key !='':
                 names.append(key)
+        names.pop(0)
         return names
 
 

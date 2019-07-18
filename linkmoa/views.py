@@ -25,15 +25,8 @@ def index(request):
     user=request.user
     print('current user : ', user.id)
     memos = Memo.objects.filter(user_id=user.id)
-    visible = memos.filter(display='visible')
-    return render(request,'index.html',{'memos' : memos, 'visible' : visible, 'userid' : user.id})
-
-def indexSub(request, dirname):
-    user=request.user
-    memos = Memo.objects.filter(user_id=user.id)
-    print(dirname + '선택됨')
-    dirmemo = memos.objects.filter(directory = dirname)
-    return render(request,'index.html',{'memos' : memos, 'dirmemo' : dirname})
+    current = memos.filter(directory=user.profile.currentdir)
+    return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id})
 
 def make_memo(request):
     user=request.user
@@ -59,6 +52,13 @@ def mkdir(request):
         dirManagement.makeDirectory(user,dname)
     return redirect('index')
 
+def changedir(request, cddir):
+    user=request.user
+    user.profile.currentdir=cddir
+    user.profile.save()
+    print(cddir+"로 cd합니다")
+    return redirect('index')
+
 def deletedir(request, dirname):
     user=request.user
     dname = dirname
@@ -68,6 +68,7 @@ def deletedir(request, dirname):
     return redirect('index')
 
 def delete_memo(request, memo_id):
+    user=request.user
     memo = Memo.objects.get(id=memo_id)
     memo.delete()
     return redirect('index')
@@ -130,17 +131,17 @@ def movedir(request, memo_id, dirname):
     memo.save()
     return redirect('index')
 
-def appear_memo(request, memo_id):
-    memo = Memo.objects.get(id=memo_id)
-    memo.display='visible'
-    memo.save()    
-    return redirect('index')
+# def appear_memo(request, memo_id):
+#     memo = Memo.objects.get(id=memo_id)
+#     memo.display='visible'
+#     memo.save()    
+#     return redirect('index')
 
-def disappear_memo(request, memo_id):
-    memo = Memo.objects.get(id=memo_id)
-    memo.display='invisible'
-    memo.save()
-    return redirect('index')
+# def disappear_memo(request, memo_id):
+#     memo = Memo.objects.get(id=memo_id)
+#     memo.display='invisible'
+#     memo.save()
+#     return redirect('index')
 
 def search(request):
     keyword = request.POST['searchBox']

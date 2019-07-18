@@ -32,5 +32,6 @@ def signup(request):
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
+        print('log out success')
         return redirect('/')
     return render(request,'login.html')

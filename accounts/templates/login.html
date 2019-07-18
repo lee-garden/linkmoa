@@ -21,15 +21,8 @@
             </div>
             <div class="nav-part">
                 <ul class="header-ul-linkmoa">
-                    {% if user.is_authenticated %}
-                    <li class="header-li2">
-                        <li class="header-li2"><a href="{% url 'logout' %}" class="nav-link">LOGOUT</a></li>
-                        <li class="header-li3"><a href="{% url 'index' %}" class="nav-link">MY PAGE</a></li>
-                    </li>
-                    {% else %}
                     <li class="header-li2"><a href="{% url 'login' %}" class="nav-link">LOGIN</a></li>
                     <li class="header-li3"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
-                    {% endif%}
                 </ul>
             </div>
         </header>

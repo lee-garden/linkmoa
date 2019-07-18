@@ -58,12 +58,18 @@ def changedir(request, cddir):
     user.profile.save()
     return redirect('index')
 
+def changedirname(request, dirname):
+    user=request.user
+    newname = request.GET.get('changename')
+    dirManagement.changedirname(user, dirname, newname)
+    return redirect('index')
+
 def deletedir(request, dirname):
     user=request.user
     dname = dirname
     memos = Memo.objects.filter(user_id=user.id, directory=dirname)
     memos.delete()
-    user.profile.currentdir=recently
+    user.profile.currentdir='recently'
     user.profile.save()
     dirManagement.deleteDirectory(user, dname)
     return redirect('index')

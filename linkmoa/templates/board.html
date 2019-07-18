@@ -77,7 +77,7 @@
                         {% if user.id == memo.user_id %}
                         <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
                         {% else %}
-                        <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
+                        <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-download"></i></button>
                         {% endif %}
                         </span>
                     {% endif %}

@@ -31,6 +31,7 @@
                     </ul>
                 </div>
             </header>
+            <div class="aside"><p class="aside-logo">l&nbsp;i&nbsp;k&nbsp;e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l&nbsp;i&nbsp;o&nbsp;n</p></div>
             <div class="board">
                 <div class="upper-part">
                     <div class="upper-left-part">
@@ -72,7 +73,7 @@
                             {% if user.id == memo.user_id %}
                             <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
                             {% else %}
-                            <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
+                            <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-download"></i></button>
                             {% endif %}
                             </span>
                         {% endif %}

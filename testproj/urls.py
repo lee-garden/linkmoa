@@ -31,6 +31,7 @@ urlpatterns = [
     # path('disappear_memo/<int:memo_id>', linkmoa.views.disappear_memo, name="disappear_memo"),
     path('mkdir', linkmoa.views.mkdir, name='mkdir'),
     path('changedir/<cddir>', linkmoa.views.changedir, name='changedir'),
+    path('changedirname/<dirname>', linkmoa.views.changedirname, name='changedirname'),
     re_path(r'^movedir/(?P<memo_id>\d+)/(?P<dirname>.*)/$',linkmoa.views.movedir, name='movedir'),
     path('deletedir/<dirname>', linkmoa.views.deletedir, name='deletedir'),
     path('search_board/', linkmoa.views.search, name='search_board'),

@@ -64,6 +64,7 @@ def changedirname(request, dirname):
     user=request.user
     newname = request.GET.get('changename')
     dirManagement.changedirname(user, dirname, newname)
+    print(newname)
     return redirect('index')
 
 def deletedir(request, dirname):

@@ -14,45 +14,50 @@
 </div>
 
 
+
 <div class="lower-part">
+
     <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
         {% csrf_token%}
         <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
         <button class="i-btn"><i class="fa fa-plus"></i></button>
     </form>
+
     <div class="line">
         <ul class="directory-nav">
             <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item"><span class="d-nav-item">Recently</span></button></li>
             {% for a in user.profile.get_fields_name %}
-            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
+                <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
             {% endfor %}
             <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button>
         </ul>
     </div>
+
     <div class="objects">
-    {% for memo in current.all %}
-        <div class="memoContainer">
-            <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
-            <span class="buttons">
-                <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
-                <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
-            </span>
-            <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
-
-            <div id="result{{forloop.counter}}">sample</div>
-            <div class="button-list">
-                <span class="btns">
-                    <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-upload"></i></button>
-                    <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+        {% for memo in current.all %}
+        
+            <div class="memoContainer">
+                <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
+                <span class="buttons">
+                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
+                    <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
                 </span>
+                <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
+
+                <div id="result{{forloop.counter}}">sample</div>
+                <div class="button-list">
+                    <span class="btns">
+                        <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-upload"></i></button>
+                        <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <script>
-            linkPrint({{forloop.counter}});
-        </script>
+            <script>
+                linkPrint({{forloop.counter}});
+            </script>
 
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
 
@@ -113,7 +118,6 @@
     </script>
 
     <script>
-
         var dirname // Global Variable(정원찡's Good idea ㅎㅎ)
 
         $('#editModal').on('show.bs.modal', function (event) {
@@ -162,6 +166,6 @@
 
             dirname = name
         }
-        </script>
+    </script>
 
 {% endblock %}

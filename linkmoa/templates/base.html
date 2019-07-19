@@ -74,14 +74,15 @@
                                         {% endif%}
                                     </ul>
                                 </div>
-                               <div class="sort">
+                                <div class="sort">
                                     <select id="sort-select" onchange="location=this.value;">
                                         <option class="sort-date" value="/">최신순</option>
                                         <option class="sort-likes" value="?sort=likes">다운로드순</option>
                                         {% if user.is_authenticated %}
-                                        <option class="sort-mymemo" value="?sort=mymemo">내 메모</option>
+                                            <option class="sort-mymemo" value="?sort=mymemo">내 메모</option>
                                         {% endif %}
                                     </select>
+                                    <span class="arrow"></span>
                                 </div>
                             </div>
 

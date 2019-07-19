@@ -1,28 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <script>
-        function linkPrint(count) {
-                var txtId = "memotxt"+count;
-                var Mtxt = document.getElementById(txtId).innerHTML;
-                var lines = Mtxt.split("\n");
-                
-                var Ptxt = "";
-                for (var i =0 ; i<lines.length; i++) {
-                    Ptxt += "<a href=";
-                    Ptxt += lines[i];
-                    Ptxt += ">";
-                    Ptxt += lines[i];
-                    Ptxt += "</a>"
-                    Ptxt += "<br>"
-                    Ptxt += "<br>"
-                }
-                var memoID = "result"+count;
-                var blk = document.getElementById(memoID);
-                blk.innerHTML = Ptxt;
-                console.log(memoID);
-        }
-    </script>
 
+<div class="urls">
     <form method="POST" action ="{% url 'make_memo' %}" class="">
         {% csrf_token%}
         <br>
@@ -32,6 +11,8 @@
         <button id="keyword-button" v-on:click="renew()" class="searchButton">버튼</button>
         <br>
     </form>
+</div>
+
 
 <div class="lower-part">
     <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
@@ -76,7 +57,28 @@
 </div>
 
 
-    
+    <script>
+        function linkPrint(count) {
+                var txtId = "memotxt"+count;
+                var Mtxt = document.getElementById(txtId).innerHTML;
+                var lines = Mtxt.split("\n");
+                
+                var Ptxt = "";
+                for (var i =0 ; i<lines.length; i++) {
+                    Ptxt += "<a href=";
+                    Ptxt += lines[i];
+                    Ptxt += ">";
+                    Ptxt += lines[i];
+                    Ptxt += "</a>"
+                    Ptxt += "<br>"
+                    Ptxt += "<br>"
+                }
+                var memoID = "result"+count;
+                var blk = document.getElementById(memoID);
+                blk.innerHTML = Ptxt;
+                console.log(memoID);
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>

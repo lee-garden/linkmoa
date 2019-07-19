@@ -159,6 +159,30 @@ form {
     /* margin-top:30px; */
     /* padding: 0 150px 0 150px; */
 }
+
+.btn-plus {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid #38B9C8;
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+    padding: 0px;
+}
+
+.fa-plus:before {
+    color: #38B9C8;
+
+}
+
+/* 
+.i-btn, .i-btn-cd{
+    background: none;
+    color: inherit;
+    border: none;
+} */
+
 .mkdir-input{
     width: 200px;
     border: 2px solid #38B9C8;
@@ -363,12 +387,6 @@ form {
     float: right;
 }
 
-.i-btn, .i-btn-cd{
-    background: none;
-    color: inherit;
-    border: none;
-    cursor: pointer;
-}
 
 .loginBox{
     border: 1px solid black;

@@ -20,15 +20,37 @@
     </form>
 </div>
 
-
-
 <div class="lower-part">
 
-    <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
-        {% csrf_token%}
-        <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
-        <button class="i-btn"><i class="fa fa-plus"></i></button>
-    </form>
+
+
+    <div class="folder-plus">
+        <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
+            {% csrf_token%}
+            <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
+            <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="line">
         <ul class="directory-nav">

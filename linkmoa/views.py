@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
+from django.views.generic import ListView, DetailView, TemplateView
+from tagging.models import Tag, TaggedItem
+from tagging.views import TaggedObjectList
 from linkmoa import urlScrap
 from linkmoa import dirManagement
 from accounts import views

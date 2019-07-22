@@ -14,7 +14,6 @@ function linkPrint(count) {
             Ptxt += lines[i];
             Ptxt += "</a></div>"
         }
-        Ptxt += '<a href="#">&nbsp;더보기...</a>'
     } else{
         for (var i =0 ; i<lines.length; i++) {
             Ptxt += '<div class="link-txt">'
@@ -24,10 +23,9 @@ function linkPrint(count) {
             Ptxt += lines[i];
             Ptxt += "</a></div>"
         }
-        Ptxt += '<a href="#">&nbsp;더보기...</a>'
     }
+    Ptxt += '<a href="#">&nbsp;더보기...</a>'
     var memoID = "result"+count;
     var blk = document.getElementById(memoID);
     blk.innerHTML = Ptxt;
-    console.log(memoID);
 }

@@ -101,8 +101,10 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
-def edit_memo(request, memo_id, keyword, urls):
+def edit_memo(request, memo_id, keyword, urls, tags):
     memo = Memo.objects.get(id=memo_id)
+    print(urls)
+    print(tags)
     splited_urls = urls.split(',')
     newline_urls = ''
     for i in range(0, len(splited_urls)):

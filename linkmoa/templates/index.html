@@ -37,11 +37,10 @@
 
     <div class="objects">
         {% for memo in current.all %}
-
             <div class="memoContainer">
                 <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
                 <span class="buttons">
-                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
+                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-tag="{{memo.tag}}"><i class="fa fa-edit"></i></button> 
                     <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
                 </span>
                 <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
@@ -87,180 +86,15 @@
                 } else {
                     $(".objects div").hide();
                 }
-               
             });
       });
     </script>
 </div>
-    <!-- editModal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">편집하기</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">키워드</label>
-                        <input type="text" class="form-control" id="keyword">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">URL</label>
-                        <textarea class="form-control" id="urls"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text]" class="col-form-label">TAG</label>
-                        <input type="text" class="form-control" id="tag" placeholder=",로 구분 예시) 태그1, 태그2, 태그3">
-                    </div>
-                </form>
-            </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success"><a href="" class="modal-complete">완료</a></button> <!---->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- moveModal -->
-    <div class="modal fade" id="moveModal" role="dialog">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">폴더 옮기기</h4>
-            </div>
-            <div class="modal-body">
-                <button type="button" class="btn btn-default"><a href="" id="recently" name="Recently" class="recently-clicked">Recently</a></button><br>
-                {% for dirname in user.profile.get_fields_name %}
-                <button type="button" class="btn btn-default"><a href="" id="dirname" name="{{dirname}}" class="dirname-clicked" onclick="setDirname('{{dirname}}')">{{dirname}}</a></button><br>
-                {% endfor %}
-            </div>
-            
-            <div class="modal-footer">
-            </div>
-            
-            </div>
-        </div>
-        </div>
-    </div>
-    
-    <!--DirectoryBar edit modal-->
-    <div class="modal fade" id="editdirModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">닫기</h4>
-            </div>
-            <div class="modal-body">
-                    {% for dirname in user.profile.get_fields_name %}
-                    {{dirname}}
-                    <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#editdirname" data-id="{{dirname}}"><i class="fa fa-edit"></i></button>
-                    <button class="i-btn"onclick="var a= confirm(delcontext); console.log(a); if(a==true){location.href='{% url 'deletedir' dirname %}';}"><i class="fa fa-trash"></i></button><br>
-                    {% endfor %}
-                </div>
-                
-                <div class="modal-footer">
-                </div>
-            
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="modal fade" id="editdirname" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">닫기</h4>
-            </div>
-            <div class="modal-body">
-                <form action="">
-                    <input type="text" id="editnametxt" name="changename">
-                </form>
-            </div>
-            </div>
-            </div>
-        </div>
-    </div>
 
-
-    <div class="modal fade" id="editdirModal" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">닫기</h4>
-                </div>
-                <div class="modal-body">
-                      {% for dirname in user.profile.get_fields_name %}
-                      {{dirname}}
-                      <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#editdirname" data-id="{{dirname}}"><i class="fa fa-edit"></i></button>
-                      <button class="i-btn"onclick="var a= confirm(delcontext); console.log(a); if(a==true){location.href='{% url 'deletedir' dirname %}';}"><i class="fa fa-trash"></i></button><br>
-                      {% endfor %}
-                  </div>
-                  
-                  <div class="modal-footer">
-                  </div>
-                
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal fade" id="editdirname" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">닫기</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <input type="text" id="editnametxt" name="changename">
-                    </form>
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
+{% include 'modal.html' %}
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
-    <script>
-        var selected="" ;
-        var delcontext='폴더 삭제시 해당 폴더의 메모들도 함께 삭제됩니다.\n정말 삭제 하시겠습니까?';
-
-        var app = new Vue({
-            el: '#app',
-            delimiters: ['{', '}'],
-            data: {
-                message: 'test app',
-                newMessage: '',
-            },
-            created: function () {
-                console.log("created");
-            },
-            mounted: function() {
-                console.log("mounted");
-                if(localStorage.getItem('temp') == null) localStorage.getItem('temp') = ''
-                document.getElementById("urlList").defaultValue = localStorage.getItem('temp');
-            },
-            updated: function() {
-                console.log("upadated");
-            },
-            methods: {
-                renew: function(){
-                    if(this.newMessage == '') this.newMessage = localStorage.getItem('temp');
-                    localStorage.setItem('temp', this.newMessage);
-                }
-            },
-        })
-    </script>
-
+    <script src="../../static/js/vue.js"></script>
     <script src="../../static/js/query.js"></script>
 
 {% endblock %}

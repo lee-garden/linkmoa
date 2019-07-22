@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|family=Roboto|Sunflower:300|Jua|Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 html, body{
@@ -8,7 +8,6 @@ html, body{
 .container-linkmoa{
     margin: 0;
     height: 900px;
-    background-color: #FFF;
 }
 /*38B9C8 - > 333333*/
 .aside{
@@ -35,19 +34,6 @@ html, body{
     height: 400px;
 }
 
-.aside{
-    width: 60px;
-    height: 520px;
-    border-radius: 0 35px 35px 0;
-    float: left;
-    margin-top: 50px;
-    position:fixed;
-    background: #E9E9E9;
-    text-align: center;
-    vertical-align: center;
-    
-}
-
 /* Header Part */
 .main-header-linkmoa{
     margin: 0;
@@ -57,9 +43,6 @@ html, body{
     background-color: #38B9C8;
     width: 1fr;
     height: 96px;
-}
-.headerFixed {
-    position: fixed;
 }
 .logo-part{
     margin: 0 0 0 0;
@@ -94,16 +77,18 @@ html, body{
 }
 .nav-ul{
     list-style: none;
-    width: 200px;
+    width: 100%;
     margin: auto;
-    padding: 12px 0 0 0;
+    padding-top: 12px;
     height:100%;
     display: inline-block;
 }
 .nav-ul li {
     display: inline-block;
-    padding: 0 10px 0 0;
+    padding: 0 15px 0 0;
 }
+
+
 
 .upper-part {
     margin: 30px 0 0 0;
@@ -139,11 +124,6 @@ html, body{
     height: 98%;
     position: relative;
 }
-/* .upper-part{ current comming
-    margin: 0 auto;
-    display: grid;
-    align-content: end;
-    grid-template-columns: 0.5fr 0.5fr;} */
 #sort-select {
     border-radius: 20px;
     padding: 12px 20px;
@@ -155,7 +135,7 @@ html, body{
     -moz-appearance: none;
     display: block;
     width: 100%;
-    height: 90%;
+    height: 45px;
     font-size: 13px;
 }
 
@@ -182,7 +162,7 @@ form {
 
 .btn-plus {
     height: 30px;
-    width: 30px;
+    width: 20px;
     border-radius: 50%;
     border: 1px solid #38B9C8;
     cursor: pointer;
@@ -190,15 +170,18 @@ form {
     margin: 0;
     padding: 0px;
 }
+
 .fa-plus:before {
     color: #38B9C8;
+
 }
 
+/* 
 .i-btn, .i-btn-cd{
     background: none;
     color: inherit;
     border: none;
-}
+} */
 
 .mkdir-input{
     width: 200px;
@@ -278,7 +261,15 @@ form {
     border: 1.5px solid red;
     width: 300px;
     height: 740px;
-    float: left;}
+    float: left;
+}
+
+#user-info{
+    border: 1px solid black;
+    width: 300px;
+    height: 150px;
+    margin-top: 20px;
+}
 
 #directory-bar{
     /* border: 1px solid black;
@@ -307,6 +298,10 @@ form {
     text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 }
 
+.directory{
+    background: black;
+}
+
 .memolist{
     position: absolute;
     background: wheat;
@@ -318,6 +313,7 @@ form {
     color:black;
     text-decoration: none;
 }
+
 
 #directory-container > li:hover .memolist{
     opacity: 1;
@@ -454,13 +450,6 @@ box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
   }
 
   /*Font*/
-  .link-txt{
-    width:170px;
-    padding:0 5px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
   .slogan, .slogan-name{
     font-family: 'East Sea Dokdo', cursive;
     font-size: 50px;
@@ -470,42 +459,10 @@ box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
     font-size: 30px;
     margin-left: 480px;
   }
-  .downnum{
-    font-family: 'Sunflower', sans-serif;
-    font-size: 16px;
-  }
+
   .taglist{
       margin-top:100px;
   }
-  .memo-key{
-      margin-left: 10px;
-  }
-  .memo-date{
-      float: right;
-      margin-right: 10px;
-      font-size: 15px;
-      font-family: 'Sunflower', sans-serif;
-  }
-  .memo-id{
-    margin-left: 10px;
-    font-size: 18px;
-    font-family: 'Sunflower', sans-serif;
-  }
-  .aside-logo{
-    transform: rotate(90deg);
-    margin-top: 250px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    color: #554D4A;
-  }
-  .directory-a{
-    font-family: 'Roboto', sans-serif;
-    color: #FFFEEE;
-  }
-  .mkdirtxt{
-    font-family: 'Jua', sans-serif;}
-  .d-nav-item{
-    font-family: 'Jua', sans-serif;}
 
   .button-list{
     position: absolute;

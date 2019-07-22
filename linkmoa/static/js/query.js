@@ -5,20 +5,17 @@ $('#editModal').on('show.bs.modal', function (event) {
     var id = button.data('id')
     var keyword = button.data('keyword')
     var urls = button.data('urls')
-    var tag = button.data('tag')
 
     var modal = $(this)
 
     modal.find('.modal-title').text('편집하기')
     modal.find('.modal-body input').val(keyword)
     modal.find('.modal-body textarea').val(urls)
-    modal.find('.modal-body #tag').val(tag)
 
     $('.modal-complete').click(function(){
 
         console.log($("#keyword").val())
         console.log($("#urls").val())
-        console.log($("#tag").val())
 
         splited_urls = $("#urls").val().split('\n')
 

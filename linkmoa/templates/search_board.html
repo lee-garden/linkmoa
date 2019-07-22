@@ -6,11 +6,13 @@
     <div class="board">
         {% if searched_memos %}
         {% for memo in searched_memos.all %}
-
         <div class="memoContainer">
             <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
             <h4>{{memo.owner}}</h4>
-            <p>{{memo.urls}}</p>
+            <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
+
+            <div id="result{{forloop.counter}}">sample</div>
+            <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}">&nbsp;더보기...</a>
             {% if user.is_authenticated %}
                 {% if user.id == memo.user_id %}
                 <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
@@ -18,7 +20,10 @@
                 <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
                 {% endif %}
             {% endif %}
-            </div>
+            <script>
+                linkPrint({{forloop.counter}});
+            </script>
+        </div>
         {% endfor %}
         {% else %}
         검색 결과를 찾을 수 없습니다.

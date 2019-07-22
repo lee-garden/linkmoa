@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, TemplateView
-from tagging.models import Tag, TaggedItem
-from tagging.views import TaggedObjectList
+# from tagging.models import Tag, TaggedItem
+# from tagging.views import TaggedObjectList
 from django.core.paginator import Paginator
 from linkmoa import urlScrap
 from linkmoa import dirManagement
@@ -101,10 +101,10 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
-def edit_memo(request, memo_id, keyword, urls, tags):
+def edit_memo(request, memo_id, keyword, urls):
     memo = Memo.objects.get(id=memo_id)
     print(urls)
-    print(tags)
+    # print(tags)
     splited_urls = urls.split(',')
     newline_urls = ''
     for i in range(0, len(splited_urls)):
@@ -117,6 +117,7 @@ def edit_memo(request, memo_id, keyword, urls, tags):
 def undo_share(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
     memo.shared = False
+    memo.download = 0
     memo.save()
     return redirect('/')
 

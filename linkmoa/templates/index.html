@@ -7,7 +7,7 @@
     <form method="POST" action ="{% url 'make_memo' %}" class="">
         {% csrf_token%}
         <br>
-        검색 : 
+        검색 :
         <textarea class="urlArea searchTerm" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea>
         <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
         <button id="keyword-button" v-on:click="renew()" class="searchButton">
@@ -40,7 +40,7 @@
             <div class="memoContainer">
                 <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
                 <span class="buttons">
-                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-tag="{{memo.tag}}"><i class="fa fa-edit"></i></button> 
+                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
                     <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
                 </span>
                 <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>

@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, TemplateView
 from tagging.models import Tag, TaggedItem
 from tagging.views import TaggedObjectList
+from django.core.paginator import Paginator
 from linkmoa import urlScrap
 from linkmoa import dirManagement
 from accounts import views
@@ -22,14 +23,22 @@ def board(request):
         memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
         return render(request,'board.html',{'memos' : memos})
     memos = Memo.objects.filter(shared=True).order_by('-id')
-    return render(request,'board.html',{'memos' : memos})
+
+    board_paginator = Paginator(memos, 6)
+    page = request.GET.get('page')
+    board_posts = board_paginator.get_page(page)
+    return render(request,'board.html',{'memos' : memos, 'board_posts' : board_posts})
 
 def index(request):
     user=request.user
     print('Request user : ', user.id)
     memos = Memo.objects.filter(user_id=user.id)
     current = memos.filter(directory=user.profile.currentdir)
-    return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id})
+
+    paginator = Paginator(current, 4)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id, 'posts' : posts})
 
 def make_memo(request):
     user=request.user

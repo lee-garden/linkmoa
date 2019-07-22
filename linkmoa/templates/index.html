@@ -63,7 +63,7 @@
             </header>
             <div class="aside"><p class="aside-logo">l&nbsp;i&nbsp;k&nbsp;e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l&nbsp;i&nbsp;o&nbsp;n</p></div>
             <div class="upper-part">
-                    <div class="upper-left-part">
+                    <div id = "app" class="upper-left-part">
                         <form method="POST" action ="{% url 'make_memo' %}" class="search-form">
                             {% csrf_token%}
                             <br>
@@ -93,7 +93,7 @@
                         </ul>
                     </div>
                     <div class="objects">
-                    {% for memo in current.all %}
+                    {% for memo in posts %}
                         <div class="memoContainer">
                             <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
                             <span class="buttons">
@@ -120,6 +120,24 @@
                             linkPrint({{forloop.counter}});
                         </script>
                     {% endfor %}
+
+                    <div class="container">
+                    
+                    {% if posts.has_previous %}
+                        <a href="?page=1">First</a>
+                        <a href="?page={{posts.previous_page_number}}">Previous</a>
+                    {% endif %}
+
+                        <span>{{posts.number}}</span>
+                        <span>of<span>
+                        <span>{{posts.paginator.num_pages}}</span>
+
+                    {% if posts.has_next %}
+                        <a href="?page={{posts.next_page_number}}">Next</a>
+                        <a href="?page={{posts.paginator.num_pages}}">Last</a>
+                    {% endif %}
+                    </div>
+
                     </div>
                 </div>
             </div>

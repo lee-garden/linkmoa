@@ -24,7 +24,6 @@ function linkPrint(count) {
             Ptxt += "</a></div>"
         }
     }
-    Ptxt += '<a href="#">&nbsp;더보기...</a>'
     var memoID = "result"+count;
     var blk = document.getElementById(memoID);
     blk.innerHTML = Ptxt;

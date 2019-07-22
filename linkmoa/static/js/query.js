@@ -58,6 +58,16 @@ $('#editnametxt').change(function(){
 
 })
 
+$('#moreModal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget)
+    var key = button.data('keyword')
+    var urls = button.data('urls')
+    console.log(key)
+    console.log(urls)
+    $('.modal-key').html(key)
+    $('.modal-urls').html(urls)
+});
+
 function setDirname(name){
 
     dirname = name

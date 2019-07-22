@@ -65,7 +65,7 @@
             <div class="lower-part">
                 <div class="line"></div>
                 <div class="objects">
-                {% for memo in memos.all %}
+                {% for memo in board_posts %}
                 <div class="memoContainer">
                     <h2 class="memo-key">'{{memo.keyword}}'</h2>
                     <span class="memo-id">{{memo.owner}}</span>      <span class="memo-date">{{memo.pub_date|date:"Y-m-d"}}</span>
@@ -89,6 +89,23 @@
         </div>
         </div>
     </div>
+
+    <div class="container">
+                    
+        {% if board_posts.has_previous %}
+            <a href="?page=1">First</a>
+            <a href="?page={{board_posts.previous_page_number}}">Previous</a>
+        {% endif %}
+
+            <span>{{board_posts.number}}</span>
+            <span>of<span>
+            <span>{{board_posts.paginator.num_pages}}</span>
+
+        {% if board_posts.has_next %}
+            <a href="?page={{board_posts.next_page_number}}">Next</a>
+            <a href="?page={{board_posts.paginator.num_pages}}">Last</a>
+        {% endif %}
+    </div>    
 
         <script>
         // get url query string

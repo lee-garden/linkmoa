@@ -1,30 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<script>
-    function linkPrint(count) {
-        var txtId = "memotxt"+count;
-        var Mtxt = document.getElementById(txtId).innerHTML;
-        var lines = Mtxt.split("\n");
-        
-        var Ptxt = "";
-        for (var i =0 ; i<lines.length; i++) {
-            Ptxt += "<a href=";
-            Ptxt += lines[i];
-            Ptxt += ">";
-            Ptxt += lines[i];
-            Ptxt += "</a>"
-            Ptxt += "<br>"
-            Ptxt += "<br>"
-        }
-        var memoID = "result"+count;
-        var blk = document.getElementById(memoID);
-        blk.innerHTML = Ptxt;
-        console.log(memoID);
-    }
-</script>
+<script src="../../static/js/linkprint.js"></script>
 
-<div class="urls">
+<div class="urls" id="app">
     <form method="POST" action ="{% url 'make_memo' %}" class="">
         {% csrf_token%}
         <br>
@@ -132,6 +111,10 @@
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">URL</label>
                         <textarea class="form-control" id="urls"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text]" class="col-form-label">TAG</label>
+                        <input type="text" class="form-control" id="tag" placeholder=",로 구분 예시) 태그1, 태그2, 태그3">
                     </div>
                 </form>
             </div>
@@ -278,68 +261,6 @@
         })
     </script>
 
-    <script>
-        var dirname // Global Variable(정원찡's Good idea ㅎㅎ)
-
-        $('#editModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var keyword = button.data('keyword')
-            var urls = button.data('urls')
-
-            var modal = $(this)
-
-            modal.find('.modal-title').text('편집하기')
-            modal.find('.modal-body input').val(keyword)
-            modal.find('.modal-body textarea').val(urls)
-
-            $('.modal-complete').click(function(){
-
-                console.log($("#keyword").val())
-                console.log($("#urls").val())
-
-                splited_urls = $("#urls").val().split('\n')
-
-                modal.find('.modal-footer a').attr('href', '/edit_memo/' + id + '/' + $("#keyword").val() + '/' + splited_urls)
-            })
-        })
-
-        $('#moveModal').on('show.bs.modal', function (event) {
-
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var modal = $(this)
-
-            $('.recently-clicked').click(function(){
-
-                var recently = document.getElementById("recently").name
-                modal.find('.modal-body a').attr('href', '/movedir/' + id + '/' + 'recently')
-            })
-
-            $('.dirname-clicked').click(function(){
-
-                modal.find('.modal-body a').attr('href', '/movedir/' + id + '/' + dirname)
-            })
-
-        })
-
-        
-        $('#editdirname').on('show.bs.modal', function (event) {
-
-        var button = $(event.relatedTarget)
-        var id = button.data('id')
-        var modal = $(this)
-
-        $('#editnametxt').change(function(){
-            modal.find('.modal-body form').attr('action', '/changedirname/' + id)
-        })
-
-        })
-        
-        function setDirname(name){
-
-            dirname = name
-        }
-    </script>
+    <script src="../../static/js/query.js"></script>
 
 {% endblock %}

@@ -6,24 +6,15 @@
         {% csrf_token%}
         <br>
         검색 : 
-        <input class="urlArea searchTerm" id="urlList" wrap="off" name='url' v-model="newMessage">
+        <textarea class="urlArea searchTerm" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea>
         <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
         <button id="keyword-button" v-on:click="renew()" class="searchButton">
                 <i class="fa fa-search" aria-hidden="true" ></i>
         </button>
-
-
-
-
-
         <br>
     </form>
 </div>
-
 <div class="lower-part">
-
-
-
     <div class="folder-plus">
         <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
             {% csrf_token%}
@@ -31,26 +22,6 @@
             <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button>
         </form>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="line">
         <ul class="directory-nav">
@@ -101,17 +72,8 @@
                
             });
       });
-
-    
     </script>
-
-
-
-
-
 </div>
-
-
     <script>
         function linkPrint(count) {
                 var txtId = "memotxt"+count;
@@ -134,6 +96,99 @@
                 console.log(memoID);
         }
     </script>
+    <!-- editModal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">편집하기</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">키워드</label>
+                        <input type="text" class="form-control" id="keyword">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">URL</label>
+                        <textarea class="form-control" id="urls"></textarea>
+                    </div>
+                </form>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"><a href="" class="modal-complete">완료</a></button> <!---->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- moveModal -->
+    <div class="modal fade" id="moveModal" role="dialog">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">폴더 옮기기</h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-default"><a href="" id="recently" name="Recently" class="recently-clicked">Recently</a></button>
+                {% for dirname in user.profile.get_fields_name %}
+                <button type="button" class="btn btn-default"><a href="" id="dirname" name="{{dirname}}" class="dirname-clicked" onclick="setDirname('{{dirname}}')">{{dirname}}</a></button>
+                {% endfor %}
+            </div>
+            
+            <div class="modal-footer">
+            </div>
+            
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!--DirectoryBar edit modal-->
+    <div class="modal fade" id="editdirModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">닫기</h4>
+            </div>
+            <div class="modal-body">
+                    {% for dirname in user.profile.get_fields_name %}
+                    {{dirname}}
+                    <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#editdirname" data-id="{{dirname}}"><i class="fa fa-edit"></i></button>
+                    <button class="i-btn"onclick="var a= confirm(delcontext); console.log(a); if(a==true){location.href='{% url 'deletedir' dirname %}';}"><i class="fa fa-trash"></i></button><br>
+                    {% endfor %}
+                </div>
+                
+                <div class="modal-footer">
+                </div>
+            
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="modal fade" id="editdirname" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">닫기</h4>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <input type="text" id="editnametxt" name="changename">
+                </form>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>

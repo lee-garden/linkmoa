@@ -62,6 +62,7 @@ $('#moreModal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var key = button.data('keyword')
     var urls = button.data('urls')
+    var lines = urls.split("\n")
     console.log(key)
     console.log(urls)
     $('.modal-key').html(key)
@@ -69,6 +70,5 @@ $('#moreModal').on('show.bs.modal', function(event) {
 });
 
 function setDirname(name){
-
     dirname = name
 }

@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+/*BASE HTML*/
 html, body{
     margin : 0;
     font-family: 'Noto Sans KR', sans-serif;
+}
+
+.temp{
+    height: 188px;
 }
 .container-linkmoa{
     margin: 0;
@@ -462,11 +467,12 @@ box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
   .slogan, .slogan-name{
     font-family: 'East Sea Dokdo', cursive;
     font-size: 50px;
-    margin: 0 0 0 240px;
+    margin: 0 auto;
+    text-align: center;
   }
   .slogan-name{
+    margin: 0 auto;
     font-size: 30px;
-    margin-left: 480px;
   }
 
   .taglist{

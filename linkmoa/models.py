@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from datetime import datetime
 import urllib.request
 from django import template
+#from tagging.fields import TagField
 
 register = template.Library()
 
@@ -21,6 +22,8 @@ class Memo(models.Model):
     urls = models.TextField(default=None)
     memo = models.TextField(default="")
     pub_date = models.DateTimeField('date_published', default=datetime.now())
+    #tag = TagField()
+    
 
     def __str__(self):
         return self.keyword

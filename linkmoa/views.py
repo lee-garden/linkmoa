@@ -29,6 +29,21 @@ def board(request):
     board_posts = board_paginator.get_page(page)
     return render(request,'board.html',{'memos' : memos, 'board_posts' : board_posts})
 
+def search(request):
+    user=request.user
+    sort = request.GET.get('sort','')
+    keyword = request.POST['searchBox']
+    if sort == 'likes':
+        searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')
+        return render(request,'search_board.html',{'searched_memos' : searched_memos})
+    elif sort == 'mymemo':
+        searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
+        return render(request,'search_board.html',{'searched_memos' : searched_memos})
+    searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
+    # searched_memos = Memo.objects.filter(keyword= keyword, shared=True)
+    print(keyword + " search!")
+    return render(request,'search_board.html', {'searched_memos' : searched_memos})
+
 def index(request):
     user=request.user
     print('Request user : ', user.id)
@@ -75,7 +90,8 @@ def changedir(request, cddir):
 def changedirname(request, dirname):
     user=request.user
     newname = request.GET.get('changename')
-    dirManagement.changedirname(user, dirname, newname)
+    dirMemo = Memo.objects.filter(directory=dirname)
+    dirManagement.changedirname(user, dirname, newname, dirMemo)
     print(newname)
     return redirect('index')
 
@@ -150,9 +166,3 @@ def movedir(request, memo_id, dirname):
 #     memo.display='invisible'
 #     memo.save()
 #     return redirect('index')
-
-def search(request):
-    keyword = request.POST['searchBox']
-    searched_memos = Memo.objects.filter(keyword= keyword, shared=True)
-    print(keyword + " search!")
-    return render(request,'search_board.html', {'searched_memos' : searched_memos})

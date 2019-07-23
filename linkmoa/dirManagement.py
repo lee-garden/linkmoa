@@ -21,7 +21,11 @@ def deleteDirectory(user, name):
             user.profile.save()
             break
 
-def changedirname(user, old, new):
+def changedirname(user, old, new, dirmemo):
+    for memo in dirmemo:
+        memo.directory=new
+        memo.save()
+
     for dir, value in model_to_dict(user.profile).items():
         if value == old:
             print(value)

@@ -1,21 +1,327 @@
-@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|family=Roboto|Sunflower:300|Noto+Sans+KR&display=swap');
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-body{
-    margin : 0 0 0 0;
+
+/*BASIC*/
+form {
+    text-align: center;
+}
+html, body{
+    margin : 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*BASE HTML*/
+/* nav */
+.nav {
+    height: 200px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 30px 0 80px 0;
+    border-bottom: 0.5px solid #38B9C0;
+}
+.sub-nav {
+    width: 1080px;
+    height: 45px;
+    position: absolute;
+    left: 14%;
+    top:140px;
+    text-align: center;
+}
+.loginout {
+    float: right;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+}
+.nav-ul{
+    list-style: none;
+    width: 250px;
+    margin: auto;
+    padding-top: 12px;
+    height:100%;
+    display: inline-block;
+}
+.nav-ul li {
+    display: inline-block;
+    padding: 0 15px 0 0;
+}
+.nav-link{
+    color: #38B9C0;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-decoration: none;
+    font-size: 15px;
+}
+.search-form{
+    position: absolute;
+    top: 50%;
+    left: 280px;
+    margin-top: -20px;
+    width: 521px;
+}
+.searchTerm {
+    padding: 12px 20px;
+    width: 400px;
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+
+}
+.searchTerm:focus{
+    color: #000000;
+    box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
+}
+.searchButton {
+    cursor: pointer;
+    font-size: 20px;
+    border: none;    
+    left: -55px;
+    position: relative;
+    background-color: transparent;
+    top: 2px;
+}
+.sort {
+    margin: 3px;
+    width: 10%;
+    float: right;
+    height: 98%;
+    position: relative;
+}
+#sort-select {
+    border-radius: 20px;
+    padding: 12px 20px;
+    outline: 0;
+    color: #7b7b7b;
+    border: 1px solid #efefef;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: block;
+    width: 100%;
+    height: 45px;
+    font-size: 13px;
+}
+.arrow {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-style: solid;
+    border-width: 8px 5px 0 5px;
+    border-color: #7b7b7b transparent transparent transparent;
 }
 .container-linkmoa{
     margin: 0;
     height: 900px;
 }
-/*38B9C8 - > 333333*/
 
-.aside{
+
+/*Board , Search_Board HTML*/
+.temp{
+    height: 188px;
+}
+.fa-search:before {
+    color: #d3d3d3;
+}
+.btn-plus {
+    height: 30px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid #38B9C8;
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+    padding: 0px;
+}
+
+/*INDEX HTML*/
+.mkdir-input{
+    width: 200px;
+    border: 2px solid #38B9C8;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: black;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+.form-mkdir{
+    margin: 2em auto;
+}
+.fa-plus:before {
+    color: #38B9C8;
+}
+#keyword-search{
+    margin: 10px 0 0 0;
+}
+
+#urlList{
+    margin: 10px 0 0 0;
+}
+.line{
+    height: 50px;
+    margin: 3em auto;
+    background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
+}
+.objects{
+    max-width: 1230px;
+    margin: 2em auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.directory-nav{
+    overflow: hidden;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+.directory-nav li{
+    float: left;
+    margin: 0 .5em 0 0;
+}
+
+.directory-nav #current {
+    background: blue;
+}
+.directory-nav-items{
+    margin: 0;
+    padding: 0;
+    border : 0;
+    float: left;
+}
+
+.memoContainer{
+    max-width: 200px;
+    margin-bottom: 1rem;
+    position: relative;
+    margin: 10px;
+    width: 100%;
+    height: 270px;
+    float: left;
+    border: 1px solid #d3d3d380;
+    border-radius: .5em;
+    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
+    padding: 0 .5rem;
+}
+
+.memoContainer h2{
+    text-align: center;
+}
+.memoContainer h2 a{
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+}
+
+/*ACCOUNTS APP*/
+.loginBox{
+    border: 1px solid black;
+    width: 500px;
+    height: 400px;
+    margin: 80px auto;
+}
+
+.signupBox{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    margin: 40px auto;
+}
+
+/*Font*/
+.link-txt{
+width:170px;
+padding:0 5px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+.slogan, .slogan-name{
+font-family: 'East Sea Dokdo', cursive;
+font-size: 50px;
+margin: 0 auto;
+text-align: center;
+}
+.slogan-name{
+margin: 0 auto;
+font-size: 30px;
+}
+
+.taglist{
+    margin-top:100px;
+}
+
+
+/*BUTTONS*/
+.buttons{ /*index.html*/
+    float: right;
+}
+.button-list{ /*index.html*/
+    position: absolute;
+    width: 200px;
+    bottom: 25px;
+    text-align: center;
+}
+.btns{ /*index.html*/
+    float: right;
+    margin-right: 10px;
+  }
+.edit-btn{
+    background: #EFEFEF;
+    outline: none;
+    border-radius: 10px;
+    border: #8763FB;
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 25px;
+    width: 50px;
+}
+.edit-btn:hover, .d-nav-btns:hover{
+    background: rgba(255, 255, 255, 0);
+    transition: 0.3s;
+    color: #FFFEEE;
+}
+
+.d-nav-btns{
+    margin: 5px 0 auto 5px;
+    height: 40px;
+    width: 110px;
+    border: none;
+    border-radius: 20px;
+    background: #FEFEFE;
+    font-size: 10px;
+    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
+    font-size: 15px;
+}
+.i-btn, .i-btn-cd{
+    background: none;
+    color: inherit;
+    border: none;
+}
+
+
+
+
+    /* Deprecated */
+/*38B9C8 - > 333333*/
+/* .aside{
     width: 60px;
-    height: 520px;
+    height: 400px;
     border-radius: 0 35px 35px 0;
     float: left;
-    margin-top: 50px;
+    margin-top: 20px;
     position:fixed;
     background: #E9E9E9;
     text-align: center;
@@ -23,7 +329,14 @@ body{
     
 }
 
-/* Header Part */
+.aside-logo{
+    transform: rotate(90deg);
+    margin-top: 150px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #554D4A;
+} */
+
 .main-header-linkmoa{
     margin: 0;
     border: 1.5px solid #38B9C0;
@@ -46,297 +359,10 @@ body{
     font-size: 30px;
     margin: 0 50px 0 240px;
 }
-.nav-part{  
-    height: 96px;
-}
-.nav-link{
-    color: #FEFEFE;
-    font-family: 'Noto Sans KR', sans-serif;
-}
 
-.header-ul-linkmoa{
-    list-style: none;
-    overflow: auto;
-    float: right;
-    margin: 35px 200px 0 0;
-}
-
-.header-li1, .header-li2, .header-li3, .header-li4{
-    float: left;
-    height: 100%;
-    margin-left: 20px;
-}
-
-/*board-part*/
-#sort-select{
-    margin:0 0 0 240px;
-}
-.upper-part{
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
-}
-
-.lower-part{
-    margin-top:30px;
-    padding: 0 150px 0 150px;
-}
-.line{
-    height: 20px;
-    width: 1219px;
-    margin: 0 auto;
-    background-color: #38B9C8
-}
-.objects{
-    display: grid;
-    justify-items: center;
-    height: 500px;
-    width: 1219px;
-    margin: 0 auto;
-    background-color: #FFFEEE;
-    grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
-}
-.directory-nav{
-    list-style:none;
-}
-.directory-nav-items{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-}
-/* Side-bar Part */
-.side-bar{
-    padding: 0 10px 0 10px;
-    margin: 20px 0 0 20px ;
-    border: 1.5px solid red;
-    width: 300px;
-    height: 740px;
-    float: left;
-}
-
-#user-info{
-    border: 1px solid black;
-    width: 300px;
-    height: 150px;
-    margin-top: 20px;
-}
-
-#directory-bar{
-    border: 1px solid black;
-    width: 300px;
-    height: 550px;
-    margin-top: 20px;
-}
-
-#directory-container, .memolist{
+/* .search {
     margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-#directory-container > li{
-    border: 1px solid red;
-}
-#directory-container >li >a{
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.85);
-    text-decoration: none;
-    display: block;
-    padding: 8px 16px;
-    text-align: left;
-    border-right: 1px solid rgba(0,0,0,0.15);
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-}
-
-.directory{
-    background: black;
-}
-
-.memolist{
-    position: absolute;
-    background: wheat;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.memolink > a{
-    color:black;
-    text-decoration: none;
-}
-
-
-#directory-container > li:hover .memolist{
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Search-bar Part */
-.search-bar{
-    padding: 0 10px 0 10px;
-    margin: 20px 0 0 20px ;
-    border: 1.5px solid blue;
-    width: 400px;
-    height: 740px;
-    float: left;
-}
-
-#keyword-search{
-    margin: 10px 0 0 0;
-}
-
-#urlList{
-    margin: 10px 0 0 0;
-}
-
-/* Items Part */
-.items{
-    margin: 20px 0 0 20px ;
-    border: 1.5px solid green;
-    width: 500px;
-    height: 740px;
-    float: left;
-}
-
-.memoContainer{
-    position: relative;
-    margin: 10px;
-    width: 200px;
-    height: 270px;
-    float: left;
-    background-color: #fff;
-    border-width: 3px;
-    border-style: solid;
-    border-image: 
-      linear-gradient(
-        to bottom, 
-        #38B9C8, 
-        rgba(255, 255, 255, 0)
-      ) 1 100%;
-}
-
-.buttons{
+    width: 70%; 
     float: right;
-}
-
-.i-btn, .i-btn-cd{
-    background: none;
-    color: inherit;
-    border: none;
-    cursor: pointer;
-}
-
-.loginBox{
-    border: 1px solid black;
-    width: 500px;
-    height: 400px;
-    margin: 80px auto;
-}
-
-.signupBox{
-    border: 1px solid black;
-    width: 500px;
-    height: 500px;
-    margin: 40px auto;
-}
-
-.dir-delete-btn{
-    float: right;
-}
-
-.mvdir-btn{
-    position: center;
-}
-
-/*search bar*/
-.search-form{
-    width: 500px;
-    position: relative;
-    display: flex;
-    margin-left: 240px;
-}
-.searchTerm , .urlArea{
-    width: 300px;
-    border: 3px solid #38B9C8;
-    padding: 5px;
-    border-radius: 5px;
-    outline: none;
-    color: #9DBFAF;
-  }
-
-  .searchTerm{
-    height: 38px;
-    border-right: none;
-    border-radius: 5px 0 0 5px;
-  }
-  
-  .searchTerm:focus, .urlArea:focus{
-    color: #333333;
-  }
-  
-  .searchButton {
-    width: 40px;
-    height: 36px;
-    border: 1px solid #38B9C8;
-    background: #38B9C8;
-    /* border: 1px solid #333333; */
-    /* background: #333333; */
-    text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
-    margin-top: 1px;
-  }
-
-  /*Font*/
-  .slogan, .slogan-name{
-    font-family: 'East Sea Dokdo', cursive;
-    font-size: 50px;
-    margin: 0 0 0 240px;
-  }
-  .slogan-name{
-    font-size: 30px;
-    margin-left: 480px;
-  }
-  .downnum{
-    font-family: 'Sunflower', sans-serif;
-    font-size: 16px;
-  }
-  .taglist{
-      margin-top:100px;
-  }
-  .memo-key{
-      margin-left: 10px;
-  }
-  .memo-date{
-      float: right;
-      margin-right: 10px;
-      font-size: 15px;
-      font-family: 'Sunflower', sans-serif;
-  }
-  .memo-id{
-    margin-left: 10px;
-    font-size: 18px;
-    font-family: 'Sunflower', sans-serif;
-  }
-.aside-logo{
-    transform: rotate(90deg);
-    margin-top: 250px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    color: #554D4A;
-}
-
-  /*Button*/
-  .button-list{
-      position: absolute;
-      width: 200px;
-      bottom: 25px;
-      text-align: center;
-  }
-
-  .btns{
-      float: right;
-      margin-right: 10px;
-    }
+    height: 100%;
+} */

@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script src="../../static/js/linkprint.js"></script>
+
+<p class="slogan">서로의 지식을 연결하다</p>
+<p class="slogan-name">링크모아</p> 
+
 <body>
-    <div class="line"></div>
-    <div class="board">
+    <div class="lower-part">
+        <div class="line"></div>
+        <div class="objects">
         {% if searched_memos %}
         {% for memo in searched_memos.all %}
         <div class="memoContainer">
@@ -28,7 +34,6 @@
         {% else %}
         검색 결과를 찾을 수 없습니다.
         {% endif %}
-
-<div class="container">
-</div>
+        </div>
+    </div>
 {% endblock %}

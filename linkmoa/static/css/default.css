@@ -452,6 +452,13 @@ box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
   }
 
   /*Font*/
+  .link-txt{
+    width:170px;
+    padding:0 5px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
   .slogan, .slogan-name{
     font-family: 'East Sea Dokdo', cursive;
     font-size: 50px;

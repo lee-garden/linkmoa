@@ -496,18 +496,29 @@ box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
       outline: none;
   } */
 
+  .edit-btn{
+      background: #EFEFEF;
+      outline: none;
+      border-radius: 10px;
+      border: #8763FB;
+      margin-top: 10px;
+      margin-left: 20px;
+      height: 25px;
+      width: 50px;
+  }
+
   .edit-btn:hover, .d-nav-btns:hover{
-      background-color: #38B9C8;
+      background: rgba(255, 255, 255, 0);
       transition: 0.3s;
       color: #FFFEEE;
   }
 
   .d-nav-btns{
-      margin-left: 5px;
-      height: 50px;
+      margin: 5px 0 auto 5px;
+      height: 40px;
       width: 110px;
-      border: 1px ;
-      border-bottom: none;
+      border: none;
+      border-radius: 20px;
       background: #FEFEFE;
       font-size: 10px;
       box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);

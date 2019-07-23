@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.forms.models import model_to_dict
 
 def makeDirectory(user, name):
-    if key=='': 
+    if name=='': 
         return
     for dir, key in model_to_dict(user.profile).items():
         if key == name:

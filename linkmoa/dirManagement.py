@@ -30,9 +30,6 @@ def changedirname(user, old, new, dirmemo):
 
     for dir, value in model_to_dict(user.profile).items():
         if value == old:
-            print(value)
-            print(old)
             setattr(user.profile, dir, new)
             user.profile.save()
-            print(new)
             break

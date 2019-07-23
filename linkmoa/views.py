@@ -90,9 +90,11 @@ def changedir(request, cddir):
 def changedirname(request, dirname):
     user=request.user
     newname = request.GET.get('changename')
+    if user.profile.currentdir == dirname:
+        user.profile.currentdir = newname
+        user.profile.save()
     dirMemo = Memo.objects.filter(directory=dirname)
     dirManagement.changedirname(user, dirname, newname, dirMemo)
-    print(newname)
     return redirect('index')
 
 def deletedir(request, dirname):

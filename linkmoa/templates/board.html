@@ -27,11 +27,12 @@
                 <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
                 {% endif %}
             {% endif %}
+            <br><br>
+            다운로드 수 : {{memo.download}}
             <script>
                 linkPrint({{forloop.counter}});
             </script>
         </div>
-        다운로드 수 : {{memo.download}}
         {% endfor %}
         </div>
     </div>

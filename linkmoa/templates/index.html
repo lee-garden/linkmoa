@@ -2,7 +2,6 @@
 {% block content %}
 
 <script src="../../static/js/linkprint.js"></script>
-
 <div class="urls" id="app">
     <form method="POST" action ="{% url 'make_memo' %}" class="">
         {% csrf_token%}
@@ -24,7 +23,6 @@
             <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button>
         </form>
     </div>
-
     <div class="line">
         <ul class="directory-nav">
             <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item"><span class="d-nav-item">Recently</span></button></li>
@@ -36,7 +34,7 @@
     </div>
 
     <div class="objects">
-        {% for memo in current.all %}
+        {% for memo in posts %}
             <div class="memoContainer">
                 <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
                 <span class="buttons">
@@ -44,7 +42,6 @@
                     <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
                 </span>
                 <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
-
                 <div id="result{{forloop.counter}}">sample</div>
                 <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}">&nbsp;더보기...</a>
                 <div class="button-list">
@@ -58,24 +55,21 @@
             <script>
                 linkPrint({{forloop.counter}});
             </script>
+            {% endfor %}
+    </div>
+    <div class="paginator">
+        {% if posts.has_previous %}
+            <a href="?page=1">First</a>
+            <a href="?page={{posts.previous_page_number}}">Previous</a>
+        {% endif %}
+            <span>{{posts.number}}</span>
+            <span>of<span>
+            <span>{{posts.paginator.num_pages}}</span>
 
-        {% endfor %}
-
-        {% comment %} 인근이코드
-        <div class="container">
-            {% if posts.has_previous %}
-                <a href="?page=1">First</a>
-                <a href="?page={{posts.previous_page_number}}">Previous</a>
-            {% endif %}
-                <span>{{posts.number}}</span>
-                <span>of<span>
-                <span>{{posts.paginator.num_pages}}</span>
-
-            {% if posts.has_next %}
-                <a href="?page={{posts.next_page_number}}">Next</a>
-                <a href="?page={{posts.paginator.num_pages}}">Last</a>
-            {% endif %}
-        </div> {% endcomment %}
+        {% if posts.has_next %}
+            <a href="?page={{posts.next_page_number}}">Next</a>
+            <a href="?page={{posts.paginator.num_pages}}">Last</a>
+        {% endif %}
     </div>
 
     <script>

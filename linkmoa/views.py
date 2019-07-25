@@ -18,13 +18,19 @@ def board(request):
     sort = request.GET.get('sort','')
     if sort == 'likes':
         memos = Memo.objects.filter(shared=True).order_by('-download')
-        return render(request,'board.html',{'memos' : memos})
+        board_paginator = Paginator(memos, 20)
+        page = request.GET.get('page')
+        board_posts = board_paginator.get_page(page)
+        return render(request,'board.html',{'board_posts' : board_posts})
     elif sort == 'mymemo':
         memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
-        return render(request,'board.html',{'memos' : memos})
+        board_paginator = Paginator(memos, 20)
+        page = request.GET.get('page')
+        board_posts = board_paginator.get_page(page)
+        return render(request,'board.html',{'board_posts' : board_posts})
     memos = Memo.objects.filter(shared=True).order_by('-id')
 
-    board_paginator = Paginator(memos, 6)
+    board_paginator = Paginator(memos, 20)
     page = request.GET.get('page')
     board_posts = board_paginator.get_page(page)
     return render(request,'board.html',{'memos' : memos, 'board_posts' : board_posts})
@@ -50,8 +56,9 @@ def index(request):
     memos = Memo.objects.filter(user_id=user.id)
     current = memos.filter(directory=user.profile.currentdir)
 
-    paginator = Paginator(current, 4)
+    paginator = Paginator(current, 20)
     page = request.GET.get('page')
+    print("page : ",page)
     posts = paginator.get_page(page)
     return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id, 'posts' : posts})
 
@@ -119,17 +126,19 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
-def edit_memo(request, memo_id, keyword, urls):
+def edit_memo(request, memo_id):
     memo = Memo.objects.get(id=memo_id)
+    print(memo_id," edit")
+    print(request.GET.get('keyword'))
+    urls = request.GET.get('urls')
     print(urls)
-    # print(tags)
-    splited_urls = urls.split(',')
     newline_urls = ''
-    for i in range(0, len(splited_urls)):
-        newline_urls += splited_urls[i] + '\n'
-    memo.keyword = keyword
-    memo.urls = newline_urls
-    memo.save()
+    # for i in range(0, len(splited_urls)):
+    #     newline_urls += splited_urls[i] + '\n'
+    # memo.keyword = request.POST.get('keyword')
+    print(request.GET.get('keyword'))
+    # memo.urls = newline_urls
+    # memo.save()
     return redirect('index')
 
 def undo_share(request, memo_id):
@@ -161,7 +170,7 @@ def movedir(request, memo_id, dirname):
 # def appear_memo(request, memo_id):
 #     memo = Memo.objects.get(id=memo_id)
 #     memo.display='visible'
-#     memo.save()    
+#     memo.save()
 #     return redirect('index')
 
 # def disappear_memo(request, memo_id):

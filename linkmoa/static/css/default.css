@@ -2,13 +2,16 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
-/*BASIC*/
+/*COMMON*/
 form {
     text-align: center;
 }
 html, body{
     margin : 0;
     font-family: 'Noto Sans KR', sans-serif;
+}
+.paginator{
+    text-align: center;
 }
 
 /*BASE HTML*/

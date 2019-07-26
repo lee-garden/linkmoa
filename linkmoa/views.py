@@ -120,10 +120,11 @@ def share_memo(request, memo_id):
     return redirect('index')
 
 def edit_memo(request, memo_id):
-    print(request.GET.get('editKey'))
     print(request.GET.get('editUrl'))
     memo = Memo.objects.get(id=memo_id)
-    # print(tags)
+    memo.keyword = request.GET.get('editKey')
+    memo.urls = request.GET.get('editUrl')
+    memo.memo = request.GET.get('editMemo')
     # splited_urls = urls.split(',')
     newline_urls = ''
     # for i in range(0, len(splited_urls)):

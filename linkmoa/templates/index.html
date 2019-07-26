@@ -38,7 +38,7 @@
             <div class="memoContainer">
                 <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
                 <span class="buttons">
-                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}"><i class="fa fa-edit"></i></button> 
+                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-memo="{{memo.memo}}"><i class="fa fa-edit"></i></button> 
                     <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
                 </span>
                 <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
@@ -94,6 +94,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script src="../../static/js/vue.js"></script>
-    <script src="../../static/js/query.js"></script>
+    <script src="../../static/js/query.js?ver=1.0"></script>
 
 {% endblock %}

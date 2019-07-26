@@ -7,11 +7,11 @@ $('#editModal').on('show.bs.modal', function (event) {
     var urls = button.data('urls')
 
     var modal = $(this)
-
     modal.find('.modal-title').text('편집하기')
     modal.find('.modal-body input').val(keyword)
     modal.find('.modal-body textarea').val(urls)
-
+    modal.find('.modal-body form').attr('action', '/edit_memo/' + id + '/')
+    console.log('hi')
     $('.modal-complete').click(function(){
 
         console.log($("#keyword").val())
@@ -19,8 +19,11 @@ $('#editModal').on('show.bs.modal', function (event) {
 
         splited_urls = $("#urls").val().split('\n')
 
-        modal.find('.modal-footer a').attr('href', '/edit_memo/' + id + '/' + $("#keyword").val() +'/' + splited_urls)
+        modal.find('.modal-body form').attr('action', '/edit_memo/' + id + '/')
     })
+    $('#confirmEdit').click(function(event){
+        modal.find('.modal-body form').submit()
+    });
 })
 
 $('#moveModal').on('show.bs.modal', function (event) {

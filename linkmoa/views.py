@@ -53,7 +53,7 @@ def search(request):
 def index(request):
     user=request.user
     print('Request user : ', user.id)
-    memos = Memo.objects.filter(user_id=user.id)
+    memos = Memo.objects.filter(user_id=user.id).order_by('-id')
     current = memos.filter(directory=user.profile.currentdir)
 
     paginator = Paginator(current, 20)

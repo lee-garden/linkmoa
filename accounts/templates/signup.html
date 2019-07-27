@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/default.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>회원가입</title>
-</head>
-<body>
+{% extends 'accounts_base.html' %}
+{% block content %}
     <div class="container-linkmoa">
-        <header class="main-header-linkmoa">
-            <div class="logo-part">
-                <a href="{% url 'board' %}" class="logo-link">Link Moa</a>
-            </div>
-            <div class="nav-part">
-                <ul class="header-ul-linkmoa">
-                    <li class="header-li2"><a href="{% url 'login' %}" class="nav-link">LOGIN</a></li>
-                    <li class="header-li3"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
-                </ul>
-            </div>
-        </header>
         <div class="signupBox">
         <form method="POST" action="{% url 'signup' %}">
                 {% csrf_token %}
@@ -45,5 +23,4 @@
             
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -46,25 +46,22 @@ def search(request):
         searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
         return render(request,'search_board.html',{'searched_memos' : searched_memos})
     searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
-    # searched_memos = Memo.objects.filter(keyword= keyword, shared=True)
     print(keyword + " search!")
     return render(request,'search_board.html', {'searched_memos' : searched_memos})
 
 def index(request):
     user=request.user
-    print('Request user : ', user.id)
+    print('Request user : ' + user.username)
     memos = Memo.objects.filter(user_id=user.id).order_by('-id')
     current = memos.filter(directory=user.profile.currentdir)
 
     paginator = Paginator(current, 20)
     page = request.GET.get('page')
-    print("page : ",page)
     posts = paginator.get_page(page)
     return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id, 'posts' : posts})
 
 def make_memo(request):
     user=request.user
-    print(user.id)
     memo = Memo()
     memo.user_id = user.id
     memo.owner = user.username
@@ -147,10 +144,9 @@ def download_memo(request, memo_id):
     newMemo = Memo()
     oldMemo = Memo.objects.get(id=memo_id)
     oldMemo.increaseDL()
+    newMemo = oldMemo
     newMemo.user_id = user.id
     newMemo.owner = user.username
-    newMemo.keyword = oldMemo.keyword
-    newMemo.urls = oldMemo.urls
     newMemo.save()
     return redirect('index')
 
@@ -161,6 +157,7 @@ def movedir(request, memo_id, dirname):
     memo.save()
     return redirect('index')
 
+#Deprecated function
 # def appear_memo(request, memo_id):
 #     memo = Memo.objects.get(id=memo_id)
 #     memo.display='visible'

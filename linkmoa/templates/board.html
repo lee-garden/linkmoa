@@ -20,13 +20,15 @@
 
             <div id="result{{forloop.counter}}">sample</div>
             <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}">&nbsp;더보기...</a>
-            {% if user.is_authenticated %}
+            <div class="button-list">
+                {% if user.is_authenticated %}
                 {% if user.id == memo.user_id %}
                 <button class="i-btn"onclick="location.href='{%url 'undo_share' memo.id %}'"><i class="fa fa-undo"></i></button>
                 {% else %}
                 <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
                 {% endif %}
             {% endif %}
+            </div>
             <script>
                 linkPrint({{forloop.counter}});
             </script>

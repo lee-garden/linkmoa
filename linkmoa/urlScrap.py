@@ -31,7 +31,7 @@ def crawling(url, key):
         print('open faild')
         return False
     except URLError as e:
-        print('urlError')
+        print('catch urlError')
         return False
     except Exception as e:
         print('unknow exception')
@@ -40,5 +40,5 @@ def crawling(url, key):
         print(key + " is found in " + url)
         return True
 
-    print("Not found")
+    print("result not found")
     return False

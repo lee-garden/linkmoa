@@ -83,8 +83,6 @@ class Profile(models.Model):
         names.pop(0)
         return names
 
-
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):  
     if created:

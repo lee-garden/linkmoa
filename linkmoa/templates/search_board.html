@@ -33,6 +33,20 @@
             </script>
         </div>
         {% endfor %}
+        <div class="paginator">
+            {% if searched_memos.has_previous %}
+                <a href="?page=1">First</a>
+                <a href="?page={{searched_memos.previous_page_number}}">Previous</a>
+            {% endif %}
+                <span>{{searched_memos.number}}</span>
+                <span>of<span>
+                <span>{{searched_memos.paginator.num_pages}}</span>
+    
+            {% if board_posts.has_next %}
+                <a href="?page={{searched_memos.next_page_number}}">Next</a>
+                <a href="?page={{searched_memos.paginator.num_pages}}">Last</a>
+            {% endif %}
+        </div>
         {% else %}
         검색 결과를 찾을 수 없습니다.
         {% endif %}

@@ -29,20 +29,25 @@ def board(request):
 
 def search(request):
     user=request.user
-    sort = request.GET.get('sort','')
     keyword = request.POST['searchBox']
+    if keyword =='':
+        return redirect('board')
+    sort = request.GET.get('sort','')
     if keyword[0] == '#':
-        print('태그 검색입니다.')
         search_tag = keyword.replace("#","")
-        print("태그 : " + search_tag)
+        tag=Tag.objects.get(name=search_tag)
+        print(TaggedItem.objects.get_by_model(Memo, tag))
     if sort == 'likes':
         searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')
     elif sort == 'mymemo':
         searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
     else:
         searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
+    search_paginator = Paginator(searched_memos, 20)
+    page = request.GET.get('page')
+    search_posts = search_paginator.get_page(page)
     print(keyword + " search!")
-    return render(request,'search_board.html', {'searched_memos' : searched_memos})
+    return render(request,'search_board.html', {'searched_memos' : search_posts})
 
 def index(request):
     user=request.user

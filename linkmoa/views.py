@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, TemplateView
-from tagging.models import Tag, TaggedItem
-# from tagging.views import TaggedObjectList
+from tagging.models import Tag, TaggedItem, TaggedItemManager
+from tagging.views import TaggedObjectList
 from django.core.paginator import Paginator
 from linkmoa import urlScrap
 from linkmoa import dirManagement
@@ -18,34 +18,29 @@ def board(request):
     sort = request.GET.get('sort','')
     if sort == 'likes':
         memos = Memo.objects.filter(shared=True).order_by('-download')
-        board_paginator = Paginator(memos, 20)
-        page = request.GET.get('page')
-        board_posts = board_paginator.get_page(page)
-        return render(request,'board.html',{'board_posts' : board_posts})
     elif sort == 'mymemo':
         memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
-        board_paginator = Paginator(memos, 20)
-        page = request.GET.get('page')
-        board_posts = board_paginator.get_page(page)
-        return render(request,'board.html',{'board_posts' : board_posts})
-    memos = Memo.objects.filter(shared=True).order_by('-id')
-
+    else:
+        memos = Memo.objects.filter(shared=True).order_by('-id')
     board_paginator = Paginator(memos, 20)
     page = request.GET.get('page')
     board_posts = board_paginator.get_page(page)
-    return render(request,'board.html',{'memos' : memos, 'board_posts' : board_posts})
+    return render(request,'board.html',{'board_posts' : board_posts})
 
 def search(request):
     user=request.user
     sort = request.GET.get('sort','')
     keyword = request.POST['searchBox']
+    if keyword[0] == '#':
+        print('태그 검색입니다.')
+        search_tag = keyword.replace("#","")
+        print("태그 : " + search_tag)
     if sort == 'likes':
         searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')
-        return render(request,'search_board.html',{'searched_memos' : searched_memos})
     elif sort == 'mymemo':
         searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
-        return render(request,'search_board.html',{'searched_memos' : searched_memos})
-    searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
+    else:
+        searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
     print(keyword + " search!")
     return render(request,'search_board.html', {'searched_memos' : searched_memos})
 
@@ -54,7 +49,6 @@ def index(request):
     print('Request user : ' + user.username)
     memos = Memo.objects.filter(user_id=user.id).order_by('-id')
     current = memos.filter(directory=user.profile.currentdir)
-
     paginator = Paginator(current, 20)
     page = request.GET.get('page')
     posts = paginator.get_page(page)

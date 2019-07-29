@@ -16,7 +16,7 @@
             {% load tagging_tags %}
             {% tags_for_object memo as tags %}
             {% for tag in tags %}
-            <a href="#">#{{tag.name}}</a>
+            <a href="{% url 'tag_board' tag.name %}">#{{tag.name}}</a>
             {% endfor %}
             <div class="button-list">
                 {% if user.is_authenticated %}
@@ -53,7 +53,8 @@
 {% include 'moreModal.html' %}
 
 <footer class="footer">
-        <h2 class="footer-title">LIKE LION</h2>
+    <h2 class="footer-title">LIKE LION</h2>
+    <h5>khjvvv7@gmail.com</h5>
 </footer>
     
 <script src="../../static/js/query.js"></script>

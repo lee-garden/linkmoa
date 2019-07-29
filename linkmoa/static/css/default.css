@@ -34,23 +34,31 @@ html, body{
     border-bottom: 0.5px solid #38B9C0;
 }
 .sub-nav {
-    width: 1080px;
+    width: 100%;
     height: 45px;
-    position: absolute;
-    left: 14%;
-    top:140px;
+    position: relative;
+    top:120px;
     text-align: center;
+}
+.board-nav {
+    float: left;
+    width: 20%;
+    height: 100%;
+    left: 15%;
+    text-align: center;
+    position: absolute;
 }
 .loginout {
     float: right;
     width: 20%;
     height: 100%;
+    left: 69%;
     text-align: center;
-    position: relative;
+    position: absolute;
 }
 .nav-ul{
     list-style: none;
-    width: 250px;
+    width: 300px;
     margin: auto;
     padding-top: 12px;
     height:100%;
@@ -69,9 +77,9 @@ html, body{
 .search-form{
     position: absolute;
     top: 50%;
-    left: 280px;
-    margin-top: -20px;
-    width: 521px;
+    left: 50%;
+    margin: -22px 0 0 -260px;
+    width: 520px;
 }
 .searchTerm {
     padding: 12px 20px;
@@ -97,10 +105,11 @@ html, body{
 }
 .sort {
     margin: 3px;
-    width: 10%;
+    width: 135px;
+    left:62%;
     float: right;
     height: 98%;
-    position: relative;
+    position: absolute;
 }
 #sort-select {
     border-radius: 20px;

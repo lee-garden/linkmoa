@@ -12,8 +12,8 @@
     <div class="lower-part">
         <div class="line"></div>
         <div class="objects">
-        {% if searched_memos %}
-        {% for memo in searched_memos.all %}
+        {% if search_posts %}
+        {% for memo in search_posts %}
         <div class="memoContainer">
             <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
             <h4>{{memo.owner}}</h4>
@@ -33,23 +33,23 @@
             </script>
         </div>
         {% endfor %}
-        <div class="paginator">
-            {% if searched_memos.has_previous %}
-                <a href="?page=1">First</a>
-                <a href="?page={{searched_memos.previous_page_number}}">Previous</a>
-            {% endif %}
-                <span>{{searched_memos.number}}</span>
-                <span>of<span>
-                <span>{{searched_memos.paginator.num_pages}}</span>
-    
-            {% if board_posts.has_next %}
-                <a href="?page={{searched_memos.next_page_number}}">Next</a>
-                <a href="?page={{searched_memos.paginator.num_pages}}">Last</a>
-            {% endif %}
-        </div>
         {% else %}
         검색 결과를 찾을 수 없습니다.
         {% endif %}
+        </div>
+        <div class="paginator">
+            {% if search_posts.has_previous %}
+                <a href="?page=1">First</a>
+                <a href="?page={{search_posts.previous_page_number}}">Previous</a>
+            {% endif %}
+                <span>{{search_posts.number}}</span>
+                <span>of<span>
+                <span>{{search_posts.paginator.num_pages}}</span>
+    
+            {% if board_posts.has_next %}
+                <a href="?page={{search_posts.next_page_number}}">Next</a>
+                <a href="?page={{search_posts.paginator.num_pages}}">Last</a>
+            {% endif %}
         </div>
     </div>
 

@@ -30,24 +30,25 @@ def board(request):
 def search(request):
     user=request.user
     keyword = request.POST['searchBox']
-    if keyword =='':
-        return redirect('board')
     sort = request.GET.get('sort','')
-    if keyword[0] == '#':
+    if keyword =='':  #빈 input 예외처리
+        return redirect('board')
+    if keyword[0] == '#':  #태그 검색일 경우
         search_tag = keyword.replace("#","")
         tag=Tag.objects.get(name=search_tag)
-        print(TaggedItem.objects.get_by_model(Memo, tag))
-    if sort == 'likes':
-        searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')
-    elif sort == 'mymemo':
-        searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
-    else:
-        searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
+        searched_memos = TaggedItem.objects.get_by_model(Memo, tag)
+        print(searched_memos)
+    else:   #일반 검색일 경우
+        if sort == 'likes':
+            searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')
+        elif sort == 'mymemo':
+            searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
+        else:
+            searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
     search_paginator = Paginator(searched_memos, 20)
     page = request.GET.get('page')
     search_posts = search_paginator.get_page(page)
-    print(keyword + " search!")
-    return render(request,'search_board.html', {'searched_memos' : search_posts})
+    return render(request,'search_board.html', {'search_posts' : search_posts})
 
 def index(request):
     user=request.user

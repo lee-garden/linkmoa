@@ -15,7 +15,6 @@ class Memo(models.Model):
     user_id = models.IntegerField()
     owner = models.CharField(max_length=20, default="???")
     directory = models.CharField(max_length=20, default="recently")
-    display = models.CharField(max_length=10, default="visible")
     shared = models.BooleanField(default=False)
     download = models.IntegerField(default=0)
     keyword = models.CharField(max_length=30)
@@ -24,6 +23,17 @@ class Memo(models.Model):
     pub_date = models.DateTimeField('date_published', default=datetime.now())
     tag = TagField(default="")
     
+    def updateMemo(self, u_id, u_owner, u_directory, u_shared, u_download, u_keyword, u_urls, u_memo, u_tag):
+        self.user_id = u_id
+        self.owner = u_owner
+        self.directory = u_directory
+        self.shared = u_shared
+        self.download = u_download
+        self.keyword = u_keyword
+        self.urls = u_urls
+        self.memo = u_memo
+        self.tag = u_tag
+        self.save()
 
     def __str__(self):
         return self.keyword

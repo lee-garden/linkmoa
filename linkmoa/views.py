@@ -57,15 +57,10 @@ def index(request):
 def make_memo(request):
     user=request.user
     memo = Memo()
-    memo.user_id = user.id
-    memo.owner = user.username
-    memo.keyword = request.POST['key']
-    urls = request.POST['url']
-    memo.pub_date = timezone.datetime.now()
-    splited = urls.split('\n')
-    memo.urls = urlScrap.scrapUrl(splited, memo.keyword)
-    if len(memo.urls) > 1:
-        memo.save()
+    splited = request.POST['url'].split('\n')
+    filteredUrl = urlScrap.scrapUrl(splited, memo.keyword)
+    if len(filteredUrl) > 1:
+        memo.updateMemo(user.id, user.username, "recently", False, 0, request.POST['key'], filteredUrl, "", "")
     return redirect('index')
 
 def mkdir(request):
@@ -100,8 +95,6 @@ def deletedir(request, dirname):
     dname = dirname
     memos = Memo.objects.filter(user_id=user.id, directory=dirname)
     memos.delete()
-    user.profile.currentdir='recently'
-    user.profile.save()
     dirManagement.deleteDirectory(user, dname)
     return redirect('index')
 
@@ -118,12 +111,9 @@ def share_memo(request, memo_id):
     return redirect('index')
 
 def edit_memo(request, memo_id):
+    user=request.user
     memo = Memo.objects.get(id=memo_id)
-    memo.keyword = request.GET.get('editKey')
-    memo.urls = request.GET.get('editUrl')
-    memo.memo = request.GET.get('editMemo')
-    memo.tag = request.GET.get('editTag').replace("#",",")
-    memo.save()
+    memo.updateMemo(user.id, user.username, memo.directory, memo.shared, memo.download, request.GET.get('editKey'), request.GET.get('editUrl'), request.GET.get('editMemo'), request.GET.get('editTag').replace("#",","))
     return redirect('index')
 
 def undo_share(request, memo_id):
@@ -138,10 +128,7 @@ def download_memo(request, memo_id):
     newMemo = Memo()
     oldMemo = Memo.objects.get(id=memo_id)
     oldMemo.increaseDL()
-    newMemo = oldMemo
-    newMemo.user_id = user.id
-    newMemo.owner = user.username
-    newMemo.save()
+    newMemo.updateMemo(user.id, user.username, 'recently', False, 0, oldMemo.keyword, oldMemo.urls, "","")
     return redirect('index')
 
 def movedir(request, memo_id, dirname):

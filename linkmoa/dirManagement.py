@@ -35,6 +35,8 @@ def deleteDirectory(user, name):
             setattr(user.profile, saveDir, "")
             user.profile.save()
             saveDir = -1
+    user.profile.currentdir='recently'
+    user.profile.save()
 
 def changedirname(user, old, new, dirmemo):
     for memo in dirmemo:

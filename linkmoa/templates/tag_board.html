@@ -1,18 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<script src="../../static/js/linkprint.js"></script>
-
-<div class="temp">
-    <p class="slogan">서로의 지식을 연결하다</p>
-    <p class="slogan-name">링크모아</p> 
-</div>
-
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
         <div class="objects">
-        {% for memo in board_posts %}
+        {% for memo in tag_posts %}
         <div class="memoContainer">
             <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
             <h4>{{memo.owner}}</h4>
@@ -23,7 +16,7 @@
             {% load tagging_tags %}
             {% tags_for_object memo as tags %}
             {% for tag in tags %}
-            <a href="{% url 'tag_board' tag.name %}">#{{tag.name}}</a>
+            <a href="#">#{{tag.name}}</a>
             {% endfor %}
             <div class="button-list">
                 {% if user.is_authenticated %}
@@ -41,17 +34,17 @@
         {% endfor %}
         </div>
         <div class="paginator">
-                {% if board_posts.has_previous %}
+                {% if tag_posts.has_previous %}
                     <a href="?page=1">First</a>
-                    <a href="?page={{board_posts.previous_page_number}}">Previous</a>
+                    <a href="?page={{tag_posts.previous_page_number}}">Previous</a>
                 {% endif %}
-                    <span>{{board_posts.number}}</span>
+                    <span>{{tag_posts.number}}</span>
                     <span>of<span>
-                    <span>{{board_posts.paginator.num_pages}}</span>
+                    <span>{{tag_posts.paginator.num_pages}}</span>
         
-                {% if board_posts.has_next %}
-                    <a href="?page={{board_posts.next_page_number}}">Next</a>
-                    <a href="?page={{board_posts.paginator.num_pages}}">Last</a>
+                {% if tag_posts.has_next %}
+                    <a href="?page={{tag_posts.next_page_number}}">Next</a>
+                    <a href="?page={{tag_posts.paginator.num_pages}}">Last</a>
                 {% endif %}
             </div>
     </div>
@@ -64,32 +57,5 @@
 </footer>
     
 <script src="../../static/js/query.js"></script>
-<script>
-// get url query string
-    var getUrlParameter = function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
 
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
-            }
-        }
-    };
-// 정렬방식 셀렉트 박스 유지
-    $(document).ready(function(){
-    var sort = getUrlParameter('sort');
-    if(sort == 'likes'){
-        $('.sort-likes').prop('selected', 'selected')
-    }else if(sort == 'mymemo'){
-        $('.sort-mymemo').prop('selected', 'selected')
-    }else{
-        $('.sort-date').prop('selected', 'selected')
-    }
-    });
-</script>
 {% endblock %}

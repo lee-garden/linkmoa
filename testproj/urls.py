@@ -22,6 +22,7 @@ urlpatterns = [
     re_path(r'^movedir/(?P<memo_id>\d+)/(?P<dirname>.*)/$',linkmoa.views.movedir, name='movedir'),
     path('deletedir/<dirname>', linkmoa.views.deletedir, name='deletedir'),
     path('search_board/', linkmoa.views.search, name='search_board'),
+    path('tag_board/<tag>/', linkmoa.views.tag_board, name='tag_board'),
     re_path(r'^edit_memo/(?P<memo_id>\d+)/$', linkmoa.views.edit_memo, name='edit_memo'),
 
     path('login/', accounts.views.login, name='login'),

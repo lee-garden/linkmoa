@@ -50,6 +50,14 @@ def search(request):
     search_posts = search_paginator.get_page(page)
     return render(request,'search_board.html', {'search_posts' : search_posts})
 
+def tag_board(request, tag):
+    tag=Tag.objects.get(name = tag)
+    tagged_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
+    tag_paginator = Paginator(tagged_memos, 20)
+    page = request.GET.get('page')
+    tag_posts = tag_paginator.get_page(page)
+    return render(request, 'tag_board.html',{'tag_posts' : tag_posts})
+
 def index(request):
     user=request.user
     print('Request user : ' + user.username)

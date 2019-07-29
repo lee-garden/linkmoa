@@ -34,10 +34,13 @@ def search(request):
     if keyword =='':  #빈 input 예외처리
         return redirect('board')
     if keyword[0] == '#':  #태그 검색일 경우
-        search_tag = keyword.replace("#","")
-        tag=Tag.objects.get(name=search_tag)
-        searched_memos = TaggedItem.objects.get_by_model(Memo, tag)
-        print(searched_memos)
+        try:
+            search_tag = keyword.replace("#","")
+            tag=Tag.objects.get(name=search_tag)
+            searched_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
+        except Tag.DoesNotExist:
+            print('DoesNotExist')
+            #어떻게 해결할까 음....
     else:   #일반 검색일 경우
         if sort == 'likes':
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')

@@ -155,6 +155,10 @@ def movedir(request, memo_id, dirname):
 def board2(request):
     return render(request, 'board2.html')
 
+def createpost(request):
+    print('create')
+    return redirect('board2')
+
 #Deprecated function
 # def appear_memo(request, memo_id):
 #     memo = Memo.objects.get(id=memo_id)

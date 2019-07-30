@@ -10,7 +10,7 @@
 }
 .free-board-post{
     width: 100%;
-    border: 1px solid black;
+    border-top: 2px solid #DDDDDD;
     height: 28px;
 }
 

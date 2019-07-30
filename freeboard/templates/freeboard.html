@@ -13,12 +13,19 @@
                 <button class="createbtn"onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
             </div>
             <div class="board-contents">
-                글번호 제목 작성자 조회수
+                <table>
+                <tr>
+                <th>글번호 &nbsp; &nbsp;</th>
+                <th>제목 &nbsp; &nbsp;</th>
+                <th>작성자 &nbsp; &nbsp;</th>
+                <th>조회수 &nbsp; &nbsp;</th>
+                </tr>
                 {% for post in page_posts %}
-                <div class="free-board-post">
-                    {{post.id}}<a href="{% url 'detail' post.id %}">{{post.title}}</a> {{post.owner}} {{post.views}}<br>
-                </div>
+                <tr class="free-board-post">
+                    <td colspan="4">&nbsp;&nbsp;{{post.id}}<a href="{% url 'detail' post.id %}">{{post.title}}</a> {{post.owner}} {{post.views}}</td>
+                </tr>
                 {% endfor %}
+                </table>
             </div>
             <div class="paginator">
                 {% if page_posts.has_previous %}

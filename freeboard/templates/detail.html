@@ -1,0 +1,23 @@
+{% extends 'freeboard_base.html' %}
+{% block content %}
+<div class="temp">
+        <p class="slogan">서로의 지식을 연결하다</p>
+        <p class="slogan-name">링크모아</p> 
+</div>
+
+<div class="board">
+    <div class="lower-part">
+        <div class="line"></div>
+        <div class="board-container">
+            {{post.owner}}<br>
+            {{post.title}}<br>
+            {{post.body}}<br>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+        <h2 class="footer-title">LIKE LION</h2>
+        <h5>khjvvv7@gmail.com</h5>
+</footer>
+{% endblock %}

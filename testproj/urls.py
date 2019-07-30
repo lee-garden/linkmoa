@@ -27,7 +27,9 @@ urlpatterns = [
     re_path(r'^edit_memo/(?P<memo_id>\d+)/$', linkmoa.views.edit_memo, name='edit_memo'),
 
     path('freeboard', freeboard.views.freeboard, name='freeboard'),
-    path('freeboard/createpost', freeboard.views.createpost, name='createpost'),
+    path('freeboard/newpost', freeboard.views.newpost, name='newpost'),
+    path('createpost', freeboard.views.createpost, name='createpost'),
+    path('detail/<int:post_id>', freeboard.views.detail, name='detail'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

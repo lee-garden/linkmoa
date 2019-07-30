@@ -10,30 +10,30 @@
         <div class="line"></div>
         <div class="free-board-container">
             <div class="board-header">
-                <button onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
+                <button class="createbtn"onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
             </div>
             <div class="board-contents">
-                제목 작성자 조회수
+                글번호 제목 작성자 조회수
                 {% for post in page_posts %}
                 <div class="free-board-post">
-                    <a href="{% url 'detail' post.id %}">{{post.title}}</a> {{post.owner}} {{post.views}}<br>
+                    {{post.id}}<a href="{% url 'detail' post.id %}">{{post.title}}</a> {{post.owner}} {{post.views}}<br>
                 </div>
                 {% endfor %}
             </div>
             <div class="paginator">
-                    {% if page_posts.has_previous %}
-                        <a href="?page=1">First</a>
-                        <a href="?page={{page_posts.previous_page_number}}">Previous</a>
-                    {% endif %}
-                        <span>{{page_posts.number}}</span>
-                        <span>of<span>
-                        <span>{{page_posts.paginator.num_pages}}</span>
-            
-                    {% if page_posts.has_next %}
-                        <a href="?page={{page_posts.next_page_number}}">Next</a>
-                        <a href="?page={{page_posts.paginator.num_pages}}">Last</a>
-                    {% endif %}
-                </div>
+                {% if page_posts.has_previous %}
+                    <a href="?page=1">First</a>
+                    <a href="?page={{page_posts.previous_page_number}}">Previous</a>
+                {% endif %}
+                    <span>{{page_posts.number}}</span>
+                    <span>of<span>
+                    <span>{{page_posts.paginator.num_pages}}</span>
+        
+                {% if page_posts.has_next %}
+                    <a href="?page={{page_posts.next_page_number}}">Next</a>
+                    <a href="?page={{page_posts.paginator.num_pages}}">Last</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

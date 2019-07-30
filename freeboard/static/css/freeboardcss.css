@@ -1,11 +1,28 @@
 .free-board-container{
-    width: 1080px;
+    width: 900px;
     height: 1000px;
-    background: #F8F8F8;
-    margin: -40px auto 0 auto;
+    margin: 0px auto 0 auto;
+    border-top: 1px solid black;
 }
 
+.board-contents{
+    margin-top: 25px;
+}
 .free-board-post{
     width: 100%;
     border: 1px solid black;
+    height: 28px;
 }
+
+.createbtn{
+    border: 2px solid #DDDDDD;
+    width: 75px;
+    height: 30px;
+    background: white;
+    float: right;
+    margin-top: 5px;
+}
+
+
+
+/* Fonts */

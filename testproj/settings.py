@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'linkmoa.apps.LinkmoaConfig',
     'accounts.apps.AccountsConfig',
+    'freeboard.apps.FreeboardConfig',
 ]
 
 MIDDLEWARE = [

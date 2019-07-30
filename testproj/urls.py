@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 import linkmoa.views
 import accounts.views
+import freeboard.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,8 +26,8 @@ urlpatterns = [
     path('tag_board/<tag>/', linkmoa.views.tag_board, name='tag_board'),
     re_path(r'^edit_memo/(?P<memo_id>\d+)/$', linkmoa.views.edit_memo, name='edit_memo'),
 
-    path('board2', linkmoa.views.board2, name='board2'),
-    path('board2/createpost', linkmoa.views.createpost, name='createpost'),
+    path('freeboard', freeboard.views.freeboard, name='freeboard'),
+    path('freeboard/createpost', freeboard.views.createpost, name='createpost'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

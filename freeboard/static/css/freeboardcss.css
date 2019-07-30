@@ -1,0 +1,11 @@
+.free-board-container{
+    width: 1080px;
+    height: 1000px;
+    background: #F8F8F8;
+    margin: -40px auto 0 auto;
+}
+
+.free-board-post{
+    width: 100%;
+    border: 1px solid black;
+}

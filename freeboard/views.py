@@ -1,11 +1,15 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import Post
 
 # Create your views here.
 def freeboard(request):
     posts = Post.objects.all().order_by('-id')
-    return render(request, 'freeboard.html', {'posts' : posts})
+    post_paginator = Paginator(posts,5)
+    page = request.GET.get('page')
+    page_posts = post_paginator.get_page(page)
+    return render(request, 'freeboard.html', {'page_posts' : page_posts})
 
 def newpost(request):
     print('new post')

@@ -47,6 +47,7 @@ $('#editnametxt').change(function(){
 })
 
 $('#moreModal').on('show.bs.modal', function(event) {
+    console.log('moreModal call')
     var button = $(event.relatedTarget)
     $('.modal-key').html(button.data('keyword'))
     $('.modal-urls').html(button.data('urls'))

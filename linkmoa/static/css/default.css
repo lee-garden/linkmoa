@@ -280,6 +280,10 @@ margin: 0 auto;
 font-size: 30px;
 }
 
+.d-nav-item{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .taglist{
     margin-top:100px;
 }

@@ -25,7 +25,7 @@
     </div>
     <div class="line">
         <ul class="directory-nav">
-            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item"><span class="d-nav-item">Recently</span></button></li>
+            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
             {% for a in user.profile.get_fields_name %}
                 <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
             {% endfor %}

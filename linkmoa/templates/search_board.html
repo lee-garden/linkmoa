@@ -20,7 +20,7 @@
             <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
 
             <div id="result{{forloop.counter}}">sample</div>
-            <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}">&nbsp;더보기...</a><br><br>
+            <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-tag="{{memo.tag}}">&nbsp;더보기...</a><br><br>
             {% load tagging_tags %}
             {% tags_for_object memo as tags %}
             {% for tag in tags %}

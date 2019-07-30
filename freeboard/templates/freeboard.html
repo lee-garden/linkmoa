@@ -15,14 +15,17 @@
             <div class="board-contents">
                 <table>
                 <tr>
-                <th>글번호 &nbsp; &nbsp;</th>
-                <th>제목 &nbsp; &nbsp;</th>
-                <th>작성자 &nbsp; &nbsp;</th>
-                <th>조회수 &nbsp; &nbsp;</th>
+                <th class="post-num">글번호</th>
+                <th class="post-title">&nbsp;&nbsp;&nbsp;&nbsp;제목</th>
+                <th class="post-writer">작성자</th>
+                <th class="post-views">조회수</th>
                 </tr>
                 {% for post in page_posts %}
                 <tr class="free-board-post">
-                    <td colspan="4">&nbsp;&nbsp;{{post.id}}<a href="{% url 'detail' post.id %}">{{post.title}}</a> {{post.owner}} {{post.views}}</td>
+                    <td class="post-num">{{post.id}}</td>
+                    <td class="post-title"><a href="{% url 'detail' post.id %}">{{post.title}}</a></td>
+                    <td class="post-writer">{{post.owner}}</td>
+                    <td class="post-views">{{post.views}}</td>
                 </tr>
                 {% endfor %}
                 </table>

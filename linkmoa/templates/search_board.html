@@ -15,7 +15,7 @@
         {% if search_posts %}
         {% for memo in search_posts %}
         <div class="memoContainer">
-            <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
+            <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
             <h4>{{memo.owner}}</h4>
             <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
 

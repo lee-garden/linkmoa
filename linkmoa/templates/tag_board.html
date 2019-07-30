@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script src="../../static/js/linkprint.js"></script>
+
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
         <div class="objects">
         {% for memo in tag_posts %}
         <div class="memoContainer">
-            <h2>'<a href="#">{{memo.keyword}}</a>'</h2>
+            <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
             <h4>{{memo.owner}}</h4>
             <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
 

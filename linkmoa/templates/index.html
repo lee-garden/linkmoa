@@ -36,7 +36,7 @@
     <div class="objects">
         {% for memo in posts %}
             <div class="memoContainer">
-                <h2>'<a href="#">{{memo.keyword}}</a>'</h2>({{memo.directory}})
+                <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
                 <span class="buttons">
                     <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}"
                             data-urls="{{memo.urls}}" data-memo="{{memo.memo}}" data-tag="{{memo.tag}}"><i class="fa fa-edit"></i></button> 

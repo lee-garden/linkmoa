@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
+from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, TemplateView
 from tagging.models import Tag, TaggedItem, TaggedItemManager
 from tagging.views import TaggedObjectList
@@ -40,7 +41,7 @@ def search(request):
             searched_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
         except Tag.DoesNotExist:
             print('DoesNotExist')
-            #어떻게 해결할까 음....
+            return render(request, 'search_board.html')
     else:   #일반 검색일 경우
         if sort == 'likes':
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')

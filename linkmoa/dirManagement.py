@@ -13,9 +13,7 @@ def makeDirectory(user, name):
             setattr(user.profile, dir, name)
             user.profile.save()
             break
-
-# q
-
+            
 def deleteDirectory(user, name):
     k=0
     saveDir=""

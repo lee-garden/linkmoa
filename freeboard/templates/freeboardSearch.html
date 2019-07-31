@@ -20,7 +20,8 @@
                 <th class="post-writer">작성자</th>
                 <th class="post-views">조회수</th>
                 </tr>
-                {% for post in page_posts %}
+                {% if searched_posts %}
+                {% for post in searched_posts %}
                 <tr class="free-board-post">
                     <td class="post-num">{{post.id}}</td>
                     <td class="post-title"><a href="{% url 'detail' post.id %}">{{post.title}}</a></td>
@@ -28,31 +29,35 @@
                     <td class="post-views">{{post.views}}</td>
                 </tr>
                 {% endfor %}
+                {% else %}
+                <tr><th> </th><th style="text-align: center; height: 100px;">검색 결과를 찾을 수 없습니다.</th></tr>
+                {% endif %}
                 </table>
             </div>
             <div class="freeboard-search">
+                
                 <form method="POST" action="{% url 'freeboardSearch' %}">
                     {% csrf_token %}
                     <select id="" name='condition'>
-                        <option class="titlesearch" value="titlesearch">글제목</option>
-                        <option class="bodysearch" value="bodysearch">내용</option>
+                        <option class="sort-date" value="titlesearch">글제목</option>
+                        <option class="sort-likes" value="bodysearch">내용</option>
                         <option class="ownersearch" value="ownersearch">작성자</option>
                     </select>
                     <input type="text" class="freeboard-searchbox" name='input'><button class="freeboard-btn">검색</button>
                 </form>
             </div>
             <div class="paginator">
-                {% if page_posts.has_previous %}
+                {% if searched_posts.has_previous %}
                     <a href="?page=1">First</a>
-                    <a href="?page={{page_posts.previous_page_number}}">Previous</a>
+                    <a href="?page={{searched_posts.previous_page_number}}">Previous</a>
                 {% endif %}
-                    <span>{{page_posts.number}}</span>
+                    <span>{{searched_posts.number}}</span>
                     <span>of<span>
-                    <span>{{page_posts.paginator.num_pages}}</span>
+                    <span>{{searched_posts.paginator.num_pages}}</span>
         
-                {% if page_posts.has_next %}
-                    <a href="?page={{page_posts.next_page_number}}">Next</a>
-                    <a href="?page={{page_posts.paginator.num_pages}}">Last</a>
+                {% if searched_posts.has_next %}
+                    <a href="?page={{searched_posts.next_page_number}}">Next</a>
+                    <a href="?page={{searched_posts.paginator.num_pages}}">Last</a>
                 {% endif %}
             </div>
         </div>

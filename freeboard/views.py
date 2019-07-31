@@ -11,6 +11,20 @@ def freeboard(request):
     page_posts = post_paginator.get_page(page)
     return render(request, 'freeboard.html', {'page_posts' : page_posts})
 
+def freeboardSearch(request):
+    search_keyword = request.POST['input']
+    condition = request.POST['condition']
+    if condition == 'titlesearch':
+        searched_posts = Post.objects.filter(title=search_keyword).order_by('-id')
+    elif condition == 'bodysearch':
+        searched_posts = Post.objects.filter(body__icontains=search_keyword).order_by('-id')
+    else:
+        searched_posts = Post.objects.filter(owner=search_keyword).order_by('-id')
+    searched_paginator = Paginator(searched_posts, 20)
+    page = request.GET.get('page')
+    searched_posts = searched_paginator.get_page(page)
+    return render(request, 'freeboardSearch.html', {'searched_posts' : searched_posts})
+
 def newpost(request):
     print('new post')
     return render(request, 'newpost.html')

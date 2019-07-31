@@ -1,3 +1,13 @@
+.createbtn{
+    border: 2px solid #DDDDDD;
+    width: 75px;
+    height: 30px;
+    background: white;
+    float: right;
+    margin-top: 5px;
+}
+
+/* board table */
 .free-board-container{
     width: 900px;
     height: 1000px;
@@ -5,7 +15,6 @@
     border-top: 1px solid black;
 }
 
-/* board table */
 .post-num{
     width: 80px;
     text-align: center;
@@ -24,21 +33,22 @@
 .board-contents{
     margin-top: 55px;
 }
+
 .free-board-post{
     width: 100%;
     border-top: 2px solid #DDDDDD;
-    height: 28px;
+    height: 35px;
 }
 
-.createbtn{
-    border: 2px solid #DDDDDD;
-    width: 75px;
-    height: 30px;
-    background: white;
-    float: right;
-    margin-top: 5px;
+.freeboard-search{
+    width: 100%;
+    padding-left: 200px;
+    margin: 0 auto;
 }
 
-
+.freeboard-searchbox{
+    width:400px;
+    margin: 10px 0 10px 20px;
+}
 
 /* Fonts */

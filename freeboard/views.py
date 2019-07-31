@@ -27,6 +27,11 @@ def createpost(request):
     post.save()
     return redirect('freeboard')
 
+def deletepost(request, post_id):
+    post = Post.objects.filter(id=post_id)
+    post.delete()
+    return redirect('freeboard')
+
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.increaseViews()

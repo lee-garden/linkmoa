@@ -23,11 +23,18 @@
                     <textarea class="comment-box" name="comment"></textarea>
                     <button class="comment-submit">작성</button>
                 </form>
-                <div class="comments">
+                <table class="comments">
+                    <tr>
+                        <th>작성자</th>
+                        <th>내용</th>
+                    </tr>
                     {% for c in post.comments.all %}
-                        {{c.text}}<br>
+                    <tr>
+                        <td>{{c.author}}</td>
+                        <td>{{c.text}}</td>
+                    </tr>
                     {% endfor %}
-                </div>
+                </table>
             </div>
         </div>
     </div>

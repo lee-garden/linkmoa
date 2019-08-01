@@ -58,4 +58,7 @@
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
     color: wheat;
 }
+.freeboard-btn:hover{
+    color: white;
+}
 /* Fonts */

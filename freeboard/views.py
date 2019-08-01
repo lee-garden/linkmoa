@@ -50,3 +50,17 @@ def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.increaseViews()
     return render(request,'detail.html',{'post' : post})
+
+def editpost(request, post_id):
+    editpost = Post.objects.get(id=post_id)
+    print(editpost.title)
+    print(editpost.body)
+    return render(request,'editpost.html',{'editpost' : editpost})
+
+def edit(request, post_id):
+    editpost = Post.objects.get(id=post_id)
+    editpost.title = request.POST['title']
+    editpost.body = request.POST['body']
+    editpost.save()
+    print('수정합니다')
+    return redirect('detail', post_id)

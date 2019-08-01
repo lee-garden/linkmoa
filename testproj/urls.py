@@ -32,6 +32,8 @@ urlpatterns = [
     path('createpost', freeboard.views.createpost, name='createpost'),
     path('deletepost/<int:post_id>', freeboard.views.deletepost, name='deletepost'),
     path('detail/<int:post_id>', freeboard.views.detail, name='detail'),
+    path('editpost/<int:post_id>', freeboard.views.editpost, name='editpost'),
+    path('edit/<int:post_id>', freeboard.views.edit, name='edit'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

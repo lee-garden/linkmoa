@@ -33,7 +33,7 @@
                     <tr>
                         <td class="comment-author">{{c.author}}</td>
                         <td class="comment-text">{{c.text}}</td>
-                        <td class="comment-delete"><button>삭제</button></td>
+                        <td class="comment-delete"><button class="comment-delete-button"onclick="location.href='{% url 'deletecomment' post.id c.id %}'">삭제</button></td>
                     </tr>
                     {% endfor %}
                 </table>

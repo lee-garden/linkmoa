@@ -62,6 +62,11 @@ def writecomment(request, post_id):
     comment.save()
     return redirect('detail', post_id)
 
+def deletecomment(request,post_id, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    comment.delete()
+    return redirect('detail', post_id)
+
 def editpost(request, post_id):
     editpost = Post.objects.get(id=post_id)
     print(editpost.title)

@@ -24,14 +24,16 @@
                     <button class="comment-submit">작성</button>
                 </form>
                 <table class="comments">
-                    <tr>
-                        <th>작성자</th>
-                        <th>내용</th>
+                    <tr class="comment-header">
+                        <th class="comment-author">작성자</th>
+                        <th class="comment-text">내용</th>
+                        <th></th>
                     </tr>
                     {% for c in post.comments.all %}
                     <tr>
-                        <td>{{c.author}}</td>
-                        <td>{{c.text}}</td>
+                        <td class="comment-author">{{c.author}}</td>
+                        <td class="comment-text">{{c.text}}</td>
+                        <td class="comment-delete"><button>삭제</button></td>
                     </tr>
                     {% endfor %}
                 </table>

@@ -21,6 +21,7 @@
 }
 .post-title{
     width:620px;
+    text-overflow:ellipsis;
 }
 .post-writer{
     width: 120px;
@@ -90,5 +91,24 @@
 .comments {
     width: 100%;
     margin-top: 20px;
+}
+
+.comment-header {
+    widows: 100%;
+    border-bottom: 2px solid rgba(40, 40, 40, 0.8);
+}
+
+.comment-author {
+    width: 100px;
+    text-align: center;
+}
+
+.comment-text {
+    width: 710px;
+    word-break: break-all;
+}
+
+.comment-delete {
+    text-align: center;
 }
 /* Fonts */

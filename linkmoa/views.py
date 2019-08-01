@@ -156,9 +156,6 @@ def movedir(request, memo_id, dirname):
     memo.save()
     return redirect('index')
 
-def board2(request):
-    return render(request, 'board2.html')
-
 #Deprecated function
 # def appear_memo(request, memo_id):
 #     memo = Memo.objects.get(id=memo_id)

@@ -1,0 +1,28 @@
+{% extends 'freeboard_base.html' %}
+{% block content %}
+<div class="temp">
+        <p class="slogan">서로의 지식을 연결하다</p>
+        <p class="slogan-name">링크모아</p> 
+</div>
+
+<div class="board">
+    <div class="lower-part">
+        <div class="line"></div>
+        <div class="board-container">
+            {{post.owner}}<br>
+            {{post.title}}<br>
+            {{post.body}}<br>
+            <button class="gofreeboard"onclick="location.href='{% url 'freeboard' %}'">목록</button>
+            {% if user.username == post.owner %}
+            <button class="editpost"onclick="location.href='{% url 'editpost' post.id %}'">수정하기</button>
+            <button class="deletepost"onclick="location.href='{% url 'deletepost' post.id %}'">삭제하기</button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+        <h2 class="footer-title">LIKE LION</h2>
+        <h5>khjvvv7@gmail.com</h5>
+</footer>
+{% endblock %}

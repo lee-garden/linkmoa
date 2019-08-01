@@ -61,4 +61,28 @@
 .freeboard-btn:hover{
     color: white;
 }
+
+/* DETAIL PAGE*/
+.post-comments {
+    border-top: 1px solid black;
+}
+
+.comment-form {
+    height: 50px;
+    position: relative;
+}
+.comment-box {
+    width: 80%;
+    height: 50px;
+    margin-top: 15px;
+    border: 1.5px solid #555555;
+}
+
+.comment-submit {
+    outline: none;
+    height: 50px;
+    top:15px;
+    right: 35px;
+    position: absolute;
+}
 /* Fonts */

@@ -18,3 +18,11 @@ class Post(models.Model):
     def increaseViews(self):
         self.views +=1
         self.save()
+
+class Comment(models.Model):
+    post = models.ForeignKey('freeboard.Post', on_delete=models.CASCADE, related_name='comments')
+    author = models.CharField(max_length=200)
+    text = models.TextField()
+
+    def __str__(self):
+        return self.text

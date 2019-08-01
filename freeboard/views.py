@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .models import Post
+from .models import Comment
 
 # Create your views here.
 def freeboard(request):
@@ -50,6 +51,16 @@ def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.increaseViews()
     return render(request,'detail.html',{'post' : post})
+
+def writecomment(request, post_id):
+    user = request.user
+    post = get_object_or_404(Post, pk=post_id)
+    comment = Comment()
+    comment.post = post
+    comment.author = user.username
+    comment.text=request.POST['comment']
+    comment.save()
+    return redirect('detail', post_id)
 
 def editpost(request, post_id):
     editpost = Post.objects.get(id=post_id)

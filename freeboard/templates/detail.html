@@ -8,7 +8,7 @@
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
-        <div class="board-container">
+        <div class="free-board-container">
             {{post.owner}}<br>
             {{post.title}}<br>
             {{post.body}}<br>
@@ -17,6 +17,18 @@
             <button class="editpost"onclick="location.href='{% url 'editpost' post.id %}'">수정하기</button>
             <button class="deletepost"onclick="location.href='{% url 'deletepost' post.id %}'">삭제하기</button>
             {% endif %}
+            <div class="post-comments">
+                <form method="POST" class="comment-form" action="{% url 'writecomment' post.id %}">
+                    {% csrf_token %}
+                    <textarea class="comment-box" name="comment"></textarea>
+                    <button class="comment-submit">작성</button>
+                </form>
+                <div class="comments">
+                    {% for c in post.comments.all %}
+                        {{c.text}}<br>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>

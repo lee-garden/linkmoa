@@ -1,0 +1,66 @@
+{% extends 'freeboard_base.html' %}
+{% block content %}
+<div class="temp">
+    <p class="slogan">서로의 지식을 연결하다</p>
+    <p class="slogan-name">링크모아</p> 
+</div>
+
+<div class="board">
+    <div class="lower-part">
+        <div class="line"></div>
+        <div class="free-board-container">
+            <div class="board-header">
+                <button class="createbtn"onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
+            </div>
+            <div class="board-contents">
+                <table>
+                <tr>
+                <th class="post-num">글번호</th>
+                <th class="post-title">&nbsp;&nbsp;&nbsp;&nbsp;제목</th>
+                <th class="post-writer">작성자</th>
+                <th class="post-views">조회수</th>
+                </tr>
+                {% for post in page_posts %}
+                <tr class="free-board-post">
+                    <td class="post-num">{{post.id}}</td>
+                    <td class="post-title"><a href="{% url 'detail' post.id %}">{{post.title}}</a></td>
+                    <td class="post-writer">{{post.owner}}</td>
+                    <td class="post-views">{{post.views}}</td>
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
+            <div class="freeboard-search">
+                <form method="POST" action="{% url 'freeboardSearch' %}">
+                    {% csrf_token %}
+                    <select id="" name='condition'>
+                        <option class="titlesearch" value="titlesearch">글제목</option>
+                        <option class="bodysearch" value="bodysearch">내용</option>
+                        <option class="ownersearch" value="ownersearch">작성자</option>
+                    </select>
+                    <input type="text" class="freeboard-searchbox" name='input'><button class="freeboard-btn">검색</button>
+                </form>
+            </div>
+            <div class="paginator">
+                {% if page_posts.has_previous %}
+                    <a href="?page=1">First</a>
+                    <a href="?page={{page_posts.previous_page_number}}">Previous</a>
+                {% endif %}
+                    <span>{{page_posts.number}}</span>
+                    <span>of<span>
+                    <span>{{page_posts.paginator.num_pages}}</span>
+        
+                {% if page_posts.has_next %}
+                    <a href="?page={{page_posts.next_page_number}}">Next</a>
+                    <a href="?page={{page_posts.paginator.num_pages}}">Last</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+        <h2 class="footer-title">LIKE LION</h2>
+        <h5>khjvvv7@gmail.com</h5>
+</footer>
+{% endblock %}

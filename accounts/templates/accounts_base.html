@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <link rel="stylesheet" href="../../static/css/default.css?ver=1.6" >
+    <link rel="stylesheet" href="../../static/css/default.css?ver=1.3" >
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -28,12 +28,6 @@
                     <a href="{% url 'board' %}"><img src="{% static 'image/1.png'%}" style="height:100px; left:45% ;position: absolute;"></a>
                 </div>
                 <div class="sub-nav">
-                    <div class="board-nav">
-                        <ul class="nav-ul">
-                            <li><a href="{% url 'board' %}" class="nav-link">공유 게시판</a></li>
-                            <li><a href="{% url 'freeboard' %}" class="nav-link">자유 게시판</a></li>
-                        </ul>      
-                    </div>
                     <form method="POST" action="{% url 'search_board' %}" class="search-form">
                         {% csrf_token %}
                         <input type="text" placeholder="search" name="searchBox" class="searchTerm" />
@@ -51,16 +45,6 @@
                                 <li><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
                             {% endif%}
                         </ul>
-                    </div>
-                    <div class="sort">
-                        <select id="sort-select" onchange="location=this.value;">
-                            <option class="sort-date" value="/">최신순</option>
-                            <option class="sort-likes" value="?sort=likes">다운로드순</option>
-                            {% if user.is_authenticated %}
-                                <option class="sort-mymemo" value="?sort=mymemo">내 메모</option>
-                            {% endif %}
-                        </select>
-                        <span class="arrow"></span>
                     </div>
                 </div>
             </div>

@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
+from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, TemplateView
-# from tagging.models import Tag, TaggedItem
-# from tagging.views import TaggedObjectList
+from tagging.models import Tag, TaggedItem, TaggedItemManager
+from tagging.views import TaggedObjectList
 from django.core.paginator import Paginator
 from linkmoa import urlScrap
 from linkmoa import dirManagement
@@ -18,56 +19,66 @@ def board(request):
     sort = request.GET.get('sort','')
     if sort == 'likes':
         memos = Memo.objects.filter(shared=True).order_by('-download')
-        return render(request,'board.html',{'memos' : memos})
     elif sort == 'mymemo':
         memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
-        return render(request,'board.html',{'memos' : memos})
-    memos = Memo.objects.filter(shared=True).order_by('-id')
-
-    board_paginator = Paginator(memos, 6)
+    else:
+        memos = Memo.objects.filter(shared=True).order_by('-id')
+    board_paginator = Paginator(memos, 20)
     page = request.GET.get('page')
     board_posts = board_paginator.get_page(page)
-    return render(request,'board.html',{'memos' : memos, 'board_posts' : board_posts})
+    return render(request,'board.html',{'board_posts' : board_posts})
 
 def search(request):
     user=request.user
-    sort = request.GET.get('sort','')
     keyword = request.POST['searchBox']
-    if sort == 'likes':
-        searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')
-        return render(request,'search_board.html',{'searched_memos' : searched_memos})
-    elif sort == 'mymemo':
-        searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
-        return render(request,'search_board.html',{'searched_memos' : searched_memos})
-    searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
-    # searched_memos = Memo.objects.filter(keyword= keyword, shared=True)
-    print(keyword + " search!")
-    return render(request,'search_board.html', {'searched_memos' : searched_memos})
+    sort = request.GET.get('sort','')
+    if keyword =='':  #빈 input 예외처리
+        return redirect('board')
+    if keyword[0] == '#':  #태그 검색일 경우
+        try:
+            search_tag = keyword.replace("#","")
+            tag=Tag.objects.get(name=search_tag)
+            searched_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
+        except Tag.DoesNotExist:
+            print('DoesNotExist')
+            return render(request, 'search_board.html')
+    else:   #일반 검색일 경우
+        if sort == 'likes':
+            searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-download')
+        elif sort == 'mymemo':
+            searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
+        else:
+            searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
+    search_paginator = Paginator(searched_memos, 20)
+    page = request.GET.get('page')
+    search_posts = search_paginator.get_page(page)
+    return render(request,'search_board.html', {'search_posts' : search_posts})
+
+def tag_board(request, tag):
+    tag=Tag.objects.get(name = tag)
+    tagged_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
+    tag_paginator = Paginator(tagged_memos, 20)
+    page = request.GET.get('page')
+    tag_posts = tag_paginator.get_page(page)
+    return render(request, 'tag_board.html',{'tag_posts' : tag_posts})
 
 def index(request):
     user=request.user
-    print('Request user : ', user.id)
-    memos = Memo.objects.filter(user_id=user.id)
+    print('Request user : ' + user.username)
+    memos = Memo.objects.filter(user_id=user.id).order_by('-id')
     current = memos.filter(directory=user.profile.currentdir)
-
-    paginator = Paginator(current, 4)
+    paginator = Paginator(current, 20)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id, 'posts' : posts})
 
 def make_memo(request):
     user=request.user
-    print(user.id)
     memo = Memo()
-    memo.user_id = user.id
-    memo.owner = user.username
-    memo.keyword = request.POST['key']
-    urls = request.POST['url']
-    memo.pub_date = timezone.datetime.now()
-    splited = urls.split('\n')
-    memo.urls = urlScrap.scrapUrl(splited, memo.keyword)
-    if len(memo.urls) > 1:
-        memo.save()
+    splited = request.POST['url'].split('\n')
+    filteredUrl = urlScrap.scrapUrl(splited, memo.keyword)
+    if len(filteredUrl) > 1:
+        memo.updateMemo(user.id, user.username, "recently", False, 0, request.POST['key'], filteredUrl, "", "")
     return redirect('index')
 
 def mkdir(request):
@@ -102,8 +113,6 @@ def deletedir(request, dirname):
     dname = dirname
     memos = Memo.objects.filter(user_id=user.id, directory=dirname)
     memos.delete()
-    user.profile.currentdir='recently'
-    user.profile.save()
     dirManagement.deleteDirectory(user, dname)
     return redirect('index')
 
@@ -119,17 +128,10 @@ def share_memo(request, memo_id):
     memo.save()
     return redirect('index')
 
-def edit_memo(request, memo_id, keyword, urls):
+def edit_memo(request, memo_id):
+    user=request.user
     memo = Memo.objects.get(id=memo_id)
-    print(urls)
-    # print(tags)
-    splited_urls = urls.split(',')
-    newline_urls = ''
-    for i in range(0, len(splited_urls)):
-        newline_urls += splited_urls[i] + '\n'
-    memo.keyword = keyword
-    memo.urls = newline_urls
-    memo.save()
+    memo.updateMemo(user.id, user.username, memo.directory, memo.shared, memo.download, request.GET.get('editKey'), request.GET.get('editUrl'), request.GET.get('editMemo'), request.GET.get('editTag').replace("#",","))
     return redirect('index')
 
 def undo_share(request, memo_id):
@@ -144,11 +146,7 @@ def download_memo(request, memo_id):
     newMemo = Memo()
     oldMemo = Memo.objects.get(id=memo_id)
     oldMemo.increaseDL()
-    newMemo.user_id = user.id
-    newMemo.owner = user.username
-    newMemo.keyword = oldMemo.keyword
-    newMemo.urls = oldMemo.urls
-    newMemo.save()
+    newMemo.updateMemo(user.id, user.username, 'recently', False, 0, oldMemo.keyword, oldMemo.urls, "","")
     return redirect('index')
 
 def movedir(request, memo_id, dirname):
@@ -158,10 +156,11 @@ def movedir(request, memo_id, dirname):
     memo.save()
     return redirect('index')
 
+#Deprecated function
 # def appear_memo(request, memo_id):
 #     memo = Memo.objects.get(id=memo_id)
 #     memo.display='visible'
-#     memo.save()    
+#     memo.save()
 #     return redirect('index')
 
 # def disappear_memo(request, memo_id):

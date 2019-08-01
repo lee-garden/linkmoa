@@ -11,7 +11,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            print(user.id)
+            print(user.username + " login")
             return redirect('/',user)
         else:
             return render(request, 'login.html',{'error':'username or password is incorrect.'})

@@ -3,24 +3,15 @@ var dirname // Global Variable(정원찡's Good idea ㅎㅎ)
 $('#editModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
     var id = button.data('id')
-    var keyword = button.data('keyword')
-    var urls = button.data('urls')
-
     var modal = $(this)
-
-    modal.find('.modal-title').text('편집하기')
-    modal.find('.modal-body input').val(keyword)
-    modal.find('.modal-body textarea').val(urls)
-
-    $('.modal-complete').click(function(){
-
-        console.log($("#keyword").val())
-        console.log($("#urls").val())
-
-        splited_urls = $("#urls").val().split('\n')
-
-        modal.find('.modal-footer a').attr('href', '/edit_memo/' + id + '/' + $("#keyword").val() +'/' + splited_urls)
-    })
+    modal.find('.modal-body #keyword').val(button.data('keyword'))
+    modal.find('.modal-body #urls').val(button.data('urls'))
+    modal.find('.modal-body #memo').val(button.data('memo'))
+    modal.find('.modal-body #tag').val(button.data('tag').replace(/\,/g, '#'))
+    modal.find('.modal-body form').attr('action', '/edit_memo/' + id + '/')
+    $('#confirmEdit').click(function(event){
+        modal.find('.modal-body form').submit()
+    });
 })
 
 $('#moveModal').on('show.bs.modal', function (event) {
@@ -56,14 +47,12 @@ $('#editnametxt').change(function(){
 })
 
 $('#moreModal').on('show.bs.modal', function(event) {
+    console.log('moreModal call')
     var button = $(event.relatedTarget)
-    var key = button.data('keyword')
-    var urls = button.data('urls')
-    var lines = urls.split("\n")
-    console.log(key)
-    console.log(urls)
-    $('.modal-key').html(key)
-    $('.modal-urls').html(urls)
+    $('.modal-key').html(button.data('keyword'))
+    $('.modal-urls').html(button.data('urls'))
+    $('.modal-memo').html(button.data('memo'))
+    $('.modal-tag').html(button.data('tag').replace(/\,/g, '#'))
 });
 
 function setDirname(name){

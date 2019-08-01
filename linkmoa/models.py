@@ -6,7 +6,7 @@ from django.dispatch import receiver
 from datetime import datetime
 import urllib.request
 from django import template
-#from tagging.fields import TagField
+from tagging.fields import TagField
 
 register = template.Library()
 
@@ -15,15 +15,25 @@ class Memo(models.Model):
     user_id = models.IntegerField()
     owner = models.CharField(max_length=20, default="???")
     directory = models.CharField(max_length=20, default="recently")
-    display = models.CharField(max_length=10, default="visible")
     shared = models.BooleanField(default=False)
     download = models.IntegerField(default=0)
     keyword = models.CharField(max_length=30)
     urls = models.TextField(default=None)
     memo = models.TextField(default="")
     pub_date = models.DateTimeField('date_published', default=datetime.now())
-    #tag = TagField()
+    tag = TagField(default="")
     
+    def updateMemo(self, u_id, u_owner, u_directory, u_shared, u_download, u_keyword, u_urls, u_memo, u_tag):
+        self.user_id = u_id
+        self.owner = u_owner
+        self.directory = u_directory
+        self.shared = u_shared
+        self.download = u_download
+        self.keyword = u_keyword
+        self.urls = u_urls
+        self.memo = u_memo
+        self.tag = u_tag
+        self.save()
 
     def __str__(self):
         return self.keyword
@@ -72,8 +82,6 @@ class Profile(models.Model):
                 names.append(key)
         names.pop(0)
         return names
-
-
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):  

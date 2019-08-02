@@ -8,6 +8,7 @@ $('#editModal').on('show.bs.modal', function (event) {
     modal.find('.modal-body #urls').val(button.data('urls'))
     modal.find('.modal-body #memo').val(button.data('memo'))
     modal.find('.modal-body #tag').val(button.data('tag').replace(/\,/g, '#'))
+    modal.find('.modal-body #tag').val(button.data('memo'))
     modal.find('.modal-body form').attr('action', '/edit_memo/' + id + '/')
     $('#confirmEdit').click(function(event){
         modal.find('.modal-body form').submit()

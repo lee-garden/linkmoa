@@ -4,8 +4,9 @@ from django.contrib import auth
 from django.utils import timezone
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, TemplateView
-from tagging.models import Tag, TaggedItem, TaggedItemManager
-from tagging.views import TaggedObjectList
+#from tagging.models import Tag, TaggedItem, TaggedItemManager
+#from tagging.views import TaggedObjectList
+from taggit.models import Tag
 from django.core.paginator import Paginator
 from linkmoa import urlScrap
 from linkmoa import dirManagement
@@ -37,8 +38,9 @@ def search(request):
     if keyword[0] == '#':  #태그 검색일 경우
         try:
             search_tag = keyword.replace("#","")
-            tag=Tag.objects.get(name=search_tag)
-            searched_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
+            searched_memos = Memo.objects.filter(tags__name__in=[search_tag], shared=True)
+            #tag=Tag.objects.get(name=search_tag)
+            #searched_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
         except Tag.DoesNotExist:
             print('DoesNotExist')
             return render(request, 'search_board.html')
@@ -55,8 +57,10 @@ def search(request):
     return render(request,'search_board.html', {'search_posts' : search_posts})
 
 def tag_board(request, tag):
-    tag=Tag.objects.get(name = tag)
-    tagged_memos = TaggedItem.objects.get_by_model(Memo, tag).filter(shared=True)
+    tagfromslug = Tag.objects.filter(slug = tag)
+    print(tagfromslug)
+    print(tagfromslug[0])
+    tagged_memos = Memo.objects.filter(tags__name__in=[tagfromslug[0]], shared=True)
     tag_paginator = Paginator(tagged_memos, 20)
     page = request.GET.get('page')
     tag_posts = tag_paginator.get_page(page)
@@ -130,8 +134,13 @@ def share_memo(request, memo_id):
 
 def edit_memo(request, memo_id):
     user=request.user
+    tagarr = request.GET.get('editTag').split('#')
+    tagarr.remove('')
     memo = Memo.objects.get(id=memo_id)
     memo.updateMemo(user.id, user.username, memo.directory, memo.shared, memo.download, request.GET.get('editKey'), request.GET.get('editUrl'), request.GET.get('editMemo'), request.GET.get('editTag').replace("#",","))
+    for t in tagarr:
+        memo.tags.add(t)
+    memo.save()
     return redirect('index')
 
 def undo_share(request, memo_id):

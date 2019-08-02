@@ -6,7 +6,7 @@ from django.dispatch import receiver
 from datetime import datetime
 import urllib.request
 from django import template
-from tagging.fields import TagField
+from taggit.managers import TaggableManager
 
 register = template.Library()
 
@@ -21,7 +21,7 @@ class Memo(models.Model):
     urls = models.TextField(default=None)
     memo = models.TextField(default="")
     pub_date = models.DateTimeField('date_published', default=datetime.now())
-    tag = TagField(default="")
+    tags = TaggableManager()
     
     def updateMemo(self, u_id, u_owner, u_directory, u_shared, u_download, u_keyword, u_urls, u_memo, u_tag):
         self.user_id = u_id
@@ -32,7 +32,7 @@ class Memo(models.Model):
         self.keyword = u_keyword
         self.urls = u_urls
         self.memo = u_memo
-        self.tag = u_tag
+        #self.tags = u_tag
         self.save()
 
     def __str__(self):

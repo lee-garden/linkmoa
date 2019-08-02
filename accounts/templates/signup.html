@@ -1,25 +1,40 @@
 {% extends 'accounts_base.html' %}
 {% block content %}
-    <div class="container-linkmoa">
-        <div class="signupBox">
-        <form method="POST" action="{% url 'signup' %}">
-                {% csrf_token %}
-                성명<br>
-                <input type="text" placeholder="이름을 입력해 주세요"><br>
-                아이디<br>
-                <input type="text" placeholder="아이디를 입력해 주세요" name="username"><button>중복 확인</button><br>
-                이메일 주소<br>
-                <input type="text" placeholder="xxxxxx@example.com"><br>
-                비밀번호<br>
-                <input type="password" placeholder="비밀번호를 입력해 주세요" name="password"><br>
-                비밀번호 확인<br>
-                <input type="password" placeholder="비밀번호를 다시한번 입력 해 주세요" name="password_confirm"><br>
-                휴대폰 번호<br>
-                <input type="text" placeholder="000-0000-0000"><br>
-            
-                <input class="btn btn-primary" type="submit" value="회원가입">
-            </form>
-            <button>가입취소</button>
+<form class="signup-form" method='POST' action="{% url 'signup' %}">
+        {% csrf_token %}
+        <h1>회원가입</h1>
+        <label for="name">ID</label>
+        <div class="signupform-group">
+        <input type="text" placeholder=" " id="name" required name="username" class="signupform-group-input"><button>중복확인</button>
+        <div class="error">
+          <i class="fas fa-exclamation-circle"></i>
+          Error encountered!
         </div>
-    </div>
+      </div>
+      <label for="email">Email</label>
+      <div class="signupform-group">
+        <input type="email" placeholder=" " id="email" required name="email">
+        <div class="error">
+          <i class="fas fa-exclamation-circle"></i>
+        </div>
+      </div>
+      <label for="password">Password</label>
+      <div class="signupform-group">
+        <input type="password" placeholder=" " id="password" required name="password">
+        <div class="error">
+          <i class="fas fa-exclamation-circle"></i>
+        </div>
+      </div>
+      <label for="confirm">Confirm</label>
+      <div class="signupform-group">
+        <input type="password" placeholder=" " id="confirm" required name="password_confirm">
+        <div class="error">
+          <i class="fas fa-exclamation-circle"></i>
+        </div>
+      </div>
+      <input type="submit" value="Sign Up" class="sign-input">
+      <div class="form-bottom">
+        <a href="#">Forgot Password?</a>
+      </div>
+    </form>
 {% endblock %}

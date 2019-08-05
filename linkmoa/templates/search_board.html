@@ -24,15 +24,10 @@
 
             <div id="result{{forloop.counter}}">sample</div>
             <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-tag="{{memo.tag}}">&nbsp;더보기...</a><br><br>
-                {% comment %}
                 {% load tagging_tags %}
                 {% tags_for_object memo as tags %}
                 {% for tag in tags %}
                 <a href="{% url 'tag_board' tag.name %}">#{{tag.name}}</a>
-                {% endfor %}
-                {% endcomment %}
-                {% for tag in memo.tags.all %}
-                    <a href="{% url 'tag_board' tag.slug %}">#{{tag}}</a>
                 {% endfor %}
             <div class="button-list">
             {% if user.is_authenticated %}

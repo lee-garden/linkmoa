@@ -4,5 +4,5 @@
 
 $ pip install beautifulSoup4
 $ pip install requests
-$ pip install tagging
+$ pip install django-tagging
 ~~~

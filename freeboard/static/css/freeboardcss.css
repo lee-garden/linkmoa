@@ -10,7 +10,7 @@
 /* board table */
 .free-board-container{
     width: 900px;
-    height: 600px;
+    height: 650px;
     margin: 0px auto 0 auto;
     border-top: 1px solid black;
 }
@@ -110,5 +110,8 @@
 
 .comment-delete {
     text-align: center;
+}
+
+.btns{
 }
 /* Fonts */

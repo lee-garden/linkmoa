@@ -9,14 +9,16 @@
     <div class="lower-part">
         <div class="line"></div>
         <div class="free-board-container">
-            {{post.owner}}<br>
-            {{post.title}}<br>
-            {{post.body}}<br>
-            <button class="gofreeboard"onclick="location.href='{% url 'freeboard' %}'">목록</button>
-            {% if user.username == post.owner %}
-            <button class="editpost"onclick="location.href='{% url 'editpost' post.id %}'">수정하기</button>
-            <button class="deletepost"onclick="location.href='{% url 'deletepost' post.id %}'">삭제하기</button>
+            글 쓴이 : {{post.owner}}<br>
+            글 제목 : {{post.title}}<br>
+            내용 : {{post.body}}<br>
+            <div class="freeboard-detail-btns">
+                <button class="gofreeboard"onclick="location.href='{% url 'freeboard' %}'">목록</button>
+                {% if user.username == post.owner %}
+                <button class="editpost"onclick="location.href='{% url 'editpost' post.id %}'">수정하기</button>
+                <button class="deletepost"onclick="location.href='{% url 'deletepost' post.id %}'">삭제하기</button>
             {% endif %}
+            </div>
             <div class="post-comments">
                 <form method="POST" class="comment-form" action="{% url 'writecomment' post.id %}">
                     {% csrf_token %}
@@ -31,7 +33,11 @@
                     </tr>
                     {% for c in post.comments.all %}
                     <tr>
+                        {% if c.author %}
                         <td class="comment-author">{{c.author}}</td>
+                        {% else %}
+                        <td class="comment-author">손님</td>
+                        {% endif %}
                         <td class="comment-text">{{c.text}}</td>
                         <td class="comment-delete"><button class="comment-delete-button"onclick="location.href='{% url 'deletecomment' post.id c.id %}'">삭제</button></td>
                     </tr>

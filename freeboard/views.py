@@ -7,7 +7,7 @@ from .models import Comment
 # Create your views here.
 def freeboard(request):
     posts = Post.objects.all().order_by('-id')
-    post_paginator = Paginator(posts, 20)
+    post_paginator = Paginator(posts, 15)
     page = request.GET.get('page')
     page_posts = post_paginator.get_page(page)
     return render(request, 'freeboard.html', {'page_posts' : page_posts})
@@ -21,7 +21,7 @@ def freeboardSearch(request):
         searched_posts = Post.objects.filter(body__icontains=search_keyword).order_by('-id')
     else:
         searched_posts = Post.objects.filter(owner=search_keyword).order_by('-id')
-    searched_paginator = Paginator(searched_posts, 20)
+    searched_paginator = Paginator(searched_posts, 15)
     page = request.GET.get('page')
     searched_posts = searched_paginator.get_page(page)
     return render(request, 'freeboardSearch.html', {'searched_posts' : searched_posts})

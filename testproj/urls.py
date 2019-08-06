@@ -40,6 +40,7 @@ urlpatterns = [
 
     path('reference', info.views.reference, name='reference'),
     path('downloadzip', info.views.downloadzip, name='downloadzip'),
+    path('moaguide', info.views.moaguide, name='moaguide'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

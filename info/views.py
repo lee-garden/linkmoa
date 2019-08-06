@@ -10,3 +10,6 @@ def downloadzip(request):
     response = HttpResponse(open(file_path, 'rb'), content_type='application/zip')
     response["Content-Disposition"] = "attachment; filename=moamoa.zip"
     return response
+
+def moaguide(request):
+    return render(request, 'moaguide.html')

@@ -76,7 +76,7 @@ def make_memo(request):
     user=request.user
     memo = Memo()
     splited = request.POST['url'].split('\n')
-    filteredUrl = urlScrap.scrapUrl(splited, memo.keyword)
+    filteredUrl = urlScrap.scrapUrl(splited, request.POST['key'])
     if len(filteredUrl) > 1:
         memo.updateMemo(user.id, user.username, "recently", False, 0, request.POST['key'], filteredUrl, "", "")
     return redirect('index')

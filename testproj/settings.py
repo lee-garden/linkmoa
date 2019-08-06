@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'linkmoa.apps.LinkmoaConfig',
     'accounts.apps.AccountsConfig',
     'freeboard.apps.FreeboardConfig',
+    'info.apps.InfoConfig',
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,7 @@ from django.conf import settings
 import linkmoa.views
 import accounts.views
 import freeboard.views
+import info.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +37,8 @@ urlpatterns = [
     path('deletecomment/<int:post_id>/<int:comment_id>', freeboard.views.deletecomment, name='deletecomment'),
     path('editpost/<int:post_id>', freeboard.views.editpost, name='editpost'),
     path('edit/<int:post_id>', freeboard.views.edit, name='edit'),
+
+    path('reference', info.views.reference, name='reference'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

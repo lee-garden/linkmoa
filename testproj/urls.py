@@ -39,6 +39,7 @@ urlpatterns = [
     path('edit/<int:post_id>', freeboard.views.edit, name='edit'),
 
     path('reference', info.views.reference, name='reference'),
+    path('downloadzip', info.views.downloadzip, name='downloadzip'),
 
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|family=Cute+Font&display=swap');
 
 
 /*COMMON*/
@@ -163,20 +163,20 @@ html, body{
 /*INDEX HTML*/
 .mkdir-input{
     width: 200px;
-    border: 2px solid #38B9C8;
+    border: 2px solid #8763FB;
+    border-bottom: none;
     padding: 5px;
-    border-radius: 5px;
     outline: none;
     color: black;
     height: 30px;
-    border-radius: 10px;
     font-size: 15px;
   }
 .form-mkdir{
-    margin: 2em auto;
+    margin-top: 4em;
+    left:30%;
 }
 .fa-plus:before {
-    color: #38B9C8;
+    color: #6478FB;
 }
 #keyword-search{
     margin: 10px 0 0 0;
@@ -187,7 +187,7 @@ html, body{
 }
 .line{
     height: 50px;
-    margin: 3em auto;
+    margin: -1px auto 3em auto;
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
 }
 .objects{
@@ -233,7 +233,7 @@ html, body{
     float: left;
     border: 1px solid #d3d3d380;
     border-radius: .5em;
-    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
+    box-shadow: 1px 1px 4px 0 rgba(89, 105, 155, 0.8);
     padding: 0 .5rem;
 }
 
@@ -280,8 +280,22 @@ margin: 0 auto;
 font-size: 30px;
 }
 
+.d-nav-item{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .taglist{
     margin-top:100px;
+}
+
+.memoKey{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.memoOwner{
+    font-family: 'Noto Sans KR', sans-serif;
+    float: right;
+    margin: 1px 15px 3px 0;
 }
 
 

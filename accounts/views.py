@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.http import JsonResponse
 
 # Create your views here.
 def login(request):
@@ -23,11 +24,26 @@ def signup(request):
         if request.POST['password'] == request.POST['password_confirm']:
             user = User.objects.create_user(
                 request.POST['username'],
-                password = request.POST['password']
+                password = request.POST['password'],
+                email = request.POST['email']
             )
         auth.login(request,user)
         return redirect('/')
     return render(request,'signup.html')
+
+def checkid(request):
+    try:
+        print(request.GET['username'])
+        user = User.objects.get(username=request.GET['username'])
+        print('user name is exist')
+    except Exception as e:
+        user= None
+        print('user name is not exist')
+    result = {
+        'result' : 'success',
+        'data' : 'not exist' if user is None else 'exist'
+    }
+    return JsonResponse(result)
 
 def logout(request):
     if request.method == 'GET':

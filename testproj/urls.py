@@ -45,4 +45,5 @@ urlpatterns = [
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name='logout'),
     path('signup/', accounts.views.signup, name='signup'),
+    path('signup/checkid/', accounts.views.checkid, name='checkid'),
 ]

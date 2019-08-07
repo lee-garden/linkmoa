@@ -1,3 +1,15 @@
+.table-board {
+    width: 100%;
+}
+
+.post-title-custom{
+    color: black;
+}
+.post-title-custom:hover {
+    color: black;
+}
+
+
 .createbtn{
     border: 2px solid #DDDDDD;
     width: 75px;
@@ -9,46 +21,80 @@
 
 /* board table */
 .free-board-container{
-    width: 900px;
-    height: 650px;
-    margin: 0px auto 0 auto;
-    border-top: 1px solid black;
+    width: 75%;
+    margin: 6em auto;
 }
-
+table > thead > tr > th {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.7em;
+    font-weight: 100;
+}
+table > tbody > tr > td {
+    text-align: left;
+    padding: 0 20px;
+    font-size: 1em;
+}
+.board-header {
+    width: 100%;
+    border-top: 2px solid #544c4c;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px 0px;
+    font-size: 1rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #000000;
+}
 .post-num{
     width: 80px;
     text-align: center;
 }
 .post-title{
     width:620px;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
+}
+.post-title1{
+    width:620px;
+    text-overflow: ellipsis;
+    padding: 0 0 0 40px;
 }
 .post-writer{
-    width: 120px;
+    width: 80px;
     text-align: center;
 }
 .post-views{
     width: 80px;
     text-align: center;
 }
+.post-date{
+    width: 80px;
+    text-align: center;
+}
+.post-heart{
+    width: 80px;
+    text-align: center;
+}
 .board-contents{
     margin-top: 55px;
 }
-
+.newpost {
+    display: block;
+    height: 5em;
+}
 .free-board-post{
     width: 100%;
-    border-top: 2px solid #DDDDDD;
+    border-bottom: .5px solid rgba(0, 0, 0, 0.2);
     height: 35px;
 }
 
 .freeboard-search{
     width: 100%;
-    padding-right: 90px;
     margin: 0 auto;
+    height: 5em;
 }
 
 .freeboard-searchbox{
-    width:500px;
+    width: 500px;
     margin: 10px 0 10px 20px;
 }
 .freeboard-btn {
@@ -65,19 +111,27 @@
 
 /* DETAIL PAGE*/
 .post-comments {
-    border-top: 1px solid black;
+    border-top: 1px solid #c3c2c28c;
+    float: left;
+    padding: 0 40px;
+    width: 100%;
+    display: block;
 }
 
 .comment-form {
     width: 100%;
     height: 65px;
     position: relative;
+    margin: 3em 0;
 }
 .comment-box {
+    border-radius: 0.7em;
+    font: inherit;
+    padding: 0.8em;
+    border: 0.05em solid rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    vertical-align: text-bottom;
     width: 80%;
-    height: 50px;
-    margin-top: 15px;
-    border: 1.5px solid #555555;
 }
 
 .comment-submit {
@@ -94,8 +148,8 @@
 }
 
 .comment-header {
-    widows: 100%;
-    border-bottom: 2px solid rgba(40, 40, 40, 0.8);
+    width: 100%;
+    border-top: 1px solid #c3c2c2;
 }
 
 .comment-author {

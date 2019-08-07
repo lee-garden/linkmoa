@@ -21,58 +21,28 @@
 </head>
 
 <body>
-    <p class="inforoom"><a href="{% url 'reference' %}" class="inforoom-a">자료실</a></p>
-    {% comment %} <div class="container-linkmoa">
-        <div>
-            <div class="nav">
-                <div class="log" style="height: 100px">
-                    <a href="{% url 'board' %}"><img src="{% static 'image/1.png'%}" style="height:100px; left:45% ;position: absolute;"></a>
-                </div>
-                <div class="sub-nav">
-                    <div class="board-nav">
-                        <ul class="nav-ul">
-                            <li><a href="{% url 'board' %}" class="nav-link">공유 게시판</a></li>
-                            <li><a href="{% url 'freeboard' %}" class="nav-link">자유 게시판</a></li>
-                        </ul>      
-                    </div> {% endcomment %}
-
-
-
-{% comment %} 
-                    <div class="loginout">
-                        <ul class="nav-ul">
-                            {% if user.is_authenticated %}
-                                <li><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
-                                <li><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
-                            {% else %}
-                                <li><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
-                                <li><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
-                            {% endif%}
-                        </ul>
-                    </div> {% endcomment %}
-
-
-
         <div class="container-linkmoa">
             <div>
                 <div class="navi">
                     <div class="log">
-                        <a href="{% url 'board' %}"><img src="{% static 'image/2.png'%}" style="height:30px;"></a>
+                        <a href="{% url 'board' %}"><img src="{% static 'image/1.png'%}" style="height:100px;"></a>
                         <div class="loginout">
-                            <ul class="nav-ul">
+                            {% comment %} <ul class="nav-ul">
                                 {% if user.is_authenticated %}
                                     <input id="check" type="checkbox" name="menu"/>
-                                    <li class="not-hidden-li2"><label for="check" class="mypage-label">{{user.username}} 님</label></li>
-                                    <ul class="pop">
-                                        <li class="hidden-li"><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
-                                        <li class="hidden-li"><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
-                                    {% else %}
-                                        <li class="hidden-li"><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
-                                        <li class="hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
-                                    {% endif%}
-                                    </ul>
-                                </li>
-                           </ul>
+                                    <li class="not-hidden-li2"><label for="check" class="mypage-label">{{user.username}} 님</label></li> 
+                                    <li class="not-hidden-li2"><a href="{% url 'reference' %}" class="nav-link">자료실</a></li>
+
+                                        <ul class="pop">
+                                            <li class="hidden-li"><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
+                                            <li class="hidden-li"><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
+                                {% else %}
+                                            <li class="hidden-li"><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
+                                            <li class="hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
+                                {% endif%}
+                                        </ul>
+                                    </li> 
+                           </ul> {% endcomment %}
                         </div>
                     </div>
                         
@@ -81,23 +51,45 @@
                                 <ul class="nav-ul">
                                     <li class="not-hidden-li"><a href="{% url 'board' %}" class="nav-link">공유 게시판</a></li>
                                     <li class="not-hidden-li"><a href="{% url 'freeboard' %}" class="nav-link">자유 게시판</a></li>
-                                    <li class="not-hidden-li"><a href="{% url 'reference' %}" class="nav-link">자료실</a></li>
-                                    <li class="not-hidden-li">
-                                    
-                                                        
+                                    <li class="not-hidden-li-search">
                                         <form method="POST" action="{% url 'search_board' %}" class="search-form">
                                             {% csrf_token %}
-                                            <input type="text" placeholder="search" name="searchBox" class="mainsearchTerm" />
-                                            <button type="submit" class="mainsearchButton" >
-                                                <i class="fa fa-search" aria-hidden="true" ></i>
-                                            </button>
-                                        </form>
+                                            {% comment %} <div class="bar-search"> {% endcomment %}
+                                                <input type="text" placeholder="search" name="searchBox" class="searchTerm" />
+                                                <button type="submit" class="searchButton" >
+                                                    <i class="fa fa-search" aria-hidden="true" ></i>
+                                                </button>
+                                            {% comment %} </div> {% endcomment %}
 
-                                    
-                                    
-                                    
-                                    
+                                        </form>
                                     </li>
+                                    <li class="not-hidden-li"><a href="{% url 'reference' %}" class="nav-link">자료실</a></li>
+                                    
+                                    {% if user.is_authenticated %}
+                                        <input id="check" type="checkbox" name="menu"/>
+                                        <li class="not-hidden-li"><label for="check" class="mypage-label">{{user.username}} 님</label></li> 
+
+                                            <ul class="pop">
+                                                <li class="hidden-li"><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
+                                                <li class="hidden-li"><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
+                                    {% else %}
+                                                <li class="hidden-li"><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
+                                                <li class="hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
+                                    {% endif%}
+                                            </ul>
+                                        </li>         
+{% comment %} 
+
+
+                                    {% if user.is_authenticated %}
+                                        <li class="not-hidden-li"><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
+                                        <li class="not-hidden-li"><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
+                                    {% else %}
+                                        <li class="not-hidden-li"><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
+                                        <li class="not-hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
+                                    {% endif%} {% endcomment %}
+                                </ul>
+
                                 </ul>      
                             </div>
                         </div>
@@ -106,23 +98,6 @@
             </div>
             {% block content %}
             {% endblock %}
-
-{% comment %} 
-                    <div class="sort">
-                        <select id="sort-select" onchange="location=this.value;">
-                            <option class="sort-date" value="/">최신순</option>
-                            <option class="sort-likes" value="?sort=likes">다운로드순</option>
-                            {% if user.is_authenticated %}
-                                <option class="sort-mymemo" value="?sort=mymemo">내 메모</option>
-                            {% endif %}
-                        </select>
-                        <span class="arrow"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% block content %}
-        {% endblock %} {% endcomment %}
     </div>
 </body>
 </html>

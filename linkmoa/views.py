@@ -75,6 +75,7 @@ def index(request):
 def make_memo(request):
     user=request.user
     memo = Memo()
+    print(request.POST['url'])
     splited = request.POST['url'].split('\n')
     filteredUrl = urlScrap.scrapUrl(splited, request.POST['key'])
     if len(filteredUrl) > 1:

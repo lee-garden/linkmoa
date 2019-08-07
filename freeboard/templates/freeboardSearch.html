@@ -8,8 +8,24 @@
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
+            <div class='search-state' style= "text-align: center;">
+                {% if request.path == '/freeboardSearch' %}
+                    <h4>*상태 : "{{condition}}"에서 "{{search_keyword}}" 검색</h4>
+                {% elif request.path == '/freeboardSearch/sort' %}
+                    <h4>*상태 : 검색 & 조회순 정렬</h4>
+                {% endif %}
+            </div>
         <div class="free-board-container">
             <div class="board-header">
+                {% if request.path == '/freeboardSearch' %}
+                    <form method="POST" action="{% url 'sort_freeboardSearch' %}">
+                        {% csrf_token %}
+                        <textarea name="post_objects_id" style="display: none;">{% for post in searched_posts_objects %}{{post.id}};{% endfor %}</textarea>
+                        <input type="submit" class="createbtn" style="display: none;"><button class="createbtn"onclick="location.href='{% url 'sort_freeboardSearch' %}'">조회순</button>
+                    </form>
+                {% elif request.path == '/freeboardSearch/sort' %}
+                    <button class="createbtn"onclick="location.href='{% url 'freeboard' %}'">원래대로</button>
+                {% endif %}
                 <button class="createbtn"onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
             </div>
             <div class="board-contents">

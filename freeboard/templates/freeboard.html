@@ -8,6 +8,11 @@
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
+            <div class='search-state' style= "text-align: center;" >
+                {% if request.path == '/freeboard/sort' %}
+                    <h4>*상태 : 조회순 정렬</h4>
+                {% endif %}
+            </div>
         <div class="free-board-container">
             <div class="board-header">
                 {% if request.path == '/freeboard' %}

@@ -23,25 +23,30 @@ def freeboardSearch(request):
     search_keyword = request.POST['input']
     condition = request.POST['condition']
     if condition == 'titlesearch':
-        searched_posts = Post.objects.filter(title=search_keyword).order_by('-id')
+        searched_posts_objects = Post.objects.filter(title=search_keyword).order_by('-id')
+        condition = '글제목'
     elif condition == 'bodysearch':
-        searched_posts = Post.objects.filter(body__icontains=search_keyword).order_by('-id')
+        searched_posts_objects = Post.objects.filter(body__icontains=search_keyword).order_by('-id')
+        condition = '내용'
     else:
-        searched_posts = Post.objects.filter(owner=search_keyword).order_by('-id')
-    searched_paginator = Paginator(searched_posts, 15)
+        searched_posts_objects = Post.objects.filter(owner=search_keyword).order_by('-id')
+        condition = '작성자'
+    searched_paginator = Paginator(searched_posts_objects, 15)
     page = request.GET.get('page')
     searched_posts = searched_paginator.get_page(page)
-    return render(request, 'freeboardSearch.html', {'searched_posts' : searched_posts})
+    return render(request, 'freeboardSearch.html', {'searched_posts' : searched_posts, 'searched_posts_objects' : searched_posts_objects,
+                                                    'search_keyword' : search_keyword, 'condition' : condition})
 
 def sort_freeboardSearch(request):
-    search_keyword = request.POST['input']
-    condition = request.POST['condition']
-    if condition == 'titlesearch':
-        searched_posts = Post.objects.filter(title=search_keyword).order_by('-id')
-    elif condition == 'bodysearch':
-        searched_posts = Post.objects.filter(body__icontains=search_keyword).order_by('-id')
-    else:
-        searched_posts = Post.objects.filter(owner=search_keyword).order_by('-id')
+    post_objects_id = request.POST.get('post_objects_id')
+    objects_id_list = post_objects_id.split(';')
+    objects_id_list.remove('')
+    queryset = Post.objects.none()
+
+    for i in objects_id_list:
+        queryset |= Post.objects.filter(pk=i)
+
+    searched_posts = queryset.order_by('-views')
     searched_paginator = Paginator(searched_posts, 15)
     page = request.GET.get('page')
     searched_posts = searched_paginator.get_page(page)

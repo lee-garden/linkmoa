@@ -8,7 +8,7 @@
     <div class="folder-plus">
         <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
             {% csrf_token%}
-            <span class="mkdirtxt"></span><input id="mkdir" type="text" placeholder="새 폴더 만들기" name='dirname' class="mkdir-input">
+            <input id="mkdir" type="text" placeholder="새 폴더 만들기" name='dirname' class="mkdir-input">
             <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button>
         </form>
         <!-- <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button> -->
@@ -68,21 +68,21 @@
             </script>
             {% endfor %}
         </div>
-        <div class="paginator">
-                {% if posts.has_previous %}
-                    <a href="?page=1">First</a>
-                    <a href="?page={{posts.previous_page_number}}">Previous</a>
-                {% endif %}
-                    <span>{{posts.number}}</span>
-                    <span>of<span>
-                    <span>{{posts.paginator.num_pages}}</span>
-        
-                {% if posts.has_next %}
-                    <a href="?page={{posts.next_page_number}}">Next</a>
-                    <a href="?page={{posts.paginator.num_pages}}">Last</a>
-                {% endif %}
-            </div>
     </div>
+</div>
+<div class="paginator">
+        {% if posts.has_previous %}
+            <a href="?page=1">First</a>
+            <a href="?page={{posts.previous_page_number}}">Previous</a>
+        {% endif %}
+            <span>{{posts.number}}</span>
+            <span>of<span>
+            <span>{{posts.paginator.num_pages}}</span>
+
+        {% if posts.has_next %}
+            <a href="?page={{posts.next_page_number}}">Next</a>
+            <a href="?page={{posts.paginator.num_pages}}">Last</a>
+        {% endif %}
 </div>
 
     <script>

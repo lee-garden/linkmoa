@@ -24,79 +24,157 @@ html, body{
     text-align: center;
 }
 .footer{
-    border-top: 1.5px solid #DBBBBB;
-    background:#F4F5F7;
-    height: 100px;
+    background-color: black;
+    height: 150px;
     text-align: center;
-    color: black;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
 }
 .footer-title{
-    margin-top: 0px;
-    color: black;
+    margin-top: 30px;
+    color: #eee;
 }
-
+.footer-content {
+    margin: 20px 0;
+}
 /*BASE HTML*/
 /* nav */
-.mainsearchTerm {
-    padding: 12px 20px;
-    width: 400px;
-    border: 1px solid #e3e3e3;
-    box-shadow: none;
-    border-radius: 24px;
-    outline: none;
-}
-.mainsearchButton {
-    cursor: pointer;
-    font-size: 20px;
-    border: none;    
-    left: -55px;
-    position: relative;
-    background-color: transparent;
-    top: 2px;
-}
-.nav {
-    height: 200px;
+.navi {
     width: 100%;
     display: block;
     text-align: center;
-    padding: 30px 0 80px 0;
-    border-bottom: 0.5px solid #38B9C0;
+    padding: 45px 0 85px 0;
+    box-shadow: #38B9C0 0px -3px 5px 2px;
+}
+
+
+.log{
+    text-align: center;
 }
 .sub-nav {
     width: 100%;
     height: 45px;
-    position: relative;
-    top:120px;
+    position: absolute;
+    top: 110px;
     text-align: center;
 }
 .board-nav {
     float: left;
-    width: 20%;
+    width: 100%;
     height: 100%;
-    left: 15%;
     text-align: center;
-    position: absolute;
 }
 .loginout {
     float: right;
-    width: 20%;
-    height: 100%;
-    left: 69%;
-    text-align: center;
-    position: absolute;
+    width: 100%;
+    text-align: right;
 }
+
+/* /// */
+
+.mypage-label {
+    position: relative;
+    display: block;
+    line-height: 2em;
+    cursor: pointer;
+    font-weight: inherit;
+  }
+  
+  .mypage-label:after {
+    content:"";
+    position:absolute;
+    display:block;
+    top:50%;
+    right:5px;
+    width:0;
+    height:0;
+    border-top:4px solid rgba(255,255,255,.5);
+    border-bottom:0 solid rgba(255,255,255,.5);
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    transition:border-bottom .1s, border-top .1s .1s;
+    }
+  
+
+  
+  input:checked ~ .mypage-label:after{
+    border-top:0 solid rgba(255,255,255,.5);
+    border-bottom:4px solid rgba(255,255,255,.5);
+    transition:border-top .1s, border-bottom .1s .1s;
+  }
+  
+  /*hide the inputs*/
+  #check { display:none }
+  
+  /*show the second levele menu of the selected voice*/
+  input:checked ~ ul.pop{
+    max-height:300px;
+    transition:max-height 0.5s ease-in;
+  }
+  
+  /*style for the second level menu*/
+  ul.pop{
+    max-width: 150px;
+    max-height:0;
+    padding:0;
+    overflow:hidden;
+    list-style-type:none;
+    box-shadow:0 0 1px rgba(0,0,0,.3);
+    transition:max-height 0.5s ease-out;
+    position:absolute;
+    white-space: nowrap;
+    top: 120px;
+    right: 48px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: #ffffffa3;
+  }
+  
+  ul.pop li a{
+    display: block;
+    line-height: 30px;
+    text-decoration: none;
+  }
+  
+  ul.pop li a:hover{
+    color: black;
+  }
+
+
+
 .nav-ul{
     list-style: none;
-    width: 300px;
+    /* width: 100%; */
     margin: auto;
     padding-top: 12px;
     height:100%;
     display: inline-block;
 }
-.nav-ul li {
+.nav-ul1 {
+    list-style: none;
+    /* width: 100%; */
+    margin: auto;
+    padding-top: 12px;
+    height:100%;
     display: inline-block;
-    padding: 0 15px 0 0;
 }
+
+.nav-ul .not-hidden-li {
+    display: inline-block;
+    padding: 0 3em 0 0;
+}
+.nav-ul .not-hidden-li2 {
+    display: inline-block;
+    padding: 0 5em 0 0;
+}
+.nav-ul .hidden-li {
+    padding: 0;
+    text-align: center;
+}
+
 .nav-link{
     color: #38B9C0;
     font-family: 'Noto Sans KR', sans-serif;
@@ -117,22 +195,20 @@ html, body{
     box-shadow: none;
     border-radius: 24px;
     outline: none;
-    position: absolute;
-    left: 500px;
 
 }
-.searchTerm:focus, .urlList:focus{
+.searchTerm:focus{
     color: #000000;
-    box-shadow:0 4px 8px 0px rgba(32,33,36,0.5);
+    box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
 }
 .searchButton {
     cursor: pointer;
     font-size: 20px;
     border: none;    
-    left: 850px;
-    position: absolute;
+    left: -55px;
+    position: relative;
     background-color: transparent;
-    top: 35px;
+    top: 2px;
 }
 .sort {
     margin: 3px;
@@ -191,31 +267,10 @@ html, body{
 }
 
 /*INDEX HTML*/
-.mypage-wrap{
-    background-color: #f4f4f7;
-    min-height: 500px;
-}
-.mypage-contain{
-    margin: 0 auto 0 auto;
-    width: 1200px;
-    background-color: #F4F5F7;
-}
-.mypg-form{
-    position: absolute;
-    width: 1000px;
-    margin-top:-28px;
-    margin: -28px 0 0 -500px;
-    left:50%;
-}
-.d-bar{
-    border: 1px solid red;
-    float: left;
-}
 .mkdir-input{
     width: 200px;
     border: 2px solid #8763FB;
     border-bottom: none;
-    border-radius: 10px 10px 0 0;
     padding: 5px;
     outline: none;
     color: black;
@@ -224,8 +279,7 @@ html, body{
   }
 .form-mkdir{
     margin-top: 4em;
-    margin-left: -1000px;
-    
+    left:30%;
 }
 .fa-plus:before {
     color: #6478FB;
@@ -234,31 +288,17 @@ html, body{
     margin: 10px 0 0 0;
 }
 
-.urlList{
-    position: absolute;
-    padding: 12px 20px;
-    width: 385px;
-    border: 1px solid #DDDDDD;
-    box-shadow: none;
-    border-radius: 24px;
-    outline: none;
-    height: 45px;
-    left: 100px;
-    top: 30px;
-    z-index: 1;
-}
-.urlList::-webkit-scrollbar{
-        display: none !important;
+#urlList{
+    margin: 10px 0 0 0;
 }
 .line{
-    position: relative;
     height: 50px;
-    margin: -1px auto 0 auto;
+    margin: -1px auto 3em auto;
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
 }
 .objects{
     max-width: 1230px;
-    margin: 0 auto 0 auto;
+    margin: 2em auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -275,6 +315,7 @@ html, body{
   }
   
 .directory-nav li{
+    float: left;
     margin: 0 .5em 0 0;
 }
 
@@ -285,6 +326,7 @@ html, body{
     margin: 0;
     padding: 0;
     border : 0;
+    float: left;
 }
 
 .memoContainer{
@@ -297,9 +339,8 @@ html, body{
     float: left;
     border: 1px solid #d3d3d380;
     border-radius: .5em;
-    box-shadow: 1px 4px 5px 0 rgba(89, 105, 155, 0.8);
+    box-shadow: 1px 1px 4px 0 rgba(89, 105, 155, 0.8);
     padding: 0 .5rem;
-    background-color: white;
 }
 
 .memoContainer h2{
@@ -311,10 +352,6 @@ html, body{
     text-decoration: none;
 }
 
-
-.paginator{
-    background: #F4F5F7;
-}
 /*ACCOUNTS APP*/
 .loginBox{
     border: 1px solid black;

@@ -37,14 +37,6 @@
                     </div> {% endcomment %}
 
 
-                    <form method="POST" action="{% url 'search_board' %}" class="search-form">
-                        {% csrf_token %}
-                        <input type="text" placeholder="search" name="searchBox" class="mainsearchTerm" />
-                        <button type="submit" class="mainsearchButton" >
-                            <i class="fa fa-search" aria-hidden="true" ></i>
-                        </button>
-                    </form>
-
 
 {% comment %} 
                     <div class="loginout">
@@ -90,6 +82,22 @@
                                     <li class="not-hidden-li"><a href="{% url 'board' %}" class="nav-link">공유 게시판</a></li>
                                     <li class="not-hidden-li"><a href="{% url 'freeboard' %}" class="nav-link">자유 게시판</a></li>
                                     <li class="not-hidden-li"><a href="{% url 'reference' %}" class="nav-link">자료실</a></li>
+                                    <li class="not-hidden-li">
+                                    
+                                                        
+                                        <form method="POST" action="{% url 'search_board' %}" class="search-form">
+                                            {% csrf_token %}
+                                            <input type="text" placeholder="search" name="searchBox" class="mainsearchTerm" />
+                                            <button type="submit" class="mainsearchButton" >
+                                                <i class="fa fa-search" aria-hidden="true" ></i>
+                                            </button>
+                                        </form>
+
+                                    
+                                    
+                                    
+                                    
+                                    </li>
                                 </ul>      
                             </div>
                         </div>

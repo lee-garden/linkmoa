@@ -75,10 +75,18 @@ def index(request):
 def make_memo(request):
     user=request.user
     memo = Memo()
+    print(user.username + ' make new memo!')
     splited = request.POST['url'].split('\n')
     filteredUrl = urlScrap.scrapUrl(splited, request.POST['key'])
     if len(filteredUrl) > 1:
         memo.updateMemo(user.id, user.username, "recently", False, 0, request.POST['key'], filteredUrl, "", "")
+    return redirect('index')
+
+def make_memo_direct(request):
+    user=request.user
+    memo = Memo()
+    memo.updateMemo(user.id, user.username, user.profile.currentdir, memo.shared, memo.download, request.GET.get('editKey'), request.GET.get('editUrl'), request.GET.get('editMemo'), request.GET.get('editTag').replace("#",","))
+    print(user.username + ' make direct memo')
     return redirect('index')
 
 def mkdir(request):

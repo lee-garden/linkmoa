@@ -2,13 +2,17 @@ var dirname // Global Variable(정원찡's Good idea ㅎㅎ)
 
 $('#editModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
-    var id = button.data('id')
     var modal = $(this)
+    if(button.data('id')){
+    var id = button.data('id')
     modal.find('.modal-body #keyword').val(button.data('keyword'))
     modal.find('.modal-body #urls').val(button.data('urls'))
     modal.find('.modal-body #memo').val(button.data('memo'))
     modal.find('.modal-body #tag').val(button.data('tag').replace(/\,/g, '#'))
     modal.find('.modal-body form').attr('action', '/edit_memo/' + id + '/')
+    } else{
+        modal.find('.modal-body form').attr('action', '/make_memo_direct/')
+    }
     $('#confirmEdit').click(function(event){
         modal.find('.modal-body form').submit()
     });

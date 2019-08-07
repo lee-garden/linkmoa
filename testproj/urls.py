@@ -12,6 +12,7 @@ urlpatterns = [
     path('',linkmoa.views.board, name='board'),
     path('index/', linkmoa.views.index, name='index'),
     path('make_memo',linkmoa.views.make_memo, name='make_memo'),
+    path('make_memo_direct/', linkmoa.views.make_memo_direct, name='make_memo_direct'),
     path('delete_memo/<int:memo_id>/', linkmoa.views.delete_memo, name='delete_memo'),
     path('share_memo/<int:memo_id>/', linkmoa.views.share_memo, name='share_memo'),
     path('undo_share/<int:memo_id>', linkmoa.views.undo_share, name='undo_share'),

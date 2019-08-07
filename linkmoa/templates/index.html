@@ -2,6 +2,7 @@
 {% block content %}
 
 <script src="../../static/js/linkprint.js"></script>
+<button class="edit-btn" id="setSelect" data-toggle="modal" data-target="#editModal">새메모</button>
 <div class="urls" id="app">
     <form method="POST" action ="{% url 'make_memo' %}" class="">
         {% csrf_token%}
@@ -100,5 +101,5 @@
 {% include 'moreModal.html' %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script src="../../static/js/vue.js"></script>
-    <script src="../../static/js/query.js?ver=1.1"></script>
+    <script src="../../static/js/query.js?ver=1.2"></script>
 {% endblock %}

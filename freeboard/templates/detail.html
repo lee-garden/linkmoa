@@ -1,13 +1,7 @@
 {% extends 'base2.html' %}
 {% block content %}
-<div class="temp">
-        <p class="slogan">서로의 지식을 연결하다</p>
-        <p class="slogan-name">링크모아</p> 
-</div>
-
 <div class="board">
     <div class="lower-part">
-        <div class="line"></div>
         <div class="free-board-container">
             글 쓴이 : {{post.owner}}<br>
             글 제목 : {{post.title}}<br>
@@ -19,7 +13,8 @@
                 <button class="deletepost"onclick="location.href='{% url 'deletepost' post.id %}'">삭제하기</button>
             {% endif %}
             </div>
-            <div class="post-comments">
+        </div>
+        <div class="post-comments">
                 <form method="POST" class="comment-form" action="{% url 'writecomment' post.id %}">
                     {% csrf_token %}
                     <textarea class="comment-box" name="comment"></textarea>
@@ -44,12 +39,8 @@
                     {% endfor %}
                 </table>
             </div>
-        </div>
     </div>
 </div>
 
-<footer class="footer">
-        <h2 class="footer-title">LIKE LION</h2>
-        <h5>khjvvv7@gmail.com</h5>
-</footer>
+
 {% endblock %}

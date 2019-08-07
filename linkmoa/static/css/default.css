@@ -37,6 +37,14 @@ html, body{
 
 /*BASE HTML*/
 /* nav */
+.mainsearchTerm {
+    padding: 12px 20px;
+    width: 400px;
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+}
 .nav {
     height: 200px;
     width: 100%;

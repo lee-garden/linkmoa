@@ -10,6 +10,11 @@
         <div class="line"></div>
         <div class="free-board-container">
             <div class="board-header">
+                {% if request.path == '/freeboard' %}
+                    <button class="createbtn"onclick="location.href='{% url 'sort_freeboard' %}'">조회순</button>
+                {% elif request.path == '/freeboard/sort' %}
+                    <button class="createbtn"onclick="location.href='{% url 'freeboard' %}'">원래대로</button>
+                {% endif %}
                 <button class="createbtn"onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
             </div>
             <div class="board-contents">

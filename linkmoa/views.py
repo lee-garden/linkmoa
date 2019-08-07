@@ -70,7 +70,7 @@ def index(request):
     paginator = Paginator(current, 20)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id, 'posts' : posts})
+    return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id, 'posts' : posts, 'user_currentdir_name' : user.profile.currentdir})
 
 def make_memo(request):
     user=request.user

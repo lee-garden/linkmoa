@@ -35,7 +35,7 @@
                             <li><a href="{% url 'freeboard' %}" class="nav-link">자유 게시판</a></li>
                         </ul>      
                     </div>
-                    <form method="POST" action="{% url 'search_board' %}" class="search-form">
+                    <form method="POST" onsubmit="return check()" action="{% url 'search_board' %}" class="search-form" name="searchf">
                         {% csrf_token %}
                         <input type="text" placeholder="search" name="searchBox" class="searchTerm" />
                         <button type="submit" class="searchButton" >
@@ -66,6 +66,17 @@
                 </div>
             </div>
         </div>
+        <script>
+            function check() {
+                console.log('hello')
+                if(searchf.searchBox.value == "") {
+                alert("검색어를 입력해 주세요.");
+                searchf.id.focus();
+                return false;
+                }
+                else return true;
+            }        
+        </script>
         {% block content %}
         {% endblock %}
     </div>

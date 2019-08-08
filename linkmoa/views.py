@@ -23,15 +23,27 @@ def board(request):
         memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
     else:
         memos = Memo.objects.filter(shared=True).order_by('-id')
-    board_paginator = Paginator(memos, 20)
+    board_paginator = Paginator(memos, 4)
     page = request.GET.get('page')
     board_posts = board_paginator.get_page(page)
+    print(page)
     return render(request,'board.html',{'board_posts' : board_posts})
 
 def search(request):
     user=request.user
-    keyword = request.POST['searchBox']
+    ############## Pagination 처리 ##############
+    try:
+        #맨 처음 검색 했을때는 searchBox에서 value를 가져옴
+        keyword = request.POST['searchBox']
+        page = request.GET.get('page')
+        print('1페이지')
+    except Exception as e:
+        #search_board창에서 페이지 넘길 경우 hidden value, 해당 페이지 를 받아옴
+        keyword = request.GET['hidden-value']
+        page = request.GET['pagenum']
     sort = request.GET.get('sort','')
+
+    ############## Search Logic #################
     if keyword =='':  #빈 input 예외처리
         return redirect('board')
     if keyword[0] == '#':  #태그 검색일 경우
@@ -49,15 +61,15 @@ def search(request):
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
         else:
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
-    search_paginator = Paginator(searched_memos, 20)
-    page = request.GET.get('page')
+    search_paginator = Paginator(searched_memos, 4)
     search_posts = search_paginator.get_page(page)
-    return render(request,'search_board.html', {'search_posts' : search_posts})
+    # 쿼리셋과 함께 템플릿에서 받아온 keyword도 함께 넘김. keyword는 템플릿의 페이지네이션 부분에서 사용
+    return render(request,'search_board.html', {'search_posts' : search_posts, 'keyword' : keyword})
 
 def tag_board(request, tag):
     tag=Tag.objects.get(name=tag)
     tagged_memos = TaggedItem.objects.get_intersection_by_model(Memo, tag).filter(shared=True)
-    tag_paginator = Paginator(tagged_memos, 20)
+    tag_paginator = Paginator(tagged_memos, 2)
     page = request.GET.get('page')
     tag_posts = tag_paginator.get_page(page)
     return render(request, 'tag_board.html',{'tag_posts' : tag_posts})

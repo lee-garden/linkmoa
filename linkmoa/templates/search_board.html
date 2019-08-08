@@ -49,17 +49,35 @@
         </div>
         <div class="paginator">
             {% if search_posts.has_previous %}
-                <a href="?page=1">First</a>
-                <a href="?page={{search_posts.previous_page_number}}">Previous</a>
+                <form action="?page=1">
+                    <input type="submit" value="First">
+                    <input type="hidden" value="{{keyword}}" name="hidden-value">
+                    <input type="hidden" value="1" name="pagenum"> 
+                </form> 
+                <form action="?page={{search_posts.previous_page_number}}">
+                    <input type="submit" value="Previous">
+                    <input type="hidden" value="{{keyword}}" name="hidden-value">
+                    <input type="hidden" value="{{search_posts.previous_page_number}}" name="pagenum">
+                </form>
             {% endif %}
                 <span>{{search_posts.number}}</span>
                 <span>of<span>
                 <span>{{search_posts.paginator.num_pages}}</span>
     
-            {% if board_posts.has_next %}
-                <a href="?page={{search_posts.next_page_number}}">Next</a>
-                <a href="?page={{search_posts.paginator.num_pages}}">Last</a>
+            {% if search_posts.has_next %}
+            <!-- View에서 넘겨 받은 keyword 를 유지하기 위해 hidden 태그에 value로 가지고 있음 -->
+                <form action="?page={{search_posts.next_page_number}}">
+                    <input type="submit" value="NEXT">
+                    <input type="hidden" value="{{keyword}}" name="hidden-value">
+                    <input type="hidden" value="{{search_posts.next_page_number}}" name="pagenum"> 
+                </form> 
+                <form action="?page={{search_posts.paginator.num_pages}}">
+                    <input type="submit" value="Last">
+                    <input type="hidden" value="{{keyword}}" name="hidden-value">
+                    <input type="hidden" value="{{search_posts.paginator.num_pages}}" name="pagenum">
+                </form>
             {% endif %}
+
         </div>
     </div>
 

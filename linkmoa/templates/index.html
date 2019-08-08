@@ -2,8 +2,7 @@
 {% block content %}
 
 <script src="../../static/js/linkprint.js"></script>
-<div class="urls" id="app">
-</div>
+<div class="urls" id="app"></div>
 <div class="lower-part">
     <div class="folder-plus">
         <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
@@ -16,101 +15,121 @@
     <div class="line">
         <form method="POST" action ="{% url 'make_memo' %}" class="mypg-form">
             {% csrf_token%}
-            <br>
             <!-- <textarea  class="" rows="1" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea> -->
-            <textarea id="review_text" class="urlList" id="urlList" v-model="newMessage" wrap="off" placeholder="URL입력" name="url"></textarea>
-            <!-- <input type="text" class="searchTerm" placeholder="URLs"> -->
-            <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
-            <button id="keyword-button" v-on:click="renew()" class="searchButton">
-                    <i class="fa fa-search" aria-hidden="true" ></i>
-            </button>
-            <br>
+            <div class="txt-input-btn">
+              <div class="form-txt">
+                <textarea id="review_text" class="urlList" id="urlList" v-model="newMessage" wrap="off" placeholder="URL입력" name="url"></textarea>
+              </div>
+              <!-- <input type="text" class="searchTerm" placeholder="URLs"> -->
+              <div class="form-input-btn">
+                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
+                <button id="keyword-button" v-on:click="renew()" class="searchButton">
+                  <i class="fa fa-search" aria-hidden="true" ></i>
+                </button>
+              </div>
+            </div>
         </form>
     </div>
     <div class="mypage-wrap">
         <div class="mypage-contain">
-        <div class="d-bar">
-            <ul class="directory-nav">
-                <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
-                {% for a in user.profile.get_fields_name %}
-                    <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
-                {% endfor %}
-            </ul>
-        </div>
+          <div class="d-bar">
+              <ul class="directory-nav">
+                  <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
+                  {% for a in user.profile.get_fields_name %}
+                      <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
+                  {% endfor %}
+              </ul>
+          </div>
 
-    <div class="objects">
-        {% for memo in posts %}
-            <div class="memoContainer">
-                <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
-                <span class="buttons">
-                    <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}"
-                            data-urls="{{memo.urls}}" data-memo="{{memo.memo}}" data-tag="{{memo.tag}}"><i class="fa fa-edit"></i></button> 
-                    <button class="i-btn"id="setSelect" data-toggle="modal" data-target="#moveModal" data-id= "{{memo.id}}"><i class="fa fa-folder"></i></button>
-                </span>
-                <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
-                <div id="result{{forloop.counter}}">sample</div>
-                <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-memo="{{memo.memo}}" data-tag="{{memo.tag}}">&nbsp;더보기...</a><br><br>
-                {% load tagging_tags %}
-                {% tags_for_object memo as tags %}
-                {% for tag in tags %}
-                <a href="{% url 'tag_board' tag.name %}">#{{tag.name}}</a>
-                {% endfor %}
-                <div class="button-list">
-                    <span class="btns">
-                        <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-upload"></i></button>
-                        <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
-                    </span>
+          <div class="objects">
+            {% for memo in posts %}
+                <div class="memoContainer">
+                  <div class="container-1">
+                    <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
+           
+
+                    <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
+                    <div id="result{{forloop.counter}}">sample</div>
+                    <div class="link-txt">
+                      <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-memo="{{memo.memo}}" data-tag="{{memo.tag}}">더보기...</a>
+                    </div>
+                    {% load tagging_tags %}
+                    {% tags_for_object memo as tags %}
+                    {% for tag in tags %}
+                      <a href="{% url 'tag_board' tag.name %}">#{{tag.name}}</a>
+                    {% endfor %}
+                  </div>
+                  <div class="container-2">
+                    <div class="button-list">
+                      <div class="button-part-1">
+                        <span class="buttons">
+                          <button class="i-btn" type="button" data-toggle="modal" data-target="#editModal" data-id="{{memo.id}}" data-keyword="{{memo.keyword}}"
+                            data-urls="{{memo.urls}}" data-memo="{{memo.memo}}" data-tag="{{memo.tag}}">
+                            <i class="fa fa-edit"></i>
+                          </button>
+                          <button class="i-btn" id="setSelect" data-toggle="modal" data-target="#moveModal" data-id="{{memo.id}}">
+                            <i class="fa fa-folder"></i>
+                          </button>
+                        </span>
+                      </div>
+                      <div class="button-part-2">
+                        <span class="btns">
+                            <button class="i-btn"onclick="location.href='{%url 'share_memo' memo.id %}'"><i class="fa fa-upload"></i></button>
+                            <button class="i-btn"onclick="location.href='{%url 'delete_memo' memo.id %}'"><i class="fa fa-trash"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                <script>
+                    linkPrint({{forloop.counter}});
+                </script>
+                {% endfor %}
             </div>
-
-            <script>
-                linkPrint({{forloop.counter}});
-            </script>
-            {% endfor %}
         </div>
-    </div>
-</div>
-<div class="paginator">
-        {% if posts.has_previous %}
-            <a href="?page=1">First</a>
-            <a href="?page={{posts.previous_page_number}}">Previous</a>
-        {% endif %}
-            <span>{{posts.number}}</span>
-            <span>of<span>
-            <span>{{posts.paginator.num_pages}}</span>
+      </div>
+      <div class="paginator">
+              {% if posts.has_previous %}
+                  <a href="?page=1">First</a>
+                  <a href="?page={{posts.previous_page_number}}">Previous</a>
+              {% endif %}
+                  <span>{{posts.number}}</span>
+                  <span>of<span>
+                  <span>{{posts.paginator.num_pages}}</span>
 
-        {% if posts.has_next %}
-            <a href="?page={{posts.next_page_number}}">Next</a>
-            <a href="?page={{posts.paginator.num_pages}}">Last</a>
-        {% endif %}
-</div>
+              {% if posts.has_next %}
+                  <a href="?page={{posts.next_page_number}}">Next</a>
+                  <a href="?page={{posts.paginator.num_pages}}">Last</a>
+              {% endif %}
+      </div>
 
     <script>
       $(function() { 
-            $('.directory-nav li button').click(function(e) {
-                e.preventDefault();
-                if ($(this).closest('button').attr('id') == "current"){
-                    return
-                } else {
-                    $(".objects div").hide();
-                }
-            });
+        $('.directory-nav li button').click(function(e) {
+          e.preventDefault();
+          if ($(this).closest('button').attr('id') == "current"){
+              return
+          } else {
+              $(".objects div").hide();
+          }
+        });
       });
       $('#review_text').focus( function() {
-  // store original height
-  $(this).attr('data-height', $(this).height());
-  // animate the height change
-  $(this).animate({ height: 200 }, 'slow');
-}).blur( function(e) {
-  // set to original height
-  $(this).animate({ height: 45 }, 'slow');
-});
+        // store original height
+        $(this).attr('data-height', $(this).height());
+        // animate the height change
+        $(this).animate({ height: 200 }, 'slow');
+      }).blur( function(e) {
+        // set to original height
+        $(this).animate({ height: 45 }, 'slow');
+      });
     </script>
-</div>
-<footer class="footer">
-    <h2 class="footer-title">LIKE LION</h2>
-    <h5>khjvvv7@gmail.com</h5>
-</footer>
+  </div>
+  <footer class="footer">
+      <h2 class="footer-title">LIKE LION</h2>
+      <h5>khjvvv7@gmail.com</h5>
+  </footer>
 
 {% include 'modal.html' %}
 {% include 'moreModal.html' %}

@@ -13,13 +13,17 @@
 }
 
 /*COMMON*/
-form {
-    text-align: center;
-}
+
 html, body{
     margin : 0;
     font-family: 'Noto Sans KR', sans-serif;
 }
+
+form {
+    justify-content: center;
+    text-align: center;
+}
+
 .paginator{
     text-align: center;
 }
@@ -176,6 +180,33 @@ html, body{
     text-decoration: none;
     font-size: 15px;
 }
+
+
+.mypg-form input {
+    align-items: center;
+    width: 100%;
+    padding: 7px 0px 7px 25px;
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+}
+
+
+
+.mypg-form textarea {
+    margin: 1em 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 7px 0px 7px 25px;
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+}
+
+
 .search-form{
     display: flex;
     align-items: center;
@@ -193,14 +224,18 @@ html, body{
     width: 85%;
 }
 
+.txt-input-btn {
+    display: flex;
+}
+.form-txt, .form-input-btn {
+    float: left;
+    width: 40%;
+    margin: 0 auto;
+}
 
 .searchTerm {
-    /* padding: 12px 20px; */
-    /* width: 400px; */
-    /* border: 1px solid #e3e3e3; */
     border: none;
     box-shadow: none;
-    /* border-radius: 24px; */
     outline: none;
     width: 85%;
 }
@@ -212,14 +247,14 @@ html, body{
     cursor: pointer;
     font-size: 20px;
     border: none;    
-    /* left: -55px; */
+    left: -50px;
     position: relative;
     background-color: transparent;
     top: 2px;
 }
 .sort {
     margin: 3px;
-    width: 135px;
+    width: 135px; 
     left:62%;
     float: right;
     height: 98%;
@@ -274,6 +309,27 @@ html, body{
 }
 
 /*INDEX HTML*/
+.mypage-wrap{
+    min-height: 500px;
+}
+.mypage-contain{
+    margin: 0 auto;
+
+    width: 100%;
+    height: 100%;
+}
+
+.d-bar{
+  background-color: #f4f4f7;
+  float: left;
+  width: 15%;
+  margin: 0 auto;
+  padding: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100%;
+}
 .mkdir-input{
     width: 200px;
     border: 2px solid #8763FB;
@@ -284,46 +340,46 @@ html, body{
     height: 30px;
     font-size: 15px;
   }
-.form-mkdir{
-    margin-top: 4em;
-    left:30%;
-}
+
 .fa-plus:before {
     color: #6478FB;
 }
 #keyword-search{
-    margin: 10px 0 0 0;
+    margin: 1em 0;
+    width: 80%;
 }
 
 #urlList{
     margin: 10px 0 0 0;
 }
 .line{
+    /* position: relative;
     height: 50px;
-    margin: -1px auto 3em auto;
-    background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
+    margin: -1px auto 0 auto;
+    background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 ); */
+    position: relative;
+    height: 100px;
+    margin: 40px 0 0 0;
+    background: #f4f4f7;
 }
 .objects{
-    max-width: 1230px;
-    margin: 2em auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 85%;
+  padding: 3em 5em 5em 5em;
 }
 .directory-nav{
-    overflow: hidden;
-    height: 50px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: table;
-    margin-right: auto;
-    margin-left: auto;
-  }
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: table;
+}
   
 .directory-nav li{
-    float: left;
-    margin: 0 .5em 0 0;
+  margin: 0 auto;
+  padding: 5px 0;
 }
 
 .directory-nav #current {
@@ -337,21 +393,23 @@ html, body{
 }
 
 .memoContainer{
-    max-width: 200px;
-    margin-bottom: 1rem;
+    max-height: 230px;
+    max-width: 100%;
+    width: 45%;
+    height: 170px;
     position: relative;
-    margin: 10px;
-    width: 100%;
-    height: 270px;
+    margin: 1.3em;
     float: left;
-    border: 1px solid #d3d3d380;
-    border-radius: .5em;
-    box-shadow: 1px 1px 4px 0 rgba(89, 105, 155, 0.8);
-    padding: 0 .5rem;
+    border: .5px solid #d3d3d380;
+    border-radius: .8em;
+    box-shadow: 0px 1px 5px 0 rgba(184, 201, 255, 0.8);
+    padding: 1em 3em;
+    background-color: white;
+    display: flex;
 }
 
 .memoContainer h2{
-    text-align: center;
+    width: 75%;
 }
 .memoContainer h2 a{
     text-align: center;
@@ -376,11 +434,11 @@ html, body{
 
 /*Font*/
 .link-txt{
-width:170px;
-padding:0 5px;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
+  width: 100%;
+  padding: 2px 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .slogan, .slogan-name{
 font-family: 'East Sea Dokdo', cursive;
@@ -410,21 +468,23 @@ font-size: 30px;
     float: right;
     margin: 1px 15px 3px 0;
 }
-
-
+.container-1 {
+  width: 90%;
+}
+.conteiner-2 {
+  width: 10%;
+}
 /*BUTTONS*/
 .buttons{ /*index.html*/
     float: right;
 }
 .button-list{ /*index.html*/
-    position: absolute;
-    width: 200px;
-    bottom: 25px;
+    height: 20px;
     text-align: center;
+    margin: 0;
 }
 .btns{ /*index.html*/
     float: right;
-    margin-right: 10px;
   }
 .edit-btn{
     background: #EFEFEF;
@@ -443,7 +503,7 @@ font-size: 30px;
 }
 
 .d-nav-btns{
-    margin: 5px 0 auto 5px;
+   margin: 5px 0;
     height: 40px;
     width: 110px;
     border: none;

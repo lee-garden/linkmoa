@@ -49,7 +49,7 @@ def search(request):
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
         else:
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
-    search_paginator = Paginator(searched_memos, 20)
+    search_paginator = Paginator(searched_memos, 1)
     page = request.GET.get('page')
     search_posts = search_paginator.get_page(page)
     return render(request,'search_board.html', {'search_posts' : search_posts})
@@ -57,7 +57,7 @@ def search(request):
 def tag_board(request, tag):
     tag=Tag.objects.get(name=tag)
     tagged_memos = TaggedItem.objects.get_intersection_by_model(Memo, tag).filter(shared=True)
-    tag_paginator = Paginator(tagged_memos, 20)
+    tag_paginator = Paginator(tagged_memos, 10)
     page = request.GET.get('page')
     tag_posts = tag_paginator.get_page(page)
     return render(request, 'tag_board.html',{'tag_posts' : tag_posts})
@@ -67,7 +67,7 @@ def index(request):
     print('Request user : ' + user.username)
     memos = Memo.objects.filter(user_id=user.id).order_by('-id')
     current = memos.filter(directory=user.profile.currentdir)
-    paginator = Paginator(current, 20)
+    paginator = Paginator(current, 10)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request,'index.html',{'memos' : memos, 'current' : current, 'userid' : user.id, 'posts' : posts})

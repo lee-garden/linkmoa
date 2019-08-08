@@ -9,9 +9,15 @@
     <div class="lower-part">
         <div class="line"></div>
         <div class="free-board-container">
-            글 쓴이 : {{post.owner}}<br>
-            글 제목 : {{post.title}}<br>
-            내용 : {{post.body}}<br>
+            <div class="detail-author">
+                글 쓴이 : {{post.owner}}
+            </div>
+            <div class="detail-title">
+                글 제목 : {{post.title}}
+            </div>
+            <div class="detail-body">
+                내용 : {{post.body}}
+            </div>
             <div class="freeboard-detail-btns">
                 <button class="gofreeboard"onclick="location.href='{% url 'freeboard' %}'">목록</button>
                 {% if user.username == post.owner %}
@@ -39,7 +45,10 @@
                         <td class="comment-author">손님</td>
                         {% endif %}
                         <td class="comment-text">{{c.text}}</td>
-                        <td class="comment-delete"><button class="comment-delete-button"onclick="location.href='{% url 'deletecomment' post.id c.id %}'">삭제</button></td>
+                        {% if c.author == user.username %}
+                        <td class="comment-delete"><button class="comment-delete-button"onclick="
+                            var a= confirm('댓글을 삭제하시겠습니까?'); console.log(a); if(a==true){location.href='{% url 'deletecomment' post.id c.id %}'}">삭제</button></td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </table>

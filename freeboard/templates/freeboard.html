@@ -8,8 +8,18 @@
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
+            <div class='search-state' style= "text-align: center;" >
+                {% if request.path == '/freeboard/sort' %}
+                    <h4>*상태 : 조회순 정렬</h4>
+                {% endif %}
+            </div>
         <div class="free-board-container">
             <div class="board-header">
+                {% if request.path == '/freeboard' %}
+                    <button class="createbtn"onclick="location.href='{% url 'sort_freeboard' %}'">조회순</button>
+                {% elif request.path == '/freeboard/sort' %}
+                    <button class="createbtn"onclick="location.href='{% url 'freeboard' %}'">원래대로</button>
+                {% endif %}
                 <button class="createbtn"onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
             </div>
             <div class="board-contents">

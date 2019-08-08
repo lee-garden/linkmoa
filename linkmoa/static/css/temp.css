@@ -306,7 +306,7 @@ form {
 /*Board , Search_Board HTML*/
 .temps {
     display: flex;
-    height: 350px;
+    height: 550px;
 }
 .temp1{
     height: 100%;
@@ -330,6 +330,7 @@ form {
     background: transparent;
     text-align: center;
 }
+
 .temp2 > .nav-ul-2 > .not-hidden-li > a{
     color: black;
 }
@@ -344,9 +345,10 @@ form {
 }
 
 .border-custom-style {
-    height: 70%;
+    height: 55%;
+    width: 230px;
     max-width: 25%;
-    margin: auto 13em auto 1em;
+    margin: 1em 13em 8em 1em;
     box-sizing: border-box;
     display: inline-block;
     border: 1px solid aliceblue;
@@ -433,6 +435,7 @@ form {
   justify-content: center;
   width: 85%;
   padding: 3em 5em 5em 5em;
+  border-top: 1px solid black;
 }
 .directory-nav{
   margin: 0;

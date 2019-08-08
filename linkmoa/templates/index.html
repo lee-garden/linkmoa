@@ -2,20 +2,6 @@
 {% block content %}
 
 <script src="../../static/js/linkprint.js"></script>
-<button class="edit-btn" id="setSelect" data-toggle="modal" data-target="#editModal">새메모</button>
-<div class="urls" id="app">
-    <form method="POST" action ="{% url 'make_memo' %}" class="">
-        {% csrf_token%}
-        <br>
-        검색 :
-        <textarea class="urlArea searchTerm" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea>
-        <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
-        <button id="keyword-button" v-on:click="renew()" class="searchButton">
-                <i class="fa fa-search" aria-hidden="true" ></i>
-        </button>
-        <br>
-    </form>
-</div>
 <div class="lower-part">
     <div class="folder-plus">
         <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
@@ -25,6 +11,21 @@
         </form>
     </div>
     <div class="line">
+        <div class="urls" id="app">
+            <form method="POST" action ="{% url 'make_memo' %}" class="mypg-form">
+                {% csrf_token%}
+                <br>
+                <!-- <textarea  class="" rows="1" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea> -->
+                <textarea id="review_text" class="urlList" id="urlList" v-model="newMessage" wrap="off" placeholder="URL입력" name="url"></textarea>
+                <!-- <input type="text" class="searchTerm" placeholder="URLs"> -->
+                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
+                <button id="keyword-button" v-on:click="renew()" class="searchButton">
+                        <i class="fa fa-search" aria-hidden="true" ></i>
+                </button>
+                <br>
+            </form>
+            <button class="edit-btn" id="setSelect" data-toggle="modal" data-target="#editModal">새메모</button>
+        </div>
     </div>
     <div class="mypage-contents">
     <div class="d-bar">
@@ -101,6 +102,16 @@
                 }
             });
       });
+      $('#review_text').focus( function() {
+  // store original height
+  $(this).attr('data-height', $(this).height());
+  // animate the height change
+  $(this).animate({ height: 200 }, 'slow');
+}).blur( function(e) {
+  // set to original height
+  $(this).animate({ height: 45 }, 'slow');
+});
+
     </script>
 </div>
 <footer class="footer">

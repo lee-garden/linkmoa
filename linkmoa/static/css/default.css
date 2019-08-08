@@ -40,6 +40,24 @@ html, body{
 
 /*BASE HTML*/
 /* nav */
+.mainsearchTerm {
+    padding: 12px 20px;
+    width: 400px;
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+}
+.mainsearchButton {
+    cursor: pointer;
+    font-size: 20px;
+    border: none;    
+    left: -55px;
+    position: relative;
+    background-color: transparent;
+    top: 2px;
+}
+
 .nav {
     height: 200px;
     width: 100%;
@@ -103,20 +121,22 @@ html, body{
     box-shadow: none;
     border-radius: 24px;
     outline: none;
+    position: absolute;
+    left: 500px;
 
 }
-.searchTerm:focus{
+.searchTerm:focus, .urlList:focus{
     color: #000000;
-    box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
+    box-shadow:0 4px 8px 0px rgba(32,33,36,0.5);
 }
 .searchButton {
     cursor: pointer;
     font-size: 20px;
     border: none;    
-    left: -55px;
-    position: relative;
+    left: 850px;
+    position: absolute;
     background-color: transparent;
-    top: 2px;
+    top: 35px;
 }
 .sort {
     margin: 3px;
@@ -183,6 +203,7 @@ html, body{
     width: 200px;
     border: 2px solid #8763FB;
     border-bottom: none;
+    border-radius: 10px 10px 0 0;
     padding: 5px;
     outline: none;
     color: black;
@@ -191,7 +212,8 @@ html, body{
   }
 .form-mkdir{
     margin-top: 4em;
-    left:30%;
+    margin-left: -1000px;
+    
 }
 .fa-plus:before {
     color: #6478FB;
@@ -199,10 +221,32 @@ html, body{
 #keyword-search{
     margin: 10px 0 0 0;
 }
-
-#urlList{
-    margin: 10px 0 0 0;
+.mypg-form{
+    position: absolute;
+    width: 1000px;
+    margin-top:-28px;
+    margin: -28px 0 0 -500px;
+    left:50%;
+    float: left;
 }
+
+.urlList{
+    position: absolute;
+    padding: 12px 20px;
+    width: 385px;
+    border: 1px solid #DDDDDD;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+    height: 45px;
+    left: 100px;
+    top: 30px;
+    z-index: 1;
+}
+.urlList::-webkit-scrollbar{
+        display: none !important;
+}
+
 .line{
     height: 50px;
     margin: -1px auto 2em auto;

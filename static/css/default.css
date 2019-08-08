@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|family=Cute+Font&display=swap');
 
+.inforoom{
+    position: absolute;
+    right: 15%;
+    top: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #222222;
+}
+.inforoom-a{
+    color: #222222;
+}
 
 /*COMMON*/
 form {
@@ -138,7 +148,6 @@ html, body{
 }
 .container-linkmoa{
     margin: 0;
-    height: 900px;
 }
 
 
@@ -312,7 +321,7 @@ font-size: 30px;
 .btns{ /*index.html*/
     float: right;
     margin-right: 10px;
-  }
+}
 .edit-btn{
     background: #EFEFEF;
     outline: none;
@@ -328,26 +337,29 @@ font-size: 30px;
     transition: 0.3s;
     color: #FFFEEE;
 }
-
 .d-nav-btns{
     margin: 5px 0 auto 5px;
     height: 40px;
     width: 110px;
     border: none;
     border-radius: 20px;
-    background: #FEFEFE;
+    background: #FFFEEE;
     font-size: 10px;
-    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
-    font-size: 15px;
+}
+.selected-folder{
+    margin: 5px 0 auto 5px;
+    height: 40px;
+    width: 110px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0);
+    font-size: 10px;
 }
 .i-btn, .i-btn-cd{
     background: none;
     color: inherit;
     border: none;
 }
-
-
-
 
     /* Deprecated */
 /*38B9C8 - > 333333*/

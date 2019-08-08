@@ -69,7 +69,7 @@ def search(request):
 def tag_board(request, tag):
     tag=Tag.objects.get(name=tag)
     tagged_memos = TaggedItem.objects.get_intersection_by_model(Memo, tag).filter(shared=True)
-    tag_paginator = Paginator(tagged_memos, 20)
+    tag_paginator = Paginator(tagged_memos, 2)
     page = request.GET.get('page')
     tag_posts = tag_paginator.get_page(page)
     return render(request, 'tag_board.html',{'tag_posts' : tag_posts})

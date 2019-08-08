@@ -41,19 +41,19 @@
         {% endfor %}
         </div>
         <div class="paginator">
-                {% if board_posts.has_previous %}
-                    <a href="?page=1">First</a>
-                    <a href="?page={{board_posts.previous_page_number}}">Previous</a>
-                {% endif %}
-                    <span>{{board_posts.number}}</span>
-                    <span>of<span>
-                    <span>{{board_posts.paginator.num_pages}}</span>
-        
-                {% if board_posts.has_next %}
-                    <a href="?page={{board_posts.next_page_number}}">Next</a>
-                    <a href="?page={{board_posts.paginator.num_pages}}">Last</a>
-                {% endif %}
-            </div>
+            {% if board_posts.has_previous %}
+                <button onclick="location.href='?page=1'">First</button>
+                <button onclick="location.href='?page={{board_posts.previous_page_number}}'">Previous</button>
+            {% endif %}
+                <span>{{board_posts.number}}</span>
+                <span>of<span>
+                <span>{{board_posts.paginator.num_pages}}</span>
+    
+            {% if board_posts.has_next %}
+                <button onclick="location.href='?page={{board_posts.next_page_number}}'">Next</button>
+                <button onclick="location.href='?page={{board_posts.paginator.num_pages}}'">Last</button>
+            {% endif %}
+        </div>
     </div>
 </div>
 

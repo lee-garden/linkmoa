@@ -79,20 +79,17 @@
         </form>
     </div>
     <div class="temp2 border-custom-style all">
-
-    로그인으로 시작하기
+        <div class="nav-ul-2">
         {% if user.is_authenticated %}
             <input id="check" type="checkbox" name="menu"/>
-            <li class="not-hidden-li"><label for="check" class="mypage-label">{{user.username}} 님</label></li> 
-                <ul class="pop">
-                    <li class="hidden-li"><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
-                    <li class="hidden-li"><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
+            <div class="not-hidden-li"><label for="check" class="mypage-label">{{user.username}} 님</label></div> 
+            <div class="nav-link-2 not-hidden-li"><a href="{% url 'logout' %}" >로그아웃</a></div>
+            <div class="nav-link-2 not-hidden-li"><a href="{% url 'index' %}" >마이페이지</a></div>
         {% else %}
-                    <li class="not-hidden-li"><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
-                    <li class="not-hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
+            <div class="nav-link-2 not-hidden-li"><a href="{% url 'login' %}">로그인</a></div>
+            <div class="nav-link-2 not-hidden-li"><a href="{% url 'signup' %}">회원가입</a></div>
         {% endif%}
-                </ul>
-            </li>         
+        </div>         
     </div>
 </div>
 

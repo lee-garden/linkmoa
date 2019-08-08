@@ -25,7 +25,10 @@
         </form>
     </div>
     <div class="line">
-        <ul class="directory-nav">
+    </div>
+    <div class="mypage-contents">
+    <div class="d-bar">
+    <ul class="directory-nav">
             {% ifequal user_currentdir_name 'recently' %}
                 <li class="directory-nav-items"><button class="selected-folder"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
             {% else %}
@@ -42,7 +45,6 @@
             <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button>
         </ul>
     </div>
-
     <div class="objects">
         {% for memo in posts %}
             <div class="memoContainer">
@@ -87,7 +89,7 @@
             <a href="?page={{posts.paginator.num_pages}}">Last</a>
         {% endif %}
     </div>
-
+</div>
     <script>
       $(function() { 
             $('.directory-nav li button').click(function(e) {

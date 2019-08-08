@@ -11,13 +11,15 @@
         <div class="memoContainer">
             <div class="memoUpper">
             <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
-            <h5 class="memoOwner">{{memo.owner}}</h5>
+            <h5 class="memoOwner">by. {{memo.owner}}</h5>
         </div>
             <div class="memoLine"></div>
             <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
 
             <div id="result{{forloop.counter}}">sample</div>
-            <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-tag="{{memo.tag}}">&nbsp;더보기...</a><br><br>
+           
+            
+            
             {% load tagging_tags %}
             {% tags_for_object memo as tags %}
             {% for tag in tags %}
@@ -31,6 +33,10 @@
                 <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
                 {% endif %}
             {% endif %}
+            </div>
+            <div class="result-more">
+              <a href="#" data-toggle="modal" data-target="#moreModal" data-id="{{memo.id}}" data-keyword="{{memo.keyword}}" data-urls="{{memo.urls}}"
+                data-tag="{{memo.tag}}">더보기...</a>
             </div>
             <script>
                 linkPrint({{forloop.counter}});

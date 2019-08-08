@@ -2,20 +2,18 @@
 {% block content %}
 
 <script src="../../static/js/linkprint.js"></script>
-
-<div class="temp">
-    <p class="slogan">서로의 지식을 연결하다</p>
-    <p class="slogan-name">링크모아</p> 
-</div>
-
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
+        <div class="board-wrap">
         <div class="objects">
         {% for memo in board_posts %}
         <div class="memoContainer">
+            <div class="memoUpper">
             <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
             <h5 class="memoOwner">{{memo.owner}}</h5>
+        </div>
+            <div class="memoLine"></div>
             <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
 
             <div id="result{{forloop.counter}}">sample</div>

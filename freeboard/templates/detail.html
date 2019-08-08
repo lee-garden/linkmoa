@@ -1,13 +1,9 @@
 {% extends 'base2.html' %}
 {% block content %}
-<div class="temp">
-        <p class="slogan">서로의 지식을 연결하다</p>
-        <p class="slogan-name">링크모아</p> 
-</div>
-
 <div class="board">
     <div class="lower-part">
-        <div class="line"></div>
+        <div class="line2"></div>
+        <div class="free-board-wrap">
         <div class="free-board-container">
             <div class="detail-author">
                 글 쓴이 : {{post.owner}}
@@ -38,7 +34,7 @@
                         <th></th>
                     </tr>
                     {% for c in post.comments.all %}
-                    <tr>
+                    <tr class="comment-tr">
                         {% if c.author %}
                         <td class="comment-author">{{c.author}}</td>
                         {% else %}
@@ -46,14 +42,15 @@
                         {% endif %}
                         <td class="comment-text">{{c.text}}</td>
                         {% if c.author == user.username %}
-                        <td class="comment-delete"><button class="comment-delete-button"onclick="
-                            var a= confirm('댓글을 삭제하시겠습니까?'); console.log(a); if(a==true){location.href='{% url 'deletecomment' post.id c.id %}'}">삭제</button></td>
+                        <td class="comment-delete"><button class="btn-plus i-btn"onclick="
+                            var a= confirm('댓글을 삭제하시겠습니까?'); console.log(a); if(a==true){location.href='{% url 'deletecomment' post.id c.id %}'}"><i class="fa fa-times"></i></button></td>
                         {% endif %}
                     </tr>
                     {% endfor %}
                 </table>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|family=Cute+Font&display=swap');
 
+.memoLine{
+    border-bottom: 2px solid rgba(32,33,36,0.28);
+    width: 100%;
+}
+
 .inforoom{
     position: absolute;
     right: 15%;
@@ -148,10 +153,14 @@ html, body{
 }
 .container-linkmoa{
     margin: 0;
+    background-color: white;
 }
 
 
 /*Board , Search_Board HTML*/
+.board-wrap{
+    background-color: white;
+}
 .temp{
     height: 188px;
 }
@@ -196,12 +205,17 @@ html, body{
 }
 .line{
     height: 50px;
+    margin: -1px auto 2em auto;
+    background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
+}
+.line2{
+    height: 50px;
     margin: -1px auto 3em auto;
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
 }
 .objects{
     max-width: 1230px;
-    margin: 2em auto;
+    margin: 0 auto 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -242,8 +256,9 @@ html, body{
     float: left;
     border: 1px solid #d3d3d380;
     border-radius: .5em;
-    box-shadow: 1px 1px 4px 0 rgba(89, 105, 155, 0.8);
+    box-shadow: 1px 1px 5px 0 rgba(15, 19, 32, 0.8);
     padding: 0 .5rem;
+    background-color: white;
 }
 
 .memoContainer h2{

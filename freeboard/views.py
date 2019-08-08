@@ -20,37 +20,60 @@ def sort_freeboard(request):
     return render(request, 'freeboard.html', {'page_posts' : page_posts})
 
 def freeboardSearch(request):
-    search_keyword = request.POST['input']
-    condition = request.POST['condition']
+    try:
+        search_keyword = request.GET['input']
+        condition = request.GET['condition']
+    except:
+        return redirec('freeboard')
+
+    try:
+        page = request.GET.get('page')
+    except:
+        page = request.GET['pagenum']
+
     if condition == 'titlesearch':
         searched_posts_objects = Post.objects.filter(title=search_keyword).order_by('-id')
-        condition = '글제목'
+        condition_to_korean = '글제목'
     elif condition == 'bodysearch':
         searched_posts_objects = Post.objects.filter(body__icontains=search_keyword).order_by('-id')
-        condition = '내용'
+        condition_to_korean = '내용'
     else:
         searched_posts_objects = Post.objects.filter(owner=search_keyword).order_by('-id')
-        condition = '작성자'
+        condition_to_korean = '작성자'
+        
     searched_paginator = Paginator(searched_posts_objects, 15)
-    page = request.GET.get('page')
+    page = request.GET['pagenum']
     searched_posts = searched_paginator.get_page(page)
     return render(request, 'freeboardSearch.html', {'searched_posts' : searched_posts, 'searched_posts_objects' : searched_posts_objects,
-                                                    'search_keyword' : search_keyword, 'condition' : condition})
+                                                    'search_keyword' : search_keyword, 'condition' : condition, 'condition_to_korean' : condition_to_korean})
 
 def sort_freeboardSearch(request):
-    post_objects_id = request.POST.get('post_objects_id')
-    objects_id_list = post_objects_id.split(';')
-    objects_id_list.remove('')
-    queryset = Post.objects.none()
+    try:
+        search_keyword = request.GET['input']
+        condition = request.GET['condition']
+    except:
+        return redirec('freeboard')
 
-    for i in objects_id_list:
-        queryset |= Post.objects.filter(pk=i)
+    try:
+        page = request.GET.get('page')
+    except:
+        page = request.GET['pagenum']
 
-    searched_posts = queryset.order_by('-views')
-    searched_paginator = Paginator(searched_posts, 15)
-    page = request.GET.get('page')
+    if condition == 'titlesearch':
+        searched_posts_objects = Post.objects.filter(title=search_keyword).order_by('-views')
+        condition_to_korean = '글제목'
+    elif condition == 'bodysearch':
+        searched_posts_objects = Post.objects.filter(body__icontains=search_keyword).order_by('-views')
+        condition_to_korean = '내용'
+    else:
+        searched_posts_objects = Post.objects.filter(owner=search_keyword).order_by('-views')
+        condition_to_korean = '작성자'
+
+    searched_paginator = Paginator(searched_posts_objects, 15)
+    page = request.GET['pagenum']
     searched_posts = searched_paginator.get_page(page)
-    return render(request, 'freeboardSearch.html', {'searched_posts' : searched_posts})
+    return render(request, 'freeboardSearch.html', {'searched_posts' : searched_posts, 'searched_posts_objects' : searched_posts_objects,
+                                                    'search_keyword' : search_keyword, 'condition' : condition, 'condition_to_korean' : condition_to_korean})
 
 def newpost(request):
     print('new post')

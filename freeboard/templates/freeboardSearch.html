@@ -10,7 +10,7 @@
         <div class="line"></div>
             <div class='search-state' style= "text-align: center;">
                 {% if request.path == '/freeboardSearch' %}
-                    <h4>*상태 : "{{condition}}"에서 "{{search_keyword}}" 검색</h4>
+                    <h4>*상태 : "{{condition_to_korean}}"에서 "{{search_keyword}}" 검색</h4>
                 {% elif request.path == '/freeboardSearch/sort' %}
                     <h4>*상태 : 검색 & 조회순 정렬</h4>
                 {% endif %}
@@ -18,9 +18,10 @@
         <div class="free-board-container">
             <div class="board-header">
                 {% if request.path == '/freeboardSearch' %}
-                    <form method="POST" action="{% url 'sort_freeboardSearch' %}">
-                        {% csrf_token %}
-                        <textarea name="post_objects_id" style="display: none;">{% for post in searched_posts_objects %}{{post.id}};{% endfor %}</textarea>
+                    <form method="GET" action="{% url 'sort_freeboardSearch' %}">
+                        <input type="hidden" value="{{search_keyword}}" name="input">
+                        <input type="hidden" value="{{condition}}" name="condition">
+                        <input type="hidden" value="1" name="pagenum">
                         <input type="submit" class="createbtn" style="display: none;"><button class="createbtn"onclick="location.href='{% url 'sort_freeboardSearch' %}'">조회순</button>
                     </form>
                 {% elif request.path == '/freeboardSearch/sort' %}
@@ -52,28 +53,48 @@
             </div>
             <div class="freeboard-search">
                 
-                <form method="POST" action="{% url 'freeboardSearch' %}">
-                    {% csrf_token %}
+                <form method="GET" action="{% url 'freeboardSearch' %}">
                     <select id="" name='condition'>
                         <option class="sort-date" value="titlesearch">글제목</option>
                         <option class="sort-likes" value="bodysearch">내용</option>
                         <option class="ownersearch" value="ownersearch">작성자</option>
                     </select>
+                    <input type="hidden" value="1" name="pagenum">
                     <input type="text" class="freeboard-searchbox" name='input'><button class="freeboard-btn">검색</button>
                 </form>
             </div>
             <div class="paginator">
                 {% if searched_posts.has_previous %}
-                    <a href="?page=1">First</a>
-                    <a href="?page={{searched_posts.previous_page_number}}">Previous</a>
+                    <form action="?page=1">
+                        <input type="submit" value="First">
+                        <input type="hidden" value="{{search_keyword}}" name="input">
+                        <input type="hidden" value="{{condition}}" name="condition">
+                        <input type="hidden" value="1" name="pagenum"> 
+                    </form> 
+                    <form action="?page={{searched_posts.previous_page_number}}">
+                        <input type="submit" value="Previous">
+                        <input type="hidden" value="{{search_keyword}}" name="input">
+                        <input type="hidden" value="{{condition}}" name="condition">
+                        <input type="hidden" value="{{searched_posts.previous_page_number}}" name="pagenum">
+                    </form>
                 {% endif %}
                     <span>{{searched_posts.number}}</span>
                     <span>of<span>
                     <span>{{searched_posts.paginator.num_pages}}</span>
         
                 {% if searched_posts.has_next %}
-                    <a href="?page={{searched_posts.next_page_number}}">Next</a>
-                    <a href="?page={{searched_posts.paginator.num_pages}}">Last</a>
+                    <form action="?page={{searched_posts.next_page_number}}">
+                        <input type="submit" value="Next">
+                        <input type="hidden" value="{{search_keyword}}" name="input">
+                        <input type="hidden" value="{{condition}}" name="condition">
+                        <input type="hidden" value="{{searched_posts.next_page_number}}" name="pagenum"> 
+                    </form> 
+                    <form action="?page={{searched_posts.paginator.num_pages}}">
+                        <input type="submit" value="Last">
+                        <input type="hidden" value="{{search_keyword}}" name="input">
+                        <input type="hidden" value="{{condition}}" name="condition">
+                        <input type="hidden" value="{{searched_posts.paginator.num_pages}}" name="pagenum">
+                    </form>
                 {% endif %}
             </div>
         </div>

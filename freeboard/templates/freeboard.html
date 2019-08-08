@@ -41,13 +41,13 @@
                 </table>
             </div>
             <div class="freeboard-search">
-                <form method="POST" action="{% url 'freeboardSearch' %}">
-                    {% csrf_token %}
+                <form method="GET" action="{% url 'freeboardSearch' %}">
                     <select id="" name='condition'>
                         <option class="titlesearch" value="titlesearch">글제목</option>
                         <option class="bodysearch" value="bodysearch">내용</option>
                         <option class="ownersearch" value="ownersearch">작성자</option>
                     </select>
+                    <input type="hidden" value="1" name="pagenum"> 
                     <input type="text" class="freeboard-searchbox" name='input'><button class="freeboard-btn">검색</button>
                 </form>
             </div>

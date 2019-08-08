@@ -56,10 +56,20 @@
                 <span>of<span>
                 <span>{{search_posts.paginator.num_pages}}</span>
     
-            {% if board_posts.has_next %}
-                <a href="?page={{search_posts.next_page_number}}">Next</a>
+            {% if search_posts.has_next %}
                 <a href="?page={{search_posts.paginator.num_pages}}">Last</a>
+                <form action="?page={{search_posts.next_page_number}}">
+                    <input type="submit" value="NEXT">
+                    <input type="hidden" value="{{keyword}}" name="hidden-value">
+                    <input type="hidden" value="{{search_posts.next_page_number}}" name="pagenum"> 
+                </form> 
+                <form action="?page={{search_posts.paginator.num_pages}}">
+                    <input type="submit" value="Last">
+                    <input type="hidden" value="{{keyword}}" name="hidden-value">
+                    <input type="hidden" value="{{search_posts.paginator.num_pages}}" name="pagenum">
+                </form>
             {% endif %}
+
         </div>
     </div>
 

@@ -37,7 +37,11 @@
                     </div>
                     <form method="POST" onsubmit="return check()" action="{% url 'search_board' %}" class="search-form" name="searchf">
                         {% csrf_token %}
+                        {% if keyword %}
+                        <input type="text" placeholder="search" name="searchBox2" class="searchTerm" value="{{keyword}}"/>
+                        {% else %}
                         <input type="text" placeholder="search" name="searchBox" class="searchTerm" />
+                        {% endif %}
                         <button type="submit" class="searchButton" >
                             <i class="fa fa-search" aria-hidden="true" ></i>
                         </button>

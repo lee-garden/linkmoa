@@ -23,14 +23,23 @@ def board(request):
         memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
     else:
         memos = Memo.objects.filter(shared=True).order_by('-id')
-    board_paginator = Paginator(memos, 20)
+    board_paginator = Paginator(memos, 4)
     page = request.GET.get('page')
     board_posts = board_paginator.get_page(page)
+    print(page)
     return render(request,'board.html',{'board_posts' : board_posts})
 
 def search(request):
     user=request.user
-    keyword = request.POST['searchBox']
+    try:
+        keyword = request.GET['hidden-value']
+        page = request.GET['pagenum']
+    except Exception as e:
+        keyword = request.POST['searchBox']
+        page = request.GET.get('page','1')
+        print('1페이지')
+    print(keyword)
+    print("searchBox ok")
     sort = request.GET.get('sort','')
     if keyword =='':  #빈 input 예외처리
         return redirect('board')
@@ -49,10 +58,11 @@ def search(request):
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True, user_id=user.id).order_by('-id')
         else:
             searched_memos = Memo.objects.filter(keyword= keyword, shared=True).order_by('-id')
-    search_paginator = Paginator(searched_memos, 20)
-    page = request.GET.get('page')
+    search_paginator = Paginator(searched_memos, 4)
     search_posts = search_paginator.get_page(page)
-    return render(request,'search_board.html', {'search_posts' : search_posts})
+    print(page)
+    print(keyword)
+    return render(request,'search_board.html', {'search_posts' : search_posts, 'keyword' : keyword})
 
 def tag_board(request, tag):
     tag=Tag.objects.get(name=tag)

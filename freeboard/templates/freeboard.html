@@ -1,13 +1,9 @@
 {% extends 'base2.html' %}
 {% block content %}
-<div class="temp">
-    <p class="slogan">서로의 지식을 연결하다</p>
-    <p class="slogan-name">링크모아</p> 
-</div>
-
 <div class="board">
     <div class="lower-part">
         <div class="line"></div>
+        <div class="free-board-wrap">
             <div class='search-state' style= "text-align: center;" >
                 {% if request.path == '/freeboard/sort' %}
                     <h4>*상태 : 조회순 정렬</h4>
@@ -67,6 +63,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <footer class="footer">

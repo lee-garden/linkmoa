@@ -148,6 +148,7 @@ html, body{
 }
 .container-linkmoa{
     margin: 0;
+    background-color: #f4F5F7;
 }
 
 
@@ -195,6 +196,11 @@ html, body{
     margin: 10px 0 0 0;
 }
 .line{
+    height: 50px;
+    margin: -1px auto 3em auto;
+    background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
+}
+.line2{
     height: 50px;
     margin: -1px auto 3em auto;
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );

@@ -49,7 +49,12 @@ form {
 
 }
 
-
+.c-container {
+    z-index: -1;
+    width: 80%;
+    position: relative;
+    margin: 0 auto;
+}
 .log{
     margin: 0 auto;
     width: 50%;
@@ -58,7 +63,11 @@ form {
 }
 .sub-nav {
     width: 100%;
+<<<<<<< HEAD
     height: 140px;
+=======
+    height: 88px;
+>>>>>>> 13ef157997ae9dfef228e0cbda4405bc82349c49
     text-align: center;
 }
 .board-nav {
@@ -226,6 +235,7 @@ form {
     border-radius: 24px;
     outline: none;
     margin: 5em 0 0 0;
+    background: white;
 }
 .bar-search {
     flex: 1;
@@ -319,11 +329,13 @@ form {
 .temps {
     display: flex;
     height: 450px;
+    position: absolute;
+    top: 5em;
 }
 .temp1{
     height: 100%;
     width: 50%;
-    margin: 1em 0 5em 13em;
+    margin: 1em 0 0 13em;
 }
 .temp2{
     height: 100%;
@@ -360,7 +372,7 @@ form {
     height: 55%;
     width: 230px;
     max-width: 25%;
-    margin: 1em 13em 8em 1em;
+    margin: 7em 13em 8em 1em;
     box-sizing: border-box;
     display: inline-block;
     border: 1px solid aliceblue;

@@ -7,12 +7,11 @@
     <div class="folder-plus">
         <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
             {% csrf_token%}
-            <input id="mkdir" type="text" placeholder="새 폴더 만들기" name='dirname' class="mkdir-input">
-            <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button>
+            <!-- <input id="mkdir" type="text" placeholder="새 폴더 만들기" name='dirname' class="mkdir-input"> -->
+            <!-- <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button> -->
         </form>
         <!-- <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button> -->
     </div>
-    <div class="line">
         <form method="POST" action ="{% url 'make_memo' %}" class="mypg-form">
             {% csrf_token%}
             <!-- <textarea  class="" rows="1" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea> -->
@@ -29,7 +28,7 @@
               </div>
             </div>
         </form>
-    </div>
+    
     <div class="mypage-wrap">
         <div class="mypage-contain">
           <div class="d-bar">

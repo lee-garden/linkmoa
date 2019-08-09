@@ -57,7 +57,7 @@
             <input id="check" type="checkbox" name="menu"/>
             <div class="not-hidden-li"><label for="check" class="mypage-label">{{user.username}} 님</label></div> 
             <div class="nav-link-2 not-hidden-li"><a href="{% url 'logout' %}" >로그아웃</a></div>
-            <div class="nav-link-2 not-hidden-li"><a href="{% url 'index' %}" >마이페이지</a></div>
+            {% comment %} <div class="nav-link-2 not-hidden-li"><a href="{% url 'index' %}" >마이페이지</a></div> {% endcomment %}
         {% else %}
             <div class="nav-link-2 not-hidden-li"><a href="{% url 'login' %}">로그인</a></div>
             <div class="nav-link-2 not-hidden-li"><a href="{% url 'signup' %}">회원가입</a></div>
@@ -66,18 +66,24 @@
     </div>
 </div>
 
-
 <div class="board">
     <div class="lower-part">
+        <div class="line"></div>
+        <div class="board-wrap">
         <div class="objects">
         {% for memo in board_posts %}
         <div class="memoContainer">
+            <div class="memoUpper">
             <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
-            <h5 class="memoOwner">{{memo.owner}}</h5>
+            <h5 class="memoOwner">by. {{memo.owner}}</h5>
+        </div>
+            <div class="memoLine"></div>
             <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
 
             <div id="result{{forloop.counter}}">sample</div>
-            <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-tag="{{memo.tag}}">&nbsp;더보기...</a><br><br>
+           
+            
+            
             {% load tagging_tags %}
             {% tags_for_object memo as tags %}
             {% for tag in tags %}
@@ -91,6 +97,10 @@
                 <button class="i-btn"onclick="location.href='{%url 'download_memo' memo.id %}'"><i class="fa fa-cloud-download"></i></button>
                 {% endif %}
             {% endif %}
+            </div>
+            <div class="result-more">
+              <a href="#" data-toggle="modal" data-target="#moreModal" data-id="{{memo.id}}" data-keyword="{{memo.keyword}}" data-urls="{{memo.urls}}"
+                data-tag="{{memo.tag}}">더보기...</a>
             </div>
             <script>
                 linkPrint({{forloop.counter}});
@@ -112,9 +122,9 @@
                     <a href="?page={{board_posts.paginator.num_pages}}">Last</a>
                 {% endif %}
             </div>
+        </div>
     </div>
 </div>
-
 {% include 'moreModal.html' %}
 
 <footer class="footer">

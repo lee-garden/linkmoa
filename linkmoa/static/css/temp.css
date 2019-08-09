@@ -63,14 +63,14 @@ form {
 }
 .sub-nav {
     width: 100%;
-    height: 88px;
+    height: 60px;
     text-align: center;
 }
 .board-nav {
     float: left;
     width: 100%;
     text-align: center;
-    margin: 2em auto;
+    margin: 0em auto 2em auto;
     height: 60px;
 }
 .loginout {
@@ -200,26 +200,24 @@ form {
 
 .mypg-form input {
     align-items: center;
-    width: 100%;
     padding: 7px 0px 7px 25px;
-    border: 1px solid #e3e3e3;
+    border: 2px solid #6de8ef;
     box-shadow: none;
-    border-radius: 24px;
     outline: none;
+    height: 40px;
+    margin-bottom: 40px;
+    width: 300px;
 }
 
-
-
 .mypg-form textarea {
-    margin: 1em 0;
-    display: flex;
+    margin: 0 auto;
     align-items: center;
-    width: 100%;
+    width: 80%;
     padding: 7px 0px 7px 25px;
-    border: 1px solid #e3e3e3;
+    border: 2px solid #a2aeff;
     box-shadow: none;
-    border-radius: 24px;
     outline: none;
+    height: 40px;
 }
 
 
@@ -243,19 +241,25 @@ form {
 }
 
 .txt-input-btn {
-    display: flex;
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
 }
-.form-txt, .form-input-btn {
-    float: left;
-    width: 40%;
+.form-txt,{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-input-btns{
+    width: 80%;
     margin: 0 auto;
 }
 
 .searchTerm {
-    border: none;
     box-shadow: none;
     outline: none;
-    width: 85%;
+    width: 600px;
     font-size: 20px;
 }
 .search-form:focus, .urlList:focus{
@@ -393,24 +397,20 @@ form {
 /*INDEX HTML*/
 .mypage-wrap{
     min-height: 500px;
-}
-.mypage-contain{
+    width: 1210px;
     margin: 0 auto;
-
-    width: 100%;
-    height: 100%;
+    display: flex;
 }
 
 .d-bar{
   background-color: #f4f4f7;
   float: left;
-  width: 15%;
   margin: 0 auto;
   padding: 15px 0;
-  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   height: 100%;
+  width: 10%;
 }
 .mkdir-input{
     width: 200px;
@@ -431,8 +431,8 @@ form {
     width: 80%;
 }
 
-#urlList{
-    margin: 10px 0 0 0;
+.urlList{
+    width: 80%;
 }
 .line{
     /* position: relative;
@@ -445,24 +445,43 @@ form {
     background: #f4f4f7;
 }
 .objects{
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 85%;
-  padding: 3em 5em 5em 5em;
-  border-top: 1px solid black;
+    max-width: 1230px;
+    border: 1px solid #d3d3d380;
+    box-shadow: 0px 5px 20px 0px rgba(15, 19, 32, 0.49);
+    border-radius: 10px;
+    margin: 10px auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.objects{
+    width: 1215px;
+}
+.index-objects{
+    width: 90%;
+    border: 1px solid #d3d3d380;
+    border-radius: .5em;
+    box-shadow: 0px 0px 15px 0px rgba(15, 19, 32, 0.48);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 500px;
 }
 .directory-nav{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: table;
-}
+    overflow: hidden;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    float: left;
+  }
   
 .directory-nav li{
-  margin: 0 auto;
-  padding: 5px 0;
+    margin: 0 .5em 0 0;
 }
 
 .directory-nav #current {
@@ -472,35 +491,34 @@ form {
     margin: 0;
     padding: 0;
     border : 0;
-    float: left;
+    width: 120px;
+    height: 45px;
+    border-bottom: 1px solid rgba(53, 19, 32, 0.2);
 }
 
-
 .memoContainer{
-    max-height: 230px;
-    max-width: 100%;
-    width: 45%;
-    height: 170px;
+    max-width: 200px;
+    margin-bottom: 1rem;
     position: relative;
-    margin: 1.3em;
+    margin: 10px;
+    width: 100%;
+    height: 270px;
     float: left;
-    border: .5px solid #d3d3d380;
-    border-radius: .8em;
-    box-shadow: 0px 1px 5px 0 rgba(184, 201, 255, 0.8);
-    padding: 1em 3em;
+    border: 2px solid #d3d3d380;
+    border-radius: 5px;
+    /* box-shadow: 1px 1px 5px 0 rgba(99, 109, 141, 0.8); */
+    padding: 0 .5rem;
     background-color: white;
-    display: flex;
 }
 
 .memoContainer h2{
-    width: 75%;
+    text-align: center;
 }
 .memoContainer h2 a{
     text-align: center;
     color: #000000;
     text-decoration: none;
 }
-
 
 /*ACCOUNTS APP*/
 .loginBox{
@@ -599,17 +617,26 @@ form {
     transition: 0.3s;
     color: #FFFEEE;
 }
-
+.selected-folder{
+    height: 45px;
+    width: 150px;
+    z-index: 3;
+    border-right: none;
+    border-bottom: none;
+    background: #FFFEEE;
+    box-shadow: 1px 5px 10px 0px rgba(32,33,36,0.3);
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
 .d-nav-btns{
-   margin: 5px 0;
-    height: 40px;
-    width: 110px;
-    border: none;
-    border-radius: 20px;
-    background: #FEFEFE;
-    font-size: 10px;
-    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
-    font-size: 15px;
+    height: 100%;
+    width: 130px;
+    border-right: 1px solid red;
+    border-bottom: none;
+    z-index: 1;
+    border-right: 1px solid rgba(53, 19, 32, 0.2);
+    background: rgba(255, 255, 255, 0);
+    font-size: 12px;
 }
 .i-btn, .i-btn-cd{
     background: none;

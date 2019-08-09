@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|family=Cute+Font&display=swap');
-@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal;}
-@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
-.memoLine{
-    border-bottom: 1px solid black;
-    width: 100%;
-}
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,700,900&display=swap');
 
 .inforoom{
     position: absolute;
@@ -51,25 +46,27 @@ form {
     width: 100%;
     display: block;
     text-align: center;
-    padding: 45px 0 30px 0;
-    box-shadow: #38B9C0 0px -3px 5px 2px;
+
 }
 
 
 .log{
+    margin: 0 auto;
+    width: 50%;
     text-align: center;
+    padding: 45px 0 35px 0;
 }
 .sub-nav {
     width: 100%;
-    height: 60px;
+    height: 160px;
     text-align: center;
 }
 .board-nav {
     float: left;
     width: 100%;
-    height: 46px;
     text-align: center;
-    margin: 2.5em auto;
+    margin: 2em auto;
+    height: 60px;
 }
 .loginout {
     float: right;
@@ -153,16 +150,19 @@ form {
     list-style: none;
     padding: 0;
     margin: auto;
-    height:100%;
+    height: 100%;
     display: inline-block;
     width: 80%;
+    background: linear-gradient(to right, #a2aeff, #8763FB, #6de8ef );
 }
 
 .nav-ul .not-hidden-li {
     display: inline-block;
-    /* padding: 0 1.5em; */
-    margin: 0 1.5em;
-    width: 95px;
+    margin: .93em 2em;
+    width: 150px;
+}
+.nav-ul .not-hidden-li .nav-link:hover {
+    color: black;
 }
 .nav-ul .not-hidden-li-search {
     display: inline-block;
@@ -181,12 +181,17 @@ form {
 }
 
 .nav-link{
-    /* color: #38B9C0;
-    font-family: 'Noto Sans KR', sans-serif;
-    text-decoration: none;
-    font-size: 15px; */
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 17px;
+    color: white;
 }
-
+.nav-link > a {
+    color: white;
+}
+.nav-link > a:hover {
+    color: white;
+}
 
 .mypg-form input {
     align-items: center;
@@ -216,12 +221,13 @@ form {
 .search-form{
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 75%;
     padding: 7px 0px 7px 25px;
-    border: 1px solid #e3e3e3;
+    border: 1px solid #000000;
     box-shadow: none;
     border-radius: 24px;
     outline: none;
+    margin: 5em 0 0 0;
 }
 .bar-search {
     flex: 1;
@@ -244,12 +250,7 @@ form {
     box-shadow: none;
     outline: none;
     width: 85%;
-}
-.searchTerms {
-    border: none;
-    box-shadow: none;
-    outline: none;
-    width: 85%;
+    font-size: 20px;
 }
 .search-form:focus, .urlList:focus{
     color: #000000;
@@ -257,12 +258,11 @@ form {
 }
 .searchButton {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 30px;
     border: none;    
     left: -20px;
     position: relative;
     background-color: transparent;
-    top: 2px;
 }
 .searchButton-1 {
     cursor: pointer;
@@ -312,12 +312,64 @@ form {
 
 
 /*Board , Search_Board HTML*/
-.temp{
-    height: 200px;
-    margin: 5em 10em;
+.temps {
+    display: flex;
+    height: 450px;
 }
+.temp1{
+    height: 100%;
+    width: 50%;
+    margin: 1em 0 5em 13em;
+}
+.temp2{
+    height: 100%;
+    width: 25%;
+    margin: 1em 1em 0 0;
+}
+
+
+.nav-ul-2 {
+    list-style: none;
+    padding: 3em;
+    margin: auto;
+    height: 100%;
+    display: block;
+    width: 100%;
+    background: transparent;
+    text-align: center;
+}
+
+.temp2 > .nav-ul-2 > .not-hidden-li > a{
+    color: black;
+}
+.temp2 > .nav-ul-2 > .nav-link-2 {
+    float: right;
+    display: block;
+    padding: .5rem 1rem;
+    text-align: center;
+    margin: 1em auto;
+    font-size: 1.3em;
+    width: 100%;
+}
+
+.border-custom-style {
+    height: 55%;
+    width: 230px;
+    max-width: 25%;
+    margin: 1em 13em 8em 1em;
+    box-sizing: border-box;
+    display: inline-block;
+    border: 1px solid aliceblue;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0px 0px 10px -3px #96aeff;
+  }
+
+.all { border-image-width: 1.5px; }
+
+
 .fa-search:before {
-    color: #d3d3d3;
+    color: #868686;
 }
 .btn-plus {
     height: 30px;
@@ -391,12 +443,24 @@ form {
   justify-content: center;
   width: 85%;
   padding: 3em 5em 5em 5em;
+  border-top: 1px solid black;
 }
 .directory-nav{
   margin: 0;
   padding: 0;
   list-style: none;
   display: table;
+}
+.index-objects{
+    width: 1050px;
+    border: 1px solid #d3d3d380;
+    border-radius: .5em;
+    box-shadow: 0px 0px 15px 0px rgba(15, 19, 32, 0.48);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 500px;
 }
   
 .directory-nav li{
@@ -414,34 +478,41 @@ form {
     float: left;
 }
 
-.memoUpper{
-    display: flex;
-  }
+
 .memoContainer{
-    max-width: 250px;
-    width: 100%;
-    height: 250px;
+    max-width: 200px;
+    margin-bottom: 1rem;
     position: relative;
-    border: 1px solid #d3d3d380;
-    border-radius: 1.5em;
-    box-shadow: 1px 1px 5px 0 rgba(15, 19, 32, 0.28);
-    padding: 0 2em;
-    margin: 1em;
+    margin: 10px;
+    width: 100%;
+    height: 270px;
+    float: left;
+    border: 2px solid #d3d3d380;
+    border-radius: 5px;
+    /* box-shadow: 1px 1px 5px 0 rgba(99, 109, 141, 0.8); */
+    padding: 0 .5rem;
     background-color: white;
 }
 
 .memoContainer h2{
-    margin: 20px 0 10px 0;
-    width: 80%;
-    float: left;}
+    text-align: center;
+}
 .memoContainer h2 a{
     text-align: center;
     color: #000000;
     text-decoration: none;
-    font-size: .7em;
-    font-family: "S-CoreDream-8Heavy";
 }
-  
+
+
+.memoContainer h2{
+    width: 75%;
+}
+.memoContainer h2 a{
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+}
+
 
 /*ACCOUNTS APP*/
 .loginBox{
@@ -466,7 +537,13 @@ form {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.memoContainer .memoKey a, .link-txt a {
+    color: black;
+    font-family: "S-CoreDream-3Light";
+}
+.result-more {
+    float: right;
+}
 .slogan {
     font-family: 'Red Hat Display', sans-serif;
     font-size: 50px;
@@ -535,26 +612,16 @@ form {
     color: #FFFEEE;
 }
 
-.selected-folder{
-    height: 45px;
-    width: 150px;
-    z-index: 3;
-    border-right: none;
-    border-bottom: none;
-    background: #FFFEEE;
-    box-shadow: 1px 5px 10px 0px rgba(32,33,36,0.3);
-    font-size: 12px;
-    font-family: 'Noto Sans KR', sans-serif;
-}
 .d-nav-btns{
-    height: 100%;
-    width: 130px;
-    border-right: 1px solid red;
-    border-bottom: none;
-    z-index: 1;
-    border-right: 1px solid rgba(53, 19, 32, 0.2);
-    background: rgba(255, 255, 255, 0);
-    font-size: 12px;
+   margin: 5px 0;
+    height: 40px;
+    width: 110px;
+    border: none;
+    border-radius: 20px;
+    background: #FEFEFE;
+    font-size: 10px;
+    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
+    font-size: 15px;
 }
 .i-btn, .i-btn-cd{
     background: none;
@@ -611,9 +678,8 @@ form {
     margin: 0 50px 0 240px;
 }
 
-/* .search {
-    margin: 0;
-    width: 70%; 
-    float: right;
-    height: 100%;
-} */
+@media screen and (max-width: 768px) { 
+    html { 
+        background-color: black;
+    } 
+}

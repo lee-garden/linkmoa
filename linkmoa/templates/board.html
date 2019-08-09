@@ -22,7 +22,7 @@
             <input id="check" type="checkbox" name="menu"/>
             <div class="not-hidden-li"><label for="check" class="mypage-label">{{user.username}} 님</label></div> 
             <div class="nav-link-2 not-hidden-li"><a href="{% url 'logout' %}" >로그아웃</a></div>
-            <div class="nav-link-2 not-hidden-li"><a href="{% url 'index' %}" >마이페이지</a></div>
+            {% comment %} <div class="nav-link-2 not-hidden-li"><a href="{% url 'index' %}" >마이페이지</a></div> {% endcomment %}
         {% else %}
             <div class="nav-link-2 not-hidden-li"><a href="{% url 'login' %}">로그인</a></div>
             <div class="nav-link-2 not-hidden-li"><a href="{% url 'signup' %}">회원가입</a></div>

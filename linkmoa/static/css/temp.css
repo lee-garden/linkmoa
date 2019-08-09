@@ -459,6 +459,7 @@ form {
     float: left;
 }
 
+
 .memoContainer{
     max-height: 230px;
     max-width: 100%;
@@ -483,6 +484,7 @@ form {
     color: #000000;
     text-decoration: none;
 }
+
 
 /*ACCOUNTS APP*/
 .loginBox{

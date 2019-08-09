@@ -47,6 +47,7 @@
         </ul>
     </div>
     <div class="index-objects">
+        {% if posts %}
         {% for memo in posts %}
             <div class="memoContainer">
                 <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
@@ -75,6 +76,9 @@
                 linkPrint({{forloop.counter}});
             </script>
             {% endfor %}
+            {% else %}
+             <h2>폴더가 비어있습니다.</h2>
+            {% endif %}
     </div>
     <div class="paginator">
         {% if posts.has_previous %}

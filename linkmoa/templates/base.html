@@ -1,4 +1,4 @@
-{% load static %}   
+{% comment %} {% load static %}   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +26,10 @@
                 <div class="navi">
                     <div class="log">
                         <a href="{% url 'board' %}"><img src="{% static 'image/1.png'%}" style="height:100px;"></a>
-                        <div class="loginout">
+                        <div class="loginout"> {% endcomment %}
+
+
+
                             {% comment %} <ul class="nav-ul">
                                 {% if user.is_authenticated %}
                                     <input id="check" type="checkbox" name="menu"/>
@@ -43,6 +46,9 @@
                                         </ul>
                                     </li> 
                            </ul> {% endcomment %}
+{% comment %} 
+
+                           
                         </div>
                     </div>
                         
@@ -54,12 +60,10 @@
                                     <li class="not-hidden-li-search">
                                         <form method="POST" action="{% url 'search_board' %}" class="search-form">
                                             {% csrf_token %}
-                                            {% comment %} <div class="bar-search"> {% endcomment %}
                                                 <input type="text" placeholder="search" name="searchBox" class="searchTerm" />
                                                 <button type="submit" class="searchButton" >
                                                     <i class="fa fa-search" aria-hidden="true" ></i>
                                                 </button>
-                                            {% comment %} </div> {% endcomment %}
 
                                         </form>
                                     </li>
@@ -77,7 +81,11 @@
                                                 <li class="hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
                                     {% endif%}
                                             </ul>
-                                        </li>         
+                                        </li>          {% endcomment %}
+
+
+
+
 {% comment %} 
 
 
@@ -88,6 +96,71 @@
                                         <li class="not-hidden-li"><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
                                         <li class="not-hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
                                     {% endif%} {% endcomment %}
+
+{% comment %}                                     
+                                </ul>
+
+                                </ul>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+
+
+
+            {% load static %}   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="../../static/css/freeboardcss.css?ver=3.1" >
+    {% comment %} <link rel="stylesheet" href="../../static/css/default.css?ver=2.1" > {% endcomment %}
+    <link rel="stylesheet" href="../../static/css/temp.css?ver=0.8" >
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    <title>링크모아</title>
+</head>
+
+<body>
+        <div class="container-linkmoa">
+            <div>
+                <div class="navi">
+                    <div class="log">
+                        <a href="{% url 'board' %}"><img src="{% static 'image/2.png'%}" style="height:50px;"></a>
+                        <div class="loginout">
+  
+                        </div>
+                    </div>
+                        <div class="sub-nav">
+                            <div class="board-nav">
+                                <ul class="nav-ul">
+                                    <li class="not-hidden-li"><a href="{% url 'board' %}" class="nav-link">공유 게시판</a></li>
+                                    <li class="not-hidden-li"><a href="{% url 'freeboard' %}" class="nav-link">자유 게시판</a></li>
+                                    <li class="not-hidden-li"><a href="{% url 'reference' %}" class="nav-link">자료실</a></li>
+                                    {% if user.is_authenticated %}
+                                        {% comment %} <input id="check" type="checkbox" name="menu"/> {% endcomment %}
+                                        {% comment %} <li class="not-hidden-li"><label for="check" class="mypage-label">{{user.username}} 님</label></li>  {% endcomment %}
+                                            {% comment %} <ul class="pop"> {% endcomment %}
+                                                {% comment %} <li class="hidden-li"><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li> {% endcomment %}
+                                        <li class="not-hidden-li"><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
+                                    {% else %}
+                                                {% comment %} <li class="not-hidden-li"><a href="{% url 'login' %}" class="nav-link">로그인</a></li> {% endcomment %}
+                                                {% comment %} <li class="not-hidden-li"><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li> {% endcomment %}
+                                    {% endif%}
+                                            </ul>
+                                        </li>     
                                 </ul>
 
                                 </ul>      
@@ -96,6 +169,12 @@
                     </div>
                 </div>
             </div>
+
+    </div>
+
+
+
+
             {% block content %}
             {% endblock %}
     </div>

@@ -161,6 +161,9 @@ form {
     margin: .93em 2em;
     width: 150px;
 }
+.nav-ul .not-hidden-li .nav-link:hover {
+    color: black;
+}
 .nav-ul .not-hidden-li-search {
     display: inline-block;
     /* padding: 0 1.5em; */
@@ -183,7 +186,12 @@ form {
     font-size: 17px;
     color: white;
 }
-
+.nav-link > a {
+    color: white;
+}
+.nav-link > a:hover {
+    color: white;
+}
 
 .mypg-form input {
     align-items: center;
@@ -306,7 +314,7 @@ form {
 /*Board , Search_Board HTML*/
 .temps {
     display: flex;
-    height: 550px;
+    height: 450px;
 }
 .temp1{
     height: 100%;
@@ -509,7 +517,13 @@ form {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.memoContainer .memoKey a, .link-txt a {
+    color: black;
+    font-family: "S-CoreDream-3Light";
+}
+.result-more {
+    float: right;
+}
 .slogan {
     font-family: 'Red Hat Display', sans-serif;
     font-size: 50px;

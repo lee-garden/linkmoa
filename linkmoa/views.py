@@ -99,12 +99,12 @@ def make_memo_direct(request):
     memo = Memo()
     unvalid = request.GET.get('editUrl').split('\n')
     print(unvalid)
-    valid = []
+    valid = ""
     for url in unvalid:
         if url[0:7] == 'http://' or url[0:8] == 'https://':
-            valid.append(url)
+            valid = valid + url + "\n"
     print(valid)
-    memo.updateMemo(user.id, user.username, user.profile.currentdir, memo.shared, memo.download, request.GET.get('editKey'), request.GET.get('editUrl'), request.GET.get('editMemo'), request.GET.get('editTag').replace("#",","))
+    memo.updateMemo(user.id, user.username, user.profile.currentdir, memo.shared, memo.download, request.GET.get('editKey'), valid, request.GET.get('editMemo'), request.GET.get('editTag').replace("#",","))
     print(user.username + ' make direct memo')
     return redirect('index')
 

@@ -4,7 +4,6 @@
 <script src="../../static/js/linkprint.js"></script>
 <div class="lower-part">
     <div class="line">
-        <div class="urls" id="app">
             <div class="folder-plus">
                 <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
                     {% csrf_token%}
@@ -12,6 +11,7 @@
                     <!-- <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button> -->
                 </form>
             </div>
+            <div class="urls" id="app">
             <form method="POST" action ="{% url 'make_memo' %}" class="mypg-form">
                 {% csrf_token%}
                 <br>
@@ -24,8 +24,8 @@
                 </button>
                 <br>
             </form>
-            <button class="new-memo-btn" id="setSelect" data-toggle="modal" data-target="#editModal">메모 직접 만들기</button>
         </div>
+            <button class="new-memo-btn" id="setSelect" data-toggle="modal" data-target="#editModal">메모 직접 만들기</button>
     </div>
     <div class="mypage-contents">
     <div class="d-bar">
@@ -122,6 +122,6 @@
 {% include 'modal.html' %}
 {% include 'moreModal.html' %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
-    <script src="../../static/js/vue.js"></script>
+    <!-- <script src="../../static/js/vue.js"></script> -->
     <script src="../../static/js/query.js?ver=1.2"></script>
 {% endblock %}

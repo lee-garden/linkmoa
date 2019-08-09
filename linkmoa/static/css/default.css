@@ -264,10 +264,9 @@ html, body{
     margin: -1px auto 3em auto;
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
 }
-.objects, .index-objects{
+.objects{
     max-width: 1230px;
     border: 1px solid #d3d3d380;
-    border-radius: .5em;
     box-shadow: 0px 0px 15px 0px rgba(15, 19, 32, 0.48);
     margin: 10px auto 0 auto;
     display: flex;
@@ -278,7 +277,14 @@ html, body{
     width: 1110px;
 }
 .index-objects{
-    width: 1000px;
+    width: 1050px;
+    border: 1px solid #d3d3d380;
+    border-radius: .5em;
+    box-shadow: 0px 0px 15px 0px rgba(15, 19, 32, 0.48);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .mypage-contents{
     width: 1200px;
@@ -301,6 +307,7 @@ html, body{
     display: table;
     margin-right: auto;
     margin-left: auto;
+    float: left;
   }
   
 .directory-nav li{

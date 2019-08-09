@@ -23,7 +23,7 @@ def board(request):
         memos = Memo.objects.filter(shared=True, user_id=user.id).order_by('-id')
     else:
         memos = Memo.objects.filter(shared=True).order_by('-id')
-    board_paginator = Paginator(memos, 4)
+    board_paginator = Paginator(memos, 20)
     page = request.GET.get('page')
     board_posts = board_paginator.get_page(page)
     print(page)

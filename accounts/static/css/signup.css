@@ -1,16 +1,11 @@
 .container-linkmoa-login{
-    position: relative;
-    height: 500px;
 }
 .login-form, .signup-form {
     margin: 0 auto;
     padding: 5px;
     max-width: 520px;
-    position: absolute;
     left: 50%;
     width: 500px;
-    margin-left: -260px;
-    transform: translateY(-50%);
     background-image: linear-gradient(to bottom,  white, white);
     border-radius: 10px;
     box-shadow: 0 0 5px 2px #0575E6;

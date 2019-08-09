@@ -195,13 +195,12 @@ form {
 
 .mypg-form input {
     align-items: center;
+    width: 100%;
     padding: 7px 0px 7px 25px;
-    border: 2px solid #6de8ef;
+    border: 1px solid #e3e3e3;
     box-shadow: none;
+    border-radius: 24px;
     outline: none;
-    height: 40px;
-    margin-bottom: 20px;
-    width: 300px;
 }
 
 
@@ -210,12 +209,12 @@ form {
     margin: 1em 0;
     display: flex;
     align-items: center;
-    width: 500px;
+    width: 100%;
     padding: 7px 0px 7px 25px;
-    border: 2px solid #a2aeff;
+    border: 1px solid #e3e3e3;
     box-shadow: none;
+    border-radius: 24px;
     outline: none;
-    height: 40px;
 }
 
 
@@ -238,9 +237,6 @@ form {
 }
 
 .txt-input-btn {
-    width: 1200px;
-    margin: 0 auto 0 auto;
-    border: 1px solid black;
     display: flex;
 }
 .form-txt, .form-input-btn {
@@ -250,9 +246,10 @@ form {
 }
 
 .searchTerm {
+    border: none;
     box-shadow: none;
     outline: none;
-    width: 200px;
+    width: 85%;
     font-size: 20px;
 }
 .search-form:focus, .urlList:focus{
@@ -454,6 +451,17 @@ form {
   list-style: none;
   display: table;
 }
+.index-objects{
+    width: 1050px;
+    border: 1px solid #d3d3d380;
+    border-radius: .5em;
+    box-shadow: 0px 0px 15px 0px rgba(15, 19, 32, 0.48);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 500px;
+}
   
 .directory-nav li{
   margin: 0 auto;
@@ -472,20 +480,29 @@ form {
 
 
 .memoContainer{
-    max-height: 230px;
-    max-width: 100%;
-    width: 45%;
-    height: 170px;
+    max-width: 200px;
+    margin-bottom: 1rem;
     position: relative;
-    margin: 1.3em;
+    margin: 10px;
+    width: 100%;
+    height: 270px;
     float: left;
-    border: .5px solid #d3d3d380;
-    border-radius: .8em;
-    box-shadow: 0px 1px 5px 0 rgba(184, 201, 255, 0.8);
-    padding: 1em 3em;
+    border: 2px solid #d3d3d380;
+    border-radius: 5px;
+    /* box-shadow: 1px 1px 5px 0 rgba(99, 109, 141, 0.8); */
+    padding: 0 .5rem;
     background-color: white;
-    display: flex;
 }
+
+.memoContainer h2{
+    text-align: center;
+}
+.memoContainer h2 a{
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+}
+
 
 .memoContainer h2{
     width: 75%;

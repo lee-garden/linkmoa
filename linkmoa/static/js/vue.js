@@ -14,7 +14,7 @@ var app = new Vue({
     mounted: function() {
         console.log("mounted");
         if(localStorage.getItem('temp') == null) localStorage.getItem('temp') = ''
-        document.getElementById("urlList").defaultValue = localStorage.getItem('temp');
+        document.getElementById("review_text").defaultValue = localStorage.getItem('temp');
     },
     updated: function() {
         console.log("upadated");

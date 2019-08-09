@@ -2,46 +2,50 @@
 {% block content %}
 
 <script src="../../static/js/linkprint.js"></script>
-<div class="urls" id="app"></div>
+<div class="urls"></div>
 <div class="lower-part">
-    <div class="folder-plus">
-        <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
-            {% csrf_token%}
-            <!-- <input id="mkdir" type="text" placeholder="새 폴더 만들기" name='dirname' class="mkdir-input"> -->
-            <!-- <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button> -->
-        </form>
-        <!-- <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button> -->
-    </div>
+    <div id ="app">
         <form method="POST" action ="{% url 'make_memo' %}" class="mypg-form">
             {% csrf_token%}
             <!-- <textarea  class="" rows="1" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea> -->
             <div class="txt-input-btn">
-                <textarea id="review_text" class="urlList" id="urlList" v-model="newMessage" wrap="off" placeholder="URL입력" name="url"></textarea>
+                <textarea id="review_text" class="urlList" v-model="newMessage" wrap="off" placeholder="URL입력" name="url"></textarea>
 
               <!-- <input type="text" class="searchTerm" placeholder="URLs"> -->
-              <div class="form-input-btn">
-                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
+              
+              <div class="input-txt">
+                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerms">
                 <button id="keyword-button" v-on:click="renew()" class="searchButton-1">
                   <i class="fa fa-search" aria-hidden="true" ></i>
                 </button>
-              </div>
+                </div>
             </div>
         </form>
-    
+    </div>
     <div class="mypage-wrap">
-          <div class="d-bar">
-              <ul class="directory-nav">
-                  <li class="directory-nav-items">
-                        <button class="d-nav-btns"><i class="fa fa-plus"></i></button>
-                  </li>
-                  <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
-                  {% for a in user.profile.get_fields_name %}
-                      <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
-                  {% endfor %}
-              </ul>
-          </div>
+            <div class="d-bar">
+                    <ul class="directory-nav">
+                                <li class="directory-nav-items"><button class="d-nav-btns"><i class="fa fa-plus"></i></button></li>
+                            {% ifequal user_currentdir_name 'recently' %}
+                                <li class="directory-nav-items"><button class="selected-folder"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
+                            {% else %}
+                                <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
+                            {% endifequal %}
+                            
+                            {% for a in user.profile.get_fields_name %}
+                                {% ifequal a user_currentdir_name %}
+                                    <li class="directory-nav-items"><button class="selected-folder"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
+                                {% else %}
+                                    <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
+                                {% endifequal %}
+                            {% endfor %}
+                            <li class="directory-nav-items"><button class="directory-nav-items"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button></li>
+                        </ul>
+                    </div>
+                
 
           <div class="index-objects">
+            {% if posts %}
             {% for memo in posts %}
                 <div class="memoContainer">
                     <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
@@ -70,6 +74,9 @@
                     linkPrint({{forloop.counter}});
                 </script>
                 {% endfor %}
+                {% else %}
+                    <h2>폴더가 비어있습니다.</h2>
+                {% endif %}
         </div>
       </div>
       <div class="paginator">

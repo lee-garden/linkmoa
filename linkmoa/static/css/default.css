@@ -245,6 +245,12 @@ form {
     outline: none;
     width: 85%;
 }
+.searchTerms {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    width: 85%;
+}
 .search-form:focus, .urlList:focus{
     color: #000000;
     box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
@@ -529,16 +535,26 @@ form {
     color: #FFFEEE;
 }
 
+.selected-folder{
+    height: 45px;
+    width: 150px;
+    z-index: 3;
+    border-right: none;
+    border-bottom: none;
+    background: #FFFEEE;
+    box-shadow: 1px 5px 10px 0px rgba(32,33,36,0.3);
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
 .d-nav-btns{
-   margin: 5px 0;
-    height: 40px;
-    width: 110px;
-    border: none;
-    border-radius: 20px;
-    background: #FEFEFE;
-    font-size: 10px;
-    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
-    font-size: 15px;
+    height: 100%;
+    width: 130px;
+    border-right: 1px solid red;
+    border-bottom: none;
+    z-index: 1;
+    border-right: 1px solid rgba(53, 19, 32, 0.2);
+    background: rgba(255, 255, 255, 0);
+    font-size: 12px;
 }
 .i-btn, .i-btn-cd{
     background: none;

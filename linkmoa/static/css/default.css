@@ -123,6 +123,7 @@ html, body{
     outline: none;
     position: absolute;
     left: 500px;
+    top: 27px;
 
 }
 .searchTerm:focus, .urlList:focus{
@@ -136,7 +137,7 @@ html, body{
     left: 850px;
     position: absolute;
     background-color: transparent;
-    top: 35px;
+    top: 43px;
 }
 .sort {
     margin: 3px;
@@ -201,9 +202,8 @@ html, body{
 /*INDEX HTML*/
 .mkdir-input{
     width: 200px;
-    border: 2px solid #8763FB;
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
+    border: none;
+    border-radius: 10px;
     padding: 5px;
     outline: none;
     color: black;
@@ -229,7 +229,11 @@ html, body{
     left:50%;
     float: left;
 }
-
+.folder-plus{
+    position: absolute;
+    left: 48%;
+    top: -46px;
+}
 .urlList{
     position: absolute;
     padding: 12px 20px;
@@ -240,7 +244,7 @@ html, body{
     outline: none;
     height: 45px;
     left: 100px;
-    top: 30px;
+    top: 38px;
     z-index: 1;
 }
 .urlList::-webkit-scrollbar{
@@ -248,8 +252,9 @@ html, body{
 }
 
 .line{
-    height: 50px;
+    height: 65px;
     margin: -1px auto 2em auto;
+    position: relative;
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
 }
 .line2{
@@ -269,6 +274,7 @@ html, body{
     margin: 0 auto 0 auto;
     border: 1px solid #d3d3d380;
     border-radius: .5em;
+    border-left: none;
     box-shadow: 1px 1px 3px 0 rgba(15, 19, 32, 0.8);
     min-height: 500px;
 }
@@ -298,10 +304,9 @@ html, body{
     margin: 0;
     padding: 0;
     border : 0;
-    border: 1px solid #d3d3d380;
-    border-radius: .5em 0 0 .5em;
-    border-right: none;
-    box-shadow: -30px 0px 4px 1px rgba(15, 19, 32, 0.8);
+    width: 120px;
+    height: 45px;
+    border-bottom: 1px solid rgba(53, 19, 32, 0.2);
 }
 
 .memoContainer{
@@ -395,6 +400,18 @@ font-size: 30px;
     float: right;
     margin-right: 10px;
 }
+.new-memo-btn{
+    position: absolute;
+    left: 81%;
+    width: 130px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+}
 .edit-btn{
     background: #EFEFEF;
     outline: none;
@@ -410,23 +427,23 @@ font-size: 30px;
     transition: 0.3s;
     color: #FFFEEE;
 }
-.d-nav-btns{
-    margin: 5px 0 auto 5px;
-    height: 40px;
-    width: 110px;
-    border: none;
-    border-radius: 20px;
-    background: #FFFEEE;
-    font-size: 10px;
-}
 .selected-folder{
-    margin: 5px 0 auto 5px;
-    height: 40px;
-    width: 110px;
+    height: 45px;
+    width: 100%;
+    border-right: none;
+    border-bottom: none;
+    background: #FFFEEE;
+    box-shadow: 1px 5px 10px 0px rgba(32,33,36,0.3);
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.d-nav-btns{
+    height: 100%;
+    width: 100%;
     border: none;
-    border-radius: 20px;
+    border-right: 1px solid rgba(53, 19, 32, 0.2);
     background: rgba(255, 255, 255, 0);
-    font-size: 10px;
+    font-size: 12px;
 }
 .i-btn, .i-btn-cd{
     background: none;

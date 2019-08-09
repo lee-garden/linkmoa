@@ -3,15 +3,15 @@
 
 <script src="../../static/js/linkprint.js"></script>
 <div class="lower-part">
-    <div class="folder-plus">
-        <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
-            {% csrf_token%}
-            <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
-            <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button>
-        </form>
-    </div>
     <div class="line">
         <div class="urls" id="app">
+            <div class="folder-plus">
+                <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
+                    {% csrf_token%}
+                    <input id="mkdir" type="text" placeholder="새 폴더 만들기" name='dirname' class="mkdir-input">
+                    <!-- <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button> -->
+                </form>
+            </div>
             <form method="POST" action ="{% url 'make_memo' %}" class="mypg-form">
                 {% csrf_token%}
                 <br>
@@ -24,7 +24,7 @@
                 </button>
                 <br>
             </form>
-            <button class="edit-btn" id="setSelect" data-toggle="modal" data-target="#editModal">새메모</button>
+            <button class="new-memo-btn" id="setSelect" data-toggle="modal" data-target="#editModal">메모 직접 만들기</button>
         </div>
     </div>
     <div class="mypage-contents">
@@ -92,25 +92,25 @@
     </div>
 </div>
     <script>
-      $(function() { 
-            $('.directory-nav li button').click(function(e) {
-                e.preventDefault();
-                if ($(this).closest('button').attr('id') == "current"){
-                    return
-                } else {
-                    $(".objects div").hide();
-                }
-            });
-      });
-      $('#review_text').focus( function() {
-  // store original height
-  $(this).attr('data-height', $(this).height());
-  // animate the height change
-  $(this).animate({ height: 200 }, 'slow');
-}).blur( function(e) {
-  // set to original height
-  $(this).animate({ height: 45 }, 'slow');
-});
+    $(function() { 
+        $('.directory-nav li button').click(function(e) {
+            e.preventDefault();
+            if ($(this).closest('button').attr('id') == "current"){
+                return
+            } else {
+                $(".objects div").hide();
+            }
+        });
+    });
+    $('#review_text').focus( function() {
+        // store original height
+        $(this).attr('data-height', $(this).height());
+        // animate the height change
+        $(this).animate({ height: 200 }, 'slow');
+        }).blur( function(e) {
+        // set to original height
+        $(this).animate({ height: 45 }, 'slow');
+    });
 
     </script>
 </div>

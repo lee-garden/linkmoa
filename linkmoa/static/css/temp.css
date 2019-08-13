@@ -18,6 +18,7 @@
 html, body{
     margin : 0;
     font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100%;
 }
 
 form {
@@ -30,15 +31,18 @@ form {
 }
 .footer{
     position: absolute;
-    left: 0;
-    bottom: 0;
     height: auto;
     width: 100%;
     text-align: center;
+    background: black;
+    color: white;
 }
-.footer-title{
+.footer > .footer-div {
+    margin: 4em 0;
+}
+.footer > .footer-div > .footer-title{
     margin-top: 30px;
-    color: rgba(0, 0, 0, 0.5)
+    color: white;
 }
 .footer-content {
     margin: 20px 0;
@@ -160,14 +164,15 @@ form {
     margin: auto;
     height: 100%;
     display: inline-block;
-    width: 80%;
+    width: 100%;
     background: linear-gradient(to right, #a2aeff, #8763FB, #6de8ef );
     z-index: 1;
 }
 
 .nav-ul .not-hidden-li {
     display: inline-block;
-    margin: .93em 2em;
+    /* margin: .93em 2em; */
+    margin: .93em 4em;
     width: 150px;
 }
 .nav-ul .not-hidden-li .nav-link:hover {
@@ -344,7 +349,7 @@ form {
 }
 .carousel {
     position: relative;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 
 }
@@ -354,13 +359,13 @@ form {
     display: flex;
     height: 450px;
     position: absolute;
-    top: 55px;
+    top: 80px;
     width: 100%;
 }
 .temp1{
-    height: 100%;
+    height: 80%;
     width: 50%;
-    margin: 1em 0 0 13em;
+    margin: 2em 0 0 15em;
 }
 .temp2{
     height: 100%;
@@ -368,7 +373,12 @@ form {
     margin: 1em 1em 0 0;
 }
 
-
+.board > h1 {
+    text-align: center;
+    font-family: 'S-CoreDream-8Heavy';
+    margin: 2em 0 1em 0;
+    
+}
 .nav-ul-2 {
     list-style: none;
     padding: 3em;
@@ -386,31 +396,36 @@ form {
 .temp2 > .nav-ul-2 > .nav-link-2 {
     float: right;
     display: block;
-    padding: .5rem 1rem;
+    padding: 1rem;
     text-align: center;
-    margin: 1em auto;
+    margin: 2em auto;
     font-size: 1.3em;
     width: 100%;
+    background: #0e033e;
+    border-radius: 5px;
+    height: 20%;
+    box-shadow: 0px 0px 6px 2px #ffffff;
 }
-
+.temp2 > .nav-ul-2 > .nav-link-2 a {
+    color: white;
+}
 .border-custom-style {
-    height: 50%;
-    max-width: 250px;
-    margin: 3em 13em 8em 1em;
+    height: 70%;
     box-sizing: border-box;
     display: inline-block;
-    border: 1px solid aliceblue;
-    border-radius: 12px;
-    background: #ffffff7d;
-    box-shadow: 0px 0px 10px -3px #efefef;
-    min-width: 200px;
-  }
+    /* border: 1px solid darkgrey; */
+    border-radius: 8px;
+    background: transparent;
+    /* box-shadow: 0px 0px 3px -3px #ffffff; */
+    width: 250px;
+    min-width: 250px;
+}
 
 .all { border-image-width: 1.5px; }
 
 
 .fa-search:before {
-    color: #868686;
+    color: #0d033e;
 }
 .btn-plus {
     height: 30px;
@@ -474,15 +489,14 @@ form {
     background: #f4f4f7;
 }
 .objects{
-    max-width: 1230px;
     width: 100%;
-    border: 1px solid #d3d3d380;
-    box-shadow: 0px 5px 20px 0px rgba(15, 19, 32, 0.49);
-    border-radius: 10px;
-    margin: 10px auto 0 auto;
+    /* border-top: 1px solid #d3d3d380; */
+    border-bottom: 1px solid #d3d3d380;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 1em 0 4em 0;
 }
 
 .index-objects{
@@ -525,17 +539,16 @@ form {
 }
 
 .memoContainer{
-    max-width: 200px;
-    margin-bottom: 1rem;
     position: relative;
-    margin: 10px;
-    width: 100%;
-    height: 270px;
     float: left;
-    border: 2px solid #d3d3d380;
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+    margin: 1em;
+    border: 1px solid #797979;
     border-radius: 5px;
-    /* box-shadow: 1px 1px 5px 0 rgba(99, 109, 141, 0.8); */
-    padding: 0 .5rem;
+    box-shadow: 1px 1px 5px 0 rgba(171, 171, 171, 0.8);
+    padding: 0 2em;
     background-color: white;
 }
 
@@ -585,6 +598,8 @@ form {
     text-transform: uppercase;
     font-weight: 900;
     letter-spacing: 5px;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px #ffffff82;
 }
 .slogan-name{
     font-family: 'Noto Sans KR', sans-serif;

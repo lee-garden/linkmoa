@@ -1,39 +1,53 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% block content %}
 
 <script src="../../static/js/linkprint.js"></script>
-<div class="urls" id="app">
-    <form method="POST" action ="{% url 'make_memo' %}" class="">
-        {% csrf_token%}
-        <br>
-        검색 :
-        <textarea class="urlArea searchTerm" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea>
-        <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
-        <button id="keyword-button" v-on:click="renew()" class="searchButton">
-                <i class="fa fa-search" aria-hidden="true" ></i>
-        </button>
-        <br>
-    </form>
-</div>
 <div class="lower-part">
-    <div class="folder-plus">
-        <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
-            {% csrf_token%}
-            <span class="mkdirtxt">폴더 만들기 : </span><input id="mkdir" type="text" placeholder="폴더 이름 입력" name='dirname' class="mkdir-input">
-            <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button>
-        </form>
-    </div>
     <div class="line">
-        <ul class="directory-nav">
-            <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
+            <div class="folder-plus">
+                <form method="POST" action ="{% url 'mkdir' %}" class="form-mkdir">
+                    {% csrf_token%}
+                    <input id="mkdir" type="text" placeholder="새 폴더 만들기" name='dirname' class="mkdir-input">
+                    <!-- <button class="btn-plus i-btn"><i class="fa fa-plus"></i></button> -->
+                </form>
+            </div>
+            <div class="urls" id="app">
+            <form method="POST" action ="{% url 'make_memo' %}" class="mypg-form">
+                {% csrf_token%}
+                <br>
+                <!-- <textarea  class="" rows="1" id="urlList" wrap="off" name='url' v-model="newMessage"></textarea> -->
+                <textarea id="review_text" class="urlList" id="urlList" v-model="newMessage" wrap="off" placeholder="URL입력" name="url"></textarea>
+                <!-- <input type="text" class="searchTerm" placeholder="URLs"> -->
+                <input id="keyword-search" type="text" placeholder="키워드 입력" name='key' class="searchTerm">
+                <button id="keyword-button" v-on:click="renew()" class="searchButton">
+                        <i class="fa fa-search" aria-hidden="true" ></i>
+                </button>
+                <br>
+            </form>
+        </div>
+            <button class="new-memo-btn" id="setSelect" data-toggle="modal" data-target="#editModal">메모 직접 만들기</button>
+    </div>
+    <div class="mypage-contents">
+    <div class="d-bar">
+    <ul class="directory-nav">
+            {% ifequal user_currentdir_name 'recently' %}
+                <li class="directory-nav-items"><button class="selected-folder"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
+            {% else %}
+                <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' 'recently' %}'"><span class="d-nav-item">Recently</span></button></li>
+            {% endifequal %}
+            
             {% for a in user.profile.get_fields_name %}
-                <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
+                {% ifequal a user_currentdir_name %}
+                    <li class="directory-nav-items"><button class="selected-folder"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
+                {% else %}
+                    <li class="directory-nav-items"><button class="d-nav-btns"onclick="location.href='{%url 'changedir' a %}'"><span class="d-nav-item">{{a}}</span></button></li>
+                {% endifequal %}
             {% endfor %}
             <button class="edit-btn"id="setSelect" data-toggle="modal" data-target="#editdirModal" data-id= "{{memo.id}}"><span class="d-nav-item">편집</span></button>
         </ul>
     </div>
-
-    <div class="objects">
+    <div class="index-objects">
+        {% if posts %}
         {% for memo in posts %}
             <div class="memoContainer">
                 <h2 class="memoKey"><a href="#">{{memo.keyword}}</a></h2>
@@ -44,17 +58,11 @@
                 </span>
                 <div id="memotxt{{forloop.counter}}" style="display: none">{{memo.urls}}</div>
                 <div id="result{{forloop.counter}}">sample</div>
-                <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-memo="{{memo.memo}}" data-tag="{{memo.tags.all}}">&nbsp;더보기...</a><br><br>
-                {% comment %}
+                <a href="#" data-toggle="modal" data-target="#moreModal" data-id = "{{memo.id}}" data-keyword= "{{memo.keyword}}" data-urls="{{memo.urls}}" data-memo="{{memo.memo}}" data-tag="{{memo.tag}}">&nbsp;더보기...</a><br><br>
                 {% load tagging_tags %}
                 {% tags_for_object memo as tags %}
                 {% for tag in tags %}
                 <a href="{% url 'tag_board' tag.name %}">#{{tag.name}}</a>
-                {% endfor %}
-                {% endcomment %}
-                {{memo.tags.all}}
-                {% for tag in memo.tags.all %}
-                    <a href="{% url 'tag_board' tag.slug %}">#{{tag}}</a>
                 {% endfor %}
                 <div class="button-list">
                     <span class="btns">
@@ -68,6 +76,9 @@
                 linkPrint({{forloop.counter}});
             </script>
             {% endfor %}
+            {% else %}
+             <h2>폴더가 비어있습니다.</h2>
+            {% endif %}
     </div>
     <div class="paginator">
         {% if posts.has_previous %}
@@ -83,18 +94,28 @@
             <a href="?page={{posts.paginator.num_pages}}">Last</a>
         {% endif %}
     </div>
-
+</div>
     <script>
-      $(function() { 
-            $('.directory-nav li button').click(function(e) {
-                e.preventDefault();
-                if ($(this).closest('button').attr('id') == "current"){
-                    return
-                } else {
-                    $(".objects div").hide();
-                }
-            });
-      });
+    $(function() { 
+        $('.directory-nav li button').click(function(e) {
+            e.preventDefault();
+            if ($(this).closest('button').attr('id') == "current"){
+                return
+            } else {
+                $(".objects div").hide();
+            }
+        });
+    });
+    $('#review_text').focus( function() {
+        // store original height
+        $(this).attr('data-height', $(this).height());
+        // animate the height change
+        $(this).animate({ height: 200 }, 'slow');
+        }).blur( function(e) {
+        // set to original height
+        $(this).animate({ height: 45 }, 'slow');
+    });
+
     </script>
 </div>
 <footer class="footer">
@@ -105,6 +126,6 @@
 {% include 'modal.html' %}
 {% include 'moreModal.html' %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
-    <script src="../../static/js/vue.js"></script>
-    <script src="../../static/js/query.js?ver=1.1"></script>
+    <!-- <script src="../../static/js/vue.js"></script> -->
+    <script src="../../static/js/query.js?ver=1.2"></script>
 {% endblock %}

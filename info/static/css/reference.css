@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Oswald&display=swap');
+
+/* font-family: 'Oswald', sans-serif;
+font-family: 'Anton', sans-serif; */
+
+.reference-btns{
+    width: 700px;
+    height: 300px;
+    margin: 30px auto 0 auto;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+}
+
+.btn-contain{
+    float: left;
+    position: relative;
+}
+
+.download-btn, .guide-btn{
+    width: 300px;
+    height: 120px;
+    outline: none;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    border-radius: 50px;
+    background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
+    border: 1px solid #6478FB;
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+    color: #E3E3E3;
+}
+
+.download-btn{
+    margin: 0 0 0 -140px;
+}
+.guide-btn{
+    margin: 0 0 0 -160px;
+}
+
+.download-btn:hover, .guide-btn:hover{
+    color: white;
+}

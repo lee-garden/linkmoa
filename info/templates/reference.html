@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+{% block content %}
+
+<link href="../../static/css/reference.css?ver=0.1" rel="stylesheet">
+<div class="line"></div>
+<div class="reference-btns">
+    <div class="btn-contain">
+        <form action="{% url 'downloadzip' %}">
+            <button class="download-btn">DOWNLOAD<br>EXTENSION</button>
+        </form>
+    </div>
+    <div class="btn-contain">
+        <form action="{% url 'moaguide' %}">
+            <button class="guide-btn">LINKMOA GUIDE</button>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <h2 class="footer-title">LIKE LION</h2>
+    <h5>khjvvv7@gmail.com</h5>
+</footer>
+
+{% endblock %}

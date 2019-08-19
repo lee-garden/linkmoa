@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'taggit.apps.TaggitAppConfig',
+    'tagging.apps.TaggingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'linkmoa.apps.LinkmoaConfig',
     'accounts.apps.AccountsConfig',
     'freeboard.apps.FreeboardConfig',
+    'info.apps.InfoConfig',
 ]
 
 MIDDLEWARE = [

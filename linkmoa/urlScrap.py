@@ -13,7 +13,7 @@ def scrapUrl(list, key):
     print("key : " + key)
     for i in range(0, len(list)):
         print(i+1," URL : " + list[i])
-        if list[i] is not '':
+        if list[i] is not '' and list[i] not in urlList:
             if crawling(list[i], key) is not False:
                 urlList.append(list[i])
     print("time : ", time.time() - start )

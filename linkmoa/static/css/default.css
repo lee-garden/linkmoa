@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|East+Sea+Dokdo|Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|family=Cute+Font&display=swap');
 
+.memoLine{
+    border-bottom: 2px solid rgba(32,33,36,0.28);
+    width: 100%;
+}
+
+.inforoom{
+    position: absolute;
+    right: 15%;
+    top: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #222222;
+}
+.inforoom-a{
+    color: #222222;
+}
 
 /*COMMON*/
 form {
@@ -25,6 +40,24 @@ html, body{
 
 /*BASE HTML*/
 /* nav */
+.mainsearchTerm {
+    padding: 12px 20px;
+    width: 400px;
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+}
+.mainsearchButton {
+    cursor: pointer;
+    font-size: 20px;
+    border: none;    
+    left: -55px;
+    position: relative;
+    background-color: transparent;
+    top: 2px;
+}
+
 .nav {
     height: 200px;
     width: 100%;
@@ -67,12 +100,13 @@ html, body{
 .nav-ul li {
     display: inline-block;
     padding: 0 15px 0 0;
-}
+}mypa
 .nav-link{
     color: #38B9C0;
     font-family: 'Noto Sans KR', sans-serif;
     text-decoration: none;
     font-size: 15px;
+    z-index: 1;
 }
 .search-form{
     position: absolute;
@@ -88,20 +122,23 @@ html, body{
     box-shadow: none;
     border-radius: 24px;
     outline: none;
+    position: absolute;
+    left: 500px;
+    top: 12px;
 
 }
-.searchTerm:focus{
+.searchTerm:focus, .urlList:focus{
     color: #000000;
-    box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
+    box-shadow:0 4px 8px 0px rgba(32,33,36,0.5);
 }
 .searchButton {
     cursor: pointer;
     font-size: 20px;
     border: none;    
-    left: -55px;
-    position: relative;
+    left: 850px;
+    position: absolute;
     background-color: transparent;
-    top: 2px;
+    top: 28px;
 }
 .sort {
     margin: 3px;
@@ -138,11 +175,14 @@ html, body{
 }
 .container-linkmoa{
     margin: 0;
-    height: 900px;
+    background-color: white;
 }
 
 
 /*Board , Search_Board HTML*/
+.board-wrap{
+    background-color: white;
+}
 .temp{
     height: 188px;
 }
@@ -163,8 +203,8 @@ html, body{
 /*INDEX HTML*/
 .mkdir-input{
     width: 200px;
-    border: 2px solid #8763FB;
-    border-bottom: none;
+    border: none;
+    border-radius: 10px;
     padding: 5px;
     outline: none;
     color: black;
@@ -173,7 +213,8 @@ html, body{
   }
 .form-mkdir{
     margin-top: 4em;
-    left:30%;
+    margin-left: -1000px;
+    
 }
 .fa-plus:before {
     color: #6478FB;
@@ -181,21 +222,84 @@ html, body{
 #keyword-search{
     margin: 10px 0 0 0;
 }
-
-#urlList{
-    margin: 10px 0 0 0;
+.mypg-form{
+    position: absolute;
+    width: 1000px;
+    margin-top:0;
+    margin: -28px 0 0 -500px;
+    left:50%;
+    top:15px;
+    float: left;
 }
+.folder-plus{
+    position: absolute;
+    left: 48%;
+    top: -46px;
+}
+.urlList{
+    position: absolute;
+    padding: 12px 20px;
+    width: 385px;
+    border: 1px solid #DDDDDD;
+    box-shadow: none;
+    border-radius: 24px;
+    outline: none;
+    height: 45px;
+    left: 100px;
+    top: 23px;
+    z-index: 1;
+}
+.urlList::-webkit-scrollbar{
+        display: none !important;
+}
+
 .line{
+    height: 65px;
+    margin: -1px auto 2em auto;
+    position: relative;
+    background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
+}
+.line2{
     height: 50px;
     margin: -1px auto 3em auto;
     background: linear-gradient(to right, #6478FB, #8763FB, #38B9C0 );
 }
 .objects{
     max-width: 1230px;
-    margin: 2em auto;
+    border: 1px solid #d3d3d380;
+    box-shadow: 0px 5px 20px 0px rgba(15, 19, 32, 0.49);
+    border-radius: 10px;
+    margin: 10px auto 0 auto;
+    display: grid;
+    grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.objects{
+    width: 1110px;
+}
+.index-objects{
+    width: 1050px;
+    border: 1px solid #d3d3d380;
+    border-radius: .5em;
+    box-shadow: 0px 0px 15px 0px rgba(15, 19, 32, 0.48);
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    min-height: 500px;
+}
+.mypage-contents{
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    /* border: 1px solid #d3d3d380;
+    border-radius: .5em;
+    box-shadow: 2px 1px 4px 0 rgba(15, 19, 32, 0.48); */
+    min-height: 500px;
+}
+.d-bar{
+    float: left;
+    left: 50px;
 }
 .directory-nav{
     overflow: hidden;
@@ -206,10 +310,10 @@ html, body{
     display: table;
     margin-right: auto;
     margin-left: auto;
+    float: left;
   }
   
 .directory-nav li{
-    float: left;
     margin: 0 .5em 0 0;
 }
 
@@ -220,7 +324,9 @@ html, body{
     margin: 0;
     padding: 0;
     border : 0;
-    float: left;
+    width: 120px;
+    height: 45px;
+    border-bottom: 1px solid rgba(53, 19, 32, 0.2);
 }
 
 .memoContainer{
@@ -231,10 +337,11 @@ html, body{
     width: 100%;
     height: 270px;
     float: left;
-    border: 1px solid #d3d3d380;
-    border-radius: .5em;
-    box-shadow: 1px 1px 4px 0 rgba(89, 105, 155, 0.8);
+    border: 2px solid #d3d3d380;
+    border-radius: 5px;
+    /* box-shadow: 1px 1px 5px 0 rgba(99, 109, 141, 0.8); */
     padding: 0 .5rem;
+    background-color: white;
 }
 
 .memoContainer h2{
@@ -312,7 +419,19 @@ font-size: 30px;
 .btns{ /*index.html*/
     float: right;
     margin-right: 10px;
-  }
+}
+.new-memo-btn{
+    position: absolute;
+    left: 81%;
+    width: 130px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+}
 .edit-btn{
     background: #EFEFEF;
     outline: none;
@@ -328,26 +447,32 @@ font-size: 30px;
     transition: 0.3s;
     color: #FFFEEE;
 }
-
+.selected-folder{
+    height: 45px;
+    width: 150px;
+    z-index: 3;
+    border-right: none;
+    border-bottom: none;
+    background: #FFFEEE;
+    box-shadow: 1px 5px 10px 0px rgba(32,33,36,0.3);
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
 .d-nav-btns{
-    margin: 5px 0 auto 5px;
-    height: 40px;
-    width: 110px;
-    border: none;
-    border-radius: 20px;
-    background: #FEFEFE;
-    font-size: 10px;
-    box-shadow: 1px 1px 4px 0 rgba(32, 33, 36, 0.2);
-    font-size: 15px;
+    height: 100%;
+    width: 130px;
+    border-right: 1px solid red;
+    border-bottom: none;
+    z-index: 1;
+    border-right: 1px solid rgba(53, 19, 32, 0.2);
+    background: rgba(255, 255, 255, 0);
+    font-size: 12px;
 }
 .i-btn, .i-btn-cd{
     background: none;
     color: inherit;
     border: none;
 }
-
-
-
 
     /* Deprecated */
 /*38B9C8 - > 333333*/

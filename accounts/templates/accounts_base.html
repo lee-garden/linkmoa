@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../static/css/signup.css?ver=1.2">
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -21,36 +23,41 @@
 </head>
 
 <body>
-    <div class="container-linkmoa">
-        <div>
-            <div class="nav">
-                <div class="log" style="height: 100px">
-                    <a href="{% url 'board' %}"><img src="{% static 'image/1.png'%}" style="height:100px; left:45% ;position: absolute;"></a>
+        <p class="inforoom"><a href="{% url 'reference' %}" class="inforoom-a">자료실</a></p>
+    <div class="container-linkmoa-login">
+        <div class="nav">
+            <div class="log" style="height: 100px">
+                <a href="{% url 'board' %}"><img src="{% static 'image/1.png'%}" style="height:100px; left:45% ;position: absolute;"></a>
+            </div>
+            <div class="sub-nav">
+                <div class="board-nav">
+                    <ul class="nav-ul">
+                        <li><a href="{% url 'board' %}" class="nav-link">공유 게시판</a></li>
+                        <li><a href="{% url 'freeboard' %}" class="nav-link">자유 게시판</a></li>
+                    </ul>      
                 </div>
-                <div class="sub-nav">
-                    <form method="POST" action="{% url 'search_board' %}" class="search-form">
-                        {% csrf_token %}
-                        <input type="text" placeholder="search" name="searchBox" class="searchTerm" />
-                        <button type="submit" class="searchButton" >
-                            <i class="fa fa-search" aria-hidden="true" ></i>
-                        </button>
-                    </form>
-                    <div class="loginout">
-                        <ul class="nav-ul">
-                            {% if user.is_authenticated %}
-                                <li><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
-                                <li><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
-                            {% else %}
-                                <li><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
-                                <li><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
-                            {% endif%}
-                        </ul>
-                    </div>
+                <form method="POST" action="{% url 'search_board' %}" class="search-form">
+                    {% csrf_token %}
+                    <input type="text" placeholder="search" name="searchBox" class="mainsearchTerm" />
+                    <button type="submit" class="mainsearchButton" >
+                        <i class="fa fa-search" aria-hidden="true" ></i>
+                    </button>
+                </form>
+                <div class="loginout">
+                    <ul class="nav-ul">
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}" class="nav-link">로그아웃</a></li>
+                            <li><a href="{% url 'index' %}" class="nav-link">마이페이지</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}" class="nav-link">로그인</a></li>
+                            <li><a href="{% url 'signup' %}" class="nav-link">회원가입</a></li>
+                        {% endif%}
+                    </ul>
                 </div>
             </div>
         </div>
-        {% block content %}
-        {% endblock %}
     </div>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

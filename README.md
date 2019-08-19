@@ -17,7 +17,9 @@
 2. 사용자는 URL 리스트에 자신이 저장해놓은 URL 들, 키워드창에 찾고자 하는 키워드를 입력합니다.
 <img src="https://user-images.githubusercontent.com/41745717/63235506-add62c00-c274-11e9-8758-8e63d1c5a790.PNG" width="90%"></img>
 3. 위와같이 입력을 하고 검색을 하면 JVM 단어를 포함한 URL만을 추출 해 줍니다.
-<img src="https://user-images.githubusercontent.com/41745717/63235509-af9fef80-c274-11e9-970f-8815eac846d1.PNG" width="90%"></img>
+<img src="https://user-images.githubusercontent.com/41745717/63235509-af9fef80-c274-11e9-970f-8815eac846d1.PNG" width="90%"></img
+
+4. https://github.com/97e57e/linkmoa_chrome_extension 크롬 익스텐션을 통해 더 쉽게 사용가능합니다.
 
 ## 기술 
 - Front End
@@ -25,6 +27,8 @@
 - 아직 SPA에 대한 지식이 부족하여 SPA는 도입하지 못함
 - 대부분 Django template과 Jquery 이용
 - Bootstrap의 Modal과 Carousel 사용
+
+- 추후 React.js 또는 vue.js 도입 
 ~~~
 
 - Back End
@@ -34,5 +38,8 @@
 - URL 필터링 기능을 위해 urllib 사용
 - Tag 기능을 위해 Django-tagging 라이브러리 사용
 - 처음에는 헤로쿠 배포를 시도 했으나 헤로쿠에서 tagging의 최신 버전이 잘 안불러와져서 실패.
-- 이후 AWS EC2를 이용한 배포 성공. 추후 Nginx Uwsgi와의 연동 필요
+- 이후 AWS EC2를 이용한 배포 성공
+
+- Nginx Uwsgi와의 연동 필요
 ~~~
+
